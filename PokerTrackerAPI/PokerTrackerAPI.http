@@ -1,0 +1,6 @@
+@PokerTrackerAPI_HostAddress = http://localhost:5161
+
+GET {{PokerTrackerAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
