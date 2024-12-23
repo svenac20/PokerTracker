@@ -12,4 +12,6 @@ public class PokerTrackerDbContext : DbContext
     public DbSet<Casino> Casinos { get; set; }
     public DbSet<Town> Towns { get; set; }
     public DbSet<Country> Countries { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
 }

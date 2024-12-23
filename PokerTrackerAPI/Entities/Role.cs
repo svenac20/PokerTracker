@@ -1,8 +1,6 @@
 namespace PokerTrackerAPI.Entities;
 
-public enum Role
+public class Role : BaseEntity
 {
-    Owner,
-    Admin,
-    Player,
+    public string Name { get; set; }
 }
