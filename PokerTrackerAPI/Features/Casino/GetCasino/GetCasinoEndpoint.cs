@@ -15,7 +15,7 @@ public class GetCasinoEndpoint : Endpoint<GetCasinoRequest, GetCasinoResponse>
 
     public override void Configure()
     {
-        Get("/api/casinos/{Id:int}");
+        Get("casinos/{Id:int}");
         AllowAnonymous();
     }
 

@@ -1,5 +1,7 @@
 using System.Text;
 using Azure.Identity;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.MicrosoftAccount;
@@ -42,21 +44,34 @@ builder.Services
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
         };
     })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddMicrosoftAccount(MicrosoftAccountDefaults.AuthenticationScheme, options =>
     {
-        options.ClientId = "YourMicrosoftClientId";
-        options.ClientSecret = "YourMicrosoftClientSecret";
+        options.ClientId = builder.Configuration["Azure:ClientId"]!;
+        options.ClientSecret = builder.Configuration["Azure:ClientSecret"]!;
     });
+
+builder.Services
+    .AddFastEndpoints()
+    .SwaggerDocument(o =>
+    {
+        o.DocumentSettings = s =>
+        {
+            s.Title = "Poker Tracker API";
+            s.Version = "v1";
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app
+    .UseFastEndpoints(c => { c.Endpoints.RoutePrefix = "api"; })
+    .UseSwaggerGen();
+
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
