@@ -1,25 +1,29 @@
 // filepath: /home/sscekic/RiderProjects/PokerTracker/poker-tracker-client/src/main.tsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { PublicClientApplication } from "@azure/msal-browser";
-import { msalConfig } from "./components/auth/auth.config";
-import { MsalProvider } from "@azure/msal-react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router";
+import App from "./App";
+import Login from "./components/auth/login";
+import "./index.css";
+import { AuthContext } from "./components/auth/context/auth.context";
+import { UserType } from "./components/auth/context/user.type";
 
 const queryClient = new QueryClient();
-const msalInstance = new PublicClientApplication(msalConfig);
+
+const [user, setUser] = useState<UserType | null>(null);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-    <React.StrictMode>
-      <MsalProvider instance={msalInstance}>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      </MsalProvider>
-    </React.StrictMode>
-  </GoogleOAuthProvider>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <AuthContext.Provider value={{ user, setUser }}>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </AuthContext.Provider>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </React.StrictMode>
 );
