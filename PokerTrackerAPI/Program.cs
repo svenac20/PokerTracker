@@ -50,6 +50,15 @@ builder.Services
         options.ClientSecret = builder.Configuration["Azure:ClientSecret"]!;
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Allow",
+        cors => cors 
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 builder.Services
     .AddFastEndpoints()
     .SwaggerDocument(o =>
@@ -71,6 +80,7 @@ app
 
 
 app.UseHttpsRedirection();
+app.UseCors("Allow");
 app.UseAuthentication();
 app.UseAuthorization();
 
