@@ -2,14 +2,13 @@ import { Formik } from "formik";
 import { FC } from "react";
 import * as Yup from "yup";
 
-const LoginRegister: FC<{
-  type: "login" | "register";
+const RegisterForm: FC<{
   sumbitHandler: (values: {
     email: string;
     password: string;
     username: string;
   }) => {};
-}> = ({ type, sumbitHandler }) => {
+}> = ({ sumbitHandler }) => {
   return (
     <Formik
       initialValues={{ username: "", email: "", password: "" }}
@@ -33,7 +32,6 @@ const LoginRegister: FC<{
           values,
           touched,
           errors,
-          dirty,
           isSubmitting,
           handleSubmit,
           handleChange,
@@ -59,7 +57,7 @@ const LoginRegister: FC<{
               )}
             </div>
 
-            <div >
+            <div>
               <label htmlFor="email" className="rounded-lg  block font-bold">
                 Email:
               </label>
@@ -97,7 +95,11 @@ const LoginRegister: FC<{
               )}
             </div>
 
-            <button type="submit" disabled={isSubmitting} className="border-2 border-gray-500 rounded-lg p-4">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="border-2 border-gray-500 rounded-lg p-4"
+            >
               Submit
             </button>
           </form>
@@ -107,4 +109,4 @@ const LoginRegister: FC<{
   );
 };
 
-export default LoginRegister;
+export default RegisterForm;

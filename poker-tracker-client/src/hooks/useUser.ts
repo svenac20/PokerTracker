@@ -8,6 +8,7 @@ export const useUser = () => {
   const { setItemSession } = useSessionStorage();
 
   const addUser = (user: UserType) => {
+    console.log(sessionStorage.getItem("user"));
     if (sessionStorage.getItem("user")) {
       setItemSession("user", "");
     } else {
