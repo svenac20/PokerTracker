@@ -21,8 +21,7 @@ function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <div className="p-12 h-screen">
-            <Navbar/>
+          <div className="px-12 py-10 h-screen">
             <Routes>
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
@@ -30,6 +29,7 @@ function App() {
                 path="/"
                 element={
                   <ProtectedRoute>
+                    <Navbar/>
                     <HomePage />
                   </ProtectedRoute>
                 }
