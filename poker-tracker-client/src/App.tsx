@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { AuthContext } from "./components/auth/context/auth.context";
 import { UserType } from "./components/auth/context/user.type";
-import Login from "./components/auth/login";
+import RegisterPage from "./pages/register";
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,7 +18,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login type="login"/>} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
       </BrowserRouter>
     </QueryClientProvider>
