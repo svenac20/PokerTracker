@@ -41,7 +41,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-[60%]">
       <LoginForm sumbitHandler={handleSubmit}/>
       {toast && <Toast message={toast.message} type={toast.type} />}
     </div>

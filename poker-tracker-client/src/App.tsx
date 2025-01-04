@@ -7,6 +7,7 @@ import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
 import ProtectedRoute from "./components/auth/ProtectedRoutes";
 import HomePage from "./pages/Home";
+import Navbar from "./components/ui/navbar";
 
 function App() {
   const queryClient = new QueryClient();
@@ -20,18 +21,21 @@ function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <Routes>
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+          <div className="p-12 h-screen">
+            <Navbar/>
+            <Routes>
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <HomePage />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </div>
         </BrowserRouter>
       </QueryClientProvider>
     </AuthContext.Provider>

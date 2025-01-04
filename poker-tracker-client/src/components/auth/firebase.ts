@@ -1,3 +1,4 @@
+import { useAuth } from "@/hooks/useAuth";
 import { UserCreateRequest } from "@/models/requests/userCreateRequest";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
@@ -8,8 +9,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { User } from "lucide-react";
-import { useContext } from "react";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -46,7 +45,6 @@ export const registerWithEmailAndPassword = async (
     roleId: 1,
   };
 
-  console.log(res);
   const user = await axios.post(
     `${import.meta.env.VITE_API_URL}/users`,
     request

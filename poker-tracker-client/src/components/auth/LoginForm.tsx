@@ -1,5 +1,6 @@
 import { Formik } from "formik";
 import { FC } from "react";
+import { Link } from "react-router";
 
 const LoginForm: FC<{
   sumbitHandler: (values: { email: string; password: string }) => {};
@@ -12,12 +13,7 @@ const LoginForm: FC<{
       }}
     >
       {(props) => {
-        const {
-          values,
-          isSubmitting,
-          handleChange,
-          handleSubmit,
-        } = props;
+        const { values, isSubmitting, handleChange, handleSubmit } = props;
         return (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
@@ -30,7 +26,7 @@ const LoginForm: FC<{
                 type="text"
                 value={values.email}
                 onChange={handleChange}
-                className=" p-2 border-gray-500 border-2 rounded-lg w-64"
+                className=" p-2 border-gray-500 border-2 rounded-lg w-full"
               />
             </div>
 
@@ -44,17 +40,27 @@ const LoginForm: FC<{
                 type="password"
                 value={values.password}
                 onChange={handleChange}
-                className="p-2 border-gray-500 border-2 rounded-lg w-64"
+                className="p-2 border-gray-500 border-2 rounded-lg w-full"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="border-2 border-gray-500 rounded-lg p-4"
-            >
-              Submit
-            </button>
+            <div>
+              Dont have an account? Click{" "}
+              <Link to="/register" className="underline font-bold">
+                here
+              </Link>{" "}
+              to register.
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="border-2 border-gray-500 rounded-lg p-4 w-full"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         );
       }}

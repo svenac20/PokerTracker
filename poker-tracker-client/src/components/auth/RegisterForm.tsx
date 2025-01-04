@@ -1,5 +1,6 @@
 import { Formik } from "formik";
 import { FC } from "react";
+import { Link } from "react-router";
 import * as Yup from "yup";
 
 const RegisterForm: FC<{
@@ -48,7 +49,7 @@ const RegisterForm: FC<{
                 type="text"
                 value={values.username}
                 onChange={handleChange}
-                className="p-2 rounded-lg border-gray-500 border-2 w-64"
+                className="p-2 rounded-lg border-gray-500 border-2 w-full"
               />
               {errors.username && touched.username && (
                 <div className="text-red-400 text-sm font-bold">
@@ -67,7 +68,7 @@ const RegisterForm: FC<{
                 type="text"
                 value={values.email}
                 onChange={handleChange}
-                className=" p-2 border-gray-500 border-2 rounded-lg w-64"
+                className=" p-2 border-gray-500 border-2 rounded-lg w-full"
               />
               {errors.email && touched.email && (
                 <div className="text-sm text-red-400 font-bold">
@@ -86,7 +87,7 @@ const RegisterForm: FC<{
                 type="password"
                 value={values.password}
                 onChange={handleChange}
-                className="p-2 border-gray-500 border-2 rounded-lg w-64"
+                className="p-2 border-gray-500 border-2 rounded-lg w-full"
               />
               {errors.password && touched.password && (
                 <div className="text-sm font-bold text-red-400">
@@ -94,6 +95,11 @@ const RegisterForm: FC<{
                 </div>
               )}
             </div>
+
+            <div>
+              Already have an account? Click <Link to="/login" className="underline font-bold">here</Link>{" "} to login.
+            </div>
+
 
             <button
               type="submit"
