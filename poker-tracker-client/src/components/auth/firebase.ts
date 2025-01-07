@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
-import { UserCreateRequest } from "@/models/requests/userCreateRequest";
+import { GetUserResponse, UserCreateRequest } from "@/models/requests/types";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import {
@@ -29,14 +29,15 @@ export const logInWithEmailAndPassword = async (
   password: string
 ): Promise<User | null> => {
   const res = await signInWithEmailAndPassword(auth, email, password);
-  return res.user;
+  const user = await axios.get<User>(`${import.meta.env.VITE_API_URL}/users/${res.user.uid}`)
+  return user.data
 };
 
 export const registerWithEmailAndPassword = async (
   name: string,
   email: string,
   password: string
-): Promise<User | null> => {
+): Promise<GetUserResponse | null> => {
   const res = await createUserWithEmailAndPassword(auth, email, password);
   const request: UserCreateRequest = {
     email: res.user.email!,
@@ -45,11 +46,11 @@ export const registerWithEmailAndPassword = async (
     roleId: 1,
   };
 
-  const user = await axios.post(
+  const user = await axios.post<GetUserResponse>(
     `${import.meta.env.VITE_API_URL}/users`,
     request
   );
-  return null;
+  return user.data;
 };
 
 export const logoutFirebase = () => {

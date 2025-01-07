@@ -1,10 +1,9 @@
-import LoginRegisterForm from "@/components/auth/RegisterForm";
+import RegisterForm from "@/components/auth/RegisterForm";
 import Toast from "@/components/ui/toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { registerWithEmailAndPassword } from "../components/auth/firebase";
-import RegisterForm from "@/components/auth/RegisterForm";
 
 function RegisterPage() {
   const { login } = useAuth();
