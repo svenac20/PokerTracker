@@ -15,7 +15,7 @@ public class GetUserEndpoint : Endpoint<GetUserRequest, GetUserResponse>
 
     public override void Configure()
     {
-        Get("users/{id:guid}");
+        Get("users/{Id}");
         AllowAnonymous();
     }
 

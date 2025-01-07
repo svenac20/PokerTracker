@@ -3,7 +3,7 @@ export enum Roles {
     USER = 2,
 }
 export interface UserCreateRequest {
-    guid: string;
+    id: string;
     email: string;
     username: string;
     roleId: number;
@@ -14,4 +14,14 @@ export interface GetUserResponse {
     email: string;
     username: string;
     roleId: number;
+}
+
+export type Casino = {
+    id: number;
+    name: string;
+    town: string;
+}
+
+export type GetCasinosResponse = {
+    casinos: Casino[];
 }

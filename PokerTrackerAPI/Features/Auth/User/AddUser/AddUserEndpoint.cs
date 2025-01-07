@@ -34,6 +34,7 @@ public class AddUserEndpoint: Endpoint<AddUserRequest, EmptyResponse>
             .Users
             .AddAsync(user, ct);
 
+        await _dbContext.SaveChangesAsync(ct);
         await SendNoContentAsync(ct);
     }
 }

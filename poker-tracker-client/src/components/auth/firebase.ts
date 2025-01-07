@@ -41,10 +41,11 @@ export const registerWithEmailAndPassword = async (
   const res = await createUserWithEmailAndPassword(auth, email, password);
   const request: UserCreateRequest = {
     email: res.user.email!,
-    guid: res.user.uid,
+    id: res.user.uid,
     username: name,
     roleId: 1,
   };
+  console.log(request)
 
   const user = await axios.post<GetUserResponse>(
     `${import.meta.env.VITE_API_URL}/users`,

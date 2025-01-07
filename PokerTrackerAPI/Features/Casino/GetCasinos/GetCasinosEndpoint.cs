@@ -23,6 +23,12 @@ public class GetCasinosEndpoint : Endpoint<EmptyRequest, GetCasinosResponse>
     {
         var casinos = await _dbContext
             .Casinos
+            .Select(c => new CasinoResponse
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Town = c.Town.Name
+            })
             .ToListAsync(ct);
         
         await SendAsync(new GetCasinosResponse { Casinos = casinos }, cancellation: ct);
