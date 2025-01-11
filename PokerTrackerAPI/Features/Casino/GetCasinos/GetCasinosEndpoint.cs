@@ -27,7 +27,8 @@ public class GetCasinosEndpoint : Endpoint<EmptyRequest, GetCasinosResponse>
             {
                 Id = c.Id,
                 Name = c.Name,
-                Town = c.Town.Name
+                Town = c.Town.Name,
+                PokerGames = c.PokerGames
             })
             .ToListAsync(ct);
         

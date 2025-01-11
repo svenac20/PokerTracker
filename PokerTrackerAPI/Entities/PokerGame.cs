@@ -8,6 +8,6 @@ public class PokerGame : BaseEntity
     public GameType GameType { get; set; }
     public int PlayerWaiting { get; set; }
     
-    public int CasionId { get; set; }
+    public int CasinoId { get; set; }
     public Casino Casino { get; set; }
 }

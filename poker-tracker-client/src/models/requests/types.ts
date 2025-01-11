@@ -10,9 +10,9 @@ export interface UserCreateRequest {
 }
 
 export interface GetUserResponse {
-    guid: string;
+    id: string;
     email: string;
-    username: string;
+    name: string;
     roleId: number;
 }
 

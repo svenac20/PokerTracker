@@ -7,5 +7,5 @@ public class Casino : BaseEntity
     
     public int TownId { get; set; }
     
-    ICollection<PokerGame> PokerGames { get; set; }
+    public ICollection<PokerGame> PokerGames { get; set; }
 }

@@ -1,10 +1,13 @@
+import { getErrorMessage } from "@/lib/utils";
+import { FirebaseError } from "firebase/app";
 import { Formik } from "formik";
 import { FC } from "react";
 import { Link } from "react-router";
 
 const LoginForm: FC<{
   sumbitHandler: (values: { email: string; password: string }) => {};
-}> = ({ sumbitHandler }) => {
+  error: FirebaseError | null;
+}> = ({ sumbitHandler, error }) => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -52,6 +55,11 @@ const LoginForm: FC<{
               to register.
             </div>
 
+            {error && (
+              <div className="bg-red-500 text-white p-2 rounded-lg">
+                {getErrorMessage(error)}
+              </div>
+            )}
             <div>
               <button
                 type="submit"

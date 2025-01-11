@@ -6,6 +6,7 @@ public record CasinoResponse
     public int Id { get; set; }
     public string Name { get; set; }
     public string Town { get; set; }
+    public ICollection<PokerGame> PokerGames { get; set; }
 }
 
 public record GetCasinosResponse

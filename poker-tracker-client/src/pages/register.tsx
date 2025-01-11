@@ -1,5 +1,4 @@
 import RegisterForm from "@/components/auth/RegisterForm";
-import Toast from "@/components/ui/toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -8,10 +7,6 @@ import { registerWithEmailAndPassword } from "../components/auth/firebase";
 function RegisterPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [toast, setToast] = useState<{
-    message: string;
-    type: "success" | "error";
-  } | null>(null);
 
   const handleSubmit = async (values: {
     email: string;
@@ -29,8 +24,8 @@ function RegisterPage() {
 
       if (user !== null) {
         const userData = {
-          userId: user.uid || "",
-          name: user.displayName || "",
+          userId: user.id || "",
+          name: user.name || "",
           email: user.email || "",
         };
 
@@ -40,7 +35,8 @@ function RegisterPage() {
     } catch (err) {
       console.log(err)
       if (err instanceof Error) {
-        setToast({ message: err.message, type: "error" });
+        // TODO add error handling
+        // set
       }
       return null; // Return null in case of error
     }
@@ -49,7 +45,6 @@ function RegisterPage() {
   return (
     <div className="flex justify-center items-center h-[60%]">
       <RegisterForm sumbitHandler={handleSubmit}/>
-      {toast && <Toast message={toast.message} type={toast.type} />}
     </div>
   );
 }

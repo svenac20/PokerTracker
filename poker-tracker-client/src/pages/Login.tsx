@@ -1,17 +1,14 @@
 import LoginForm from "@/components/auth/LoginForm";
-import Toast from "@/components/ui/toast";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { logInWithEmailAndPassword } from "../components/auth/firebase";
+import { FirebaseError } from "firebase/app";
 
 function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [toast, setToast] = useState<{
-    message: string;
-    type: "success" | "error";
-  } | null>(null);
+  const [error, setError] = useState<FirebaseError | null>(null);
 
   const handleSubmit = async (values: {
     email: string;
@@ -32,8 +29,8 @@ function LoginPage() {
       }
     } catch (err) {
       console.log(err)
-      if (err instanceof Error) {
-        setToast({ message: err.message, type: "error" });
+      if (err instanceof FirebaseError) {
+        setError(err);
       }
       return null; // Return null in case of error
     }
@@ -41,8 +38,7 @@ function LoginPage() {
 
   return (
     <div className="flex justify-center items-center h-[60%]">
-      <LoginForm sumbitHandler={handleSubmit}/>
-      {toast && <Toast message={toast.message} type={toast.type} />}
+      <LoginForm sumbitHandler={handleSubmit} error={error}/>
     </div>
   );
 }

@@ -34,7 +34,7 @@ public class GetUserEndpoint : Endpoint<GetUserRequest, GetUserResponse>
         var response = new GetUserResponse
         {
             Id = user.Id,
-            Username = user.Username,
+            Name = user.Username,
             Email = user.Email,
             RoleId = user.RoleId
         };
