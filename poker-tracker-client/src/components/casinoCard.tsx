@@ -26,12 +26,11 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino }) => {
               <p className="font-bold text-lg">{casino.name}</p>
             </AccordionTrigger>
             <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
+
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </CardContent>
-      <CardFooter></CardFooter>
     </Card>
   );
 };

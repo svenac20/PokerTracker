@@ -1,5 +1,6 @@
 using FastEndpoints;
 using Microsoft.EntityFrameworkCore;
+using PokerTrackerAPI.Models;
 using PokerTrackerAPI.Persistence;
 
 namespace PokerTrackerAPI.Features.Casino.GetCasinos;
@@ -28,7 +29,16 @@ public class GetCasinosEndpoint : Endpoint<EmptyRequest, GetCasinosResponse>
                 Id = c.Id,
                 Name = c.Name,
                 Town = c.Town.Name,
-                PokerGames = c.PokerGames
+                PokerGames = c.PokerGames.Select(pg => new PokerGameDto()
+                {
+                    CasinoName = c.Name,
+                    GameType = pg.GameType.Name,
+                    Id = pg.Id,
+                    PlayerWaiting = pg.PlayerWaiting,
+                    TablesNumber = pg.TablesNumber,
+                    Limit = pg.Limit
+                    
+                }) 
             })
             .ToListAsync(ct);
         
