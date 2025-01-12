@@ -32,9 +32,11 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider session={session}>
-          <main className="p-12">
+          <main className="p-12 h-screen">
             <Navbar/>
-            {children}
+            <div className="h-[90%]">
+              {children}
+            </div>
           </main>
           </SessionProvider>
       </body>

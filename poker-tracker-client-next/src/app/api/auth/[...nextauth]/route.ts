@@ -39,6 +39,9 @@ export const authOptions = {
       }
     })
   ],
+  callbacks: {
+    async 
+  }
 };
 
 const handler = NextAuth(authOptions);
