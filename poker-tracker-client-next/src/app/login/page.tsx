@@ -1,26 +1,61 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import GoogleSignInButton from "@/components/ui/google-signin-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import Google from "next-auth/providers/google";
-
+import { Formik} from "formik";
+import { signIn } from "next-auth/react"
+import { useSearchParams } from "next/navigation";
+ 
 export default function Login() {
+  const searchParams = useSearchParams();
   return (
     <div className="flex flex-col items-center h-full">
-      <div className="flex flex-col gap-4 w-96">
-        <div >
-          <Label htmlFor="email">Email:</Label>
-          <Input type="email" id="email" placeholder="Email" />
-        </div>
-        <div >
-          <Label htmlFor="password">Password:</Label>
-          <Input type="password" id="password" placeholder="Password" />
-        </div>
-        <Button >Sign In</Button>
-        <Separator />
-        <GoogleSignInButton/>
-      </div>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        onSubmit={async (values) => {
+          signIn("credentials", {
+            email: values.email,
+            password: values.password,
+            callbackUrl: searchParams.get("callbackUrl") || "/",
+          })
+        }}
+      >
+        {(props: any) => {
+          const { values, isSubmitting, handleChange, handleSubmit } = props;
+          return (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-96">
+              <div>
+                <Label htmlFor="email">Email:</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  value={values.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <Label htmlFor="password">Password:</Label>
+                <Input
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <Button type="submit" disabled={isSubmitting}>
+                Sign In
+              </Button>
+              <Separator />
+              <GoogleSignInButton />
+            </form>
+          );
+        }}
+      </Formik>
     </div>
   );
 }

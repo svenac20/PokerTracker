@@ -1,29 +1,44 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { pages } from "next/dist/build/templates/app-page";
+import { auth } from "../../../../../firebaseconfig";
 
 export const authOptions = {
   // Configure one or more authentication providers
+  pages: {
+    signIn: "/login",
+  },
   providers: [
     CredentialsProvider({
       name: "email and password",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // TODO add db calls
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials!.email,
+            credentials!.password
+          );
+          const user = userCredential.user;
+          console.log(user)
 
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
+          if (user) {
+            return {
+              id: user.uid,
+              name: user.displayName,
+              email: user.email,
+            };
+          } else {
+            return null;
+          }
+        } catch (e) {
+          console.log(e);
           return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
@@ -34,15 +49,12 @@ export const authOptions = {
         params: {
           prompt: "consent",
           access_type: "offline",
-          response_type: "code"
-        }
-      }
-    })
+          response_type: "code",
+        },
+      },
+    }),
   ],
-  callbacks: {
-    async 
-  }
 };
 
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };
