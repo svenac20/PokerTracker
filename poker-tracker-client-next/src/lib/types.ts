@@ -25,6 +25,7 @@ export type Casino = {
   id: number;
   name: string;
   town: string;
+  pokerGames: PokerGame[];
 };
 
 export type GetCasinosResponse = {
