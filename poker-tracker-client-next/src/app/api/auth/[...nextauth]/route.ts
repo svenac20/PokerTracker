@@ -4,7 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { pages } from "next/dist/build/templates/app-page";
 import { auth } from "../../../../../firebaseconfig";
-
+import axiosClient from "@/lib/axios";
+import { GetUserResponse } from "@/lib/types";
 export const authOptions = {
   // Configure one or more authentication providers
   pages: {
@@ -25,14 +26,10 @@ export const authOptions = {
             credentials!.password
           );
           const user = userCredential.user;
-          console.log(user)
-
           if (user) {
-            return {
-              id: user.uid,
-              name: user.displayName,
-              email: user.email,
-            };
+            console.log(axiosClient.getUri({ url: `/users/${user.uid}` }));
+            const userDb = await axiosClient.get<GetUserResponse>(`/users/${user.uid}`);
+            return userDb.data
           } else {
             return null;
           }

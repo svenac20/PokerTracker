@@ -1,6 +1,6 @@
-import { PokerGame } from "@/models/requests/types";
+import { PokerGame } from "@/lib/types";
 import { FunctionComponent } from "react";
-import { Card, CardContent } from "./ui/shadcn/card";
+import { Card, CardContent } from "./card";
 
 interface PokerGameCardProps {
   pokerGame: PokerGame;

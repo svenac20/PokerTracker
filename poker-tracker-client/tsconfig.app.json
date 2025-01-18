@@ -27,5 +27,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "../poker-tracker-client-next/src/lib/axios.ts", "../poker-tracker-client-next/src/lib/types.ts", "../poker-tracker-client-next/src/components/ui/casinoCard.tsx"]
 }

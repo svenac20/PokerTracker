@@ -1,16 +1,7 @@
 import { FunctionComponent } from "react";
-import { Casino } from "../models/requests/types";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "./ui/shadcn/accordion";
-import {
-    Card,
-    CardContent,
-    CardFooter
-} from "./ui/shadcn/card";
+import { Casino } from "../../lib/types";
+import { Card, CardContent } from "./card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
 
 interface CasinoCardProps {
   casino: Casino;

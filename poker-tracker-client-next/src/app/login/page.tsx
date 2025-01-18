@@ -51,7 +51,7 @@ export default function Login() {
                 Sign In
               </Button>
               <Separator />
-              <GoogleSignInButton />
+              <GoogleSignInButton onClick={() => signIn("google", {callbackUrl: searchParams.get("callbackUrl") || "/"})}/>
             </form>
           );
         }}
