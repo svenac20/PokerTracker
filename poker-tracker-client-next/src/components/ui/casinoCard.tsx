@@ -1,7 +1,14 @@
 import { FunctionComponent } from "react";
 import { Casino } from "../../lib/types";
-import { Card, CardContent } from "./card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
+import { Card, CardContent, CardFooter } from "./card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./accordion";
+import PokerGameCard from "./pokerGameCard";
+import PokerGamesTable from "./pokerGamesTable";
 
 interface CasinoCardProps {
   casino: Casino;
@@ -17,7 +24,7 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino }) => {
               <p className="font-bold text-lg">{casino.name}</p>
             </AccordionTrigger>
             <AccordionContent>
-
+              <PokerGamesTable pokerGames={casino.pokerGames} />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
