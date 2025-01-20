@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokerTrackerAPI.Persistence;
 
@@ -10,9 +11,11 @@ using PokerTrackerAPI.Persistence;
 namespace PokerTrackerAPI.Persistence.Migrations
 {
     [DbContext(typeof(PokerTrackerDbContext))]
-    partial class PokerTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250119123902_AddGoogleIdToUser")]
+    partial class AddGoogleIdToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,7 +159,7 @@ namespace PokerTrackerAPI.Persistence.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("GoogleId")
                         .HasColumnType("longtext");
@@ -169,9 +172,6 @@ namespace PokerTrackerAPI.Persistence.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.HasIndex("RoleId");
 

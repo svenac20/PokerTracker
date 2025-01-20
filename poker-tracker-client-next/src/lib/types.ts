@@ -1,16 +1,27 @@
+import { Session, User } from "next-auth";
+
 export enum Roles {
   ADMIN = 1,
-  USER = 2,
+  PLAYER = 2,
 }
 
 export enum GameTypes {
   PLO = 1,
   NLO = 2,
 }
-export interface UserCreateRequest {
-  id: string;
+export interface CreateUserRequest {
+  id?: string;
+  googleId?: string;
   email: string;
-  username: string;
+  username?: string;
+  roleId?: number;
+}
+
+export type CreateUserResponse = {
+  id: string;
+  googleId: string;
+  email: string;
+  name: string;
   roleId: number;
 }
 

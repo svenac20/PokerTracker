@@ -1,53 +1,45 @@
-"use client";
-
-import Link from "next/link";
-import { FunctionComponent } from "react";
-import {signIn, useSession, signOut} from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { getInitials } from "@/lib/utils";
+import { getServerSession } from "next-auth";
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import { FunctionComponent } from "react";
+import MyAccount from "./MyAccount";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { Roles } from "@/lib/types";
 
-const Navbar: FunctionComponent = () => {
-  const {data: session} = useSession()
-  
+const Navbar: FunctionComponent = async () => {
+  const session = await getServerSession(authOptions);
+  console.log(session)
+
   return (
     <div className="flex justify-between items-center h-[10%]">
-      <Link href="/">
-        <Button variant="default">Home</Button>
-      </Link>
+      <div className="flex flex-row gap-8">
+        <Link href="/">
+          <Button variant="default">Home</Button>
+        </Link>
+        {session?.user.roleId === Roles.ADMIN && 
+          <Link href="/dashboard">
+            <Button variant="default">Dashboard</Button>
+          </Link>
+        }
+      </div>
       <div className="pr-4">
         {!session && (
           <Link href="/api/auth/signin">
             <Button variant="default">Sign in</Button>
           </Link>
         )}
-        {session && (
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Avatar>
-                <AvatarImage />
-                <AvatarFallback>
-                  {getInitials(session.user?.name!) || "SS"}
-                </AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel className="cursor-pointer">My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="px-2 cursor-pointer"
-                onClick={() => {
-                    signOut();
-                    redirect("/api/auth/signin");
-                }}
-              >
-                Log out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        {session && <MyAccount session={session}/>}
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 export default function Home() {
   const { data, error, isLoading } = useQuery<GetCasinosResponse>({queryKey: ['casinos'], queryFn: fetchCasinos});
 
-  console.log(data)
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Casinos</h1>

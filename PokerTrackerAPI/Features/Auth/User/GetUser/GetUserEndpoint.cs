@@ -22,8 +22,8 @@ public class GetUserEndpoint : Endpoint<GetUserRequest, GetUserResponse>
     public override async Task HandleAsync(GetUserRequest req, CancellationToken ct)
     {
         var user = await _dbContext.Users
-            .Where(u => u.Id == req.Id)
-            .FirstOrDefaultAsync(ct);
+                .Where(u => u.Id == req.Id)
+                .FirstOrDefaultAsync(ct);
 
         if (user == null)
         {
