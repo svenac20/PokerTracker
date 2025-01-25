@@ -1,4 +1,6 @@
+import { User } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx"
+import { JWT } from "next-auth/jwt";
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -21,3 +23,11 @@ export function getInitials(name: string) {
 //   }
 //   return error.message;
 // };
+
+export function mapUserToToken(token: JWT, userDb: User) {
+    token.id = userDb!.id;
+    token.googleId = userDb!.googleId || "";
+    token.email = userDb!.email;
+    token.roleId = userDb!.roleId;
+    token.name = userDb!.username;
+}
