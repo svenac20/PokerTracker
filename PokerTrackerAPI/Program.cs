@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.MicrosoftAccount;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using PokerTrackerAPI.Middlewares;
 using PokerTrackerAPI.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);

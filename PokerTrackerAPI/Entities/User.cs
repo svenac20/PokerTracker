@@ -11,4 +11,5 @@ public class User
     public string Email { get; set; }
     public int RoleId { get; set; }
     public Role Role { get; set; }
+    public ICollection<Casino> Casinos { get; set; }
 }

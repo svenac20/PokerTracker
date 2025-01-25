@@ -1,9 +1,49 @@
 import axios from 'axios';
 import axiosClient from './axios';
-import { GetCasinosResponse } from './types';
+import { GetCasinoPerUSerResponse as GetCasinoForUserResponse, GetCasinosResponse } from './types';
+import prisma from './prisma';
 
 
 export const fetchCasinos = async () => {
-  const response = await axiosClient.get<GetCasinosResponse>(`/casinos`);
-  return response.data;
+  const casinos = await prisma.casino.findMany({
+    select: {
+      town: {
+        select: {
+          name: true
+        }
+      },
+      id: true,
+      name: true,
+      pokerGames: {
+        select: {
+          id: true,
+          limit: true,
+          gameType: true,
+          playerWaiting: true,
+          tablesNumber: true,
+        },
+      },
+    }
+  });
+
+  const mappedCasinos = casinos.map((casino) => ({
+    id: casino.id,
+    name: casino.name,
+    town: casino.town.name, // Get the town name as a string
+    pokerGames: casino.pokerGames.map((game) => ({
+      id: game.id,
+      limit: game.limit,
+      gameType: game.gameType.name,
+      playerWaiting: game.playerWaiting,
+      tablesNumber: game.tablesNumber,
+      casinoName: casino.name,
+    })),
+  }));
+
+  return mappedCasinos;
 };
+
+export const fetchCasinosForUser = async (userId: string) => { 
+  const response = await axiosClient.get<GetCasinoForUserResponse>(`users/${userId}/casinos`);
+  return response.data;
+}

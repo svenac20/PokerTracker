@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  googleId String? @unique
+  username String
+  roleId   Int
+  role     Role    @relation(fields: [roleId], references: [id])
+  casinos  Casino[] @relation("UserCasinos")
+}
+
+model Casino {
+  id         Int        @id @default(autoincrement())
+  name       String
+  townId     Int
+  town       Town       @relation(fields: [townId], references: [id])
+  pokerGames PokerGame[]
+  owners     User[]     @relation("UserCasinos")
+}
+
+model Town {
+  id       Int      @id @default(autoincrement())
+  name     String
+  countryId Int
+  country  Country  @relation(fields: [countryId], references: [id])
+  casinos  Casino[]
+}
+
+model PokerGame {
+  id            Int      @id @default(autoincrement())
+  limit         String
+  gameTypeId    Int
+  gameType      GameType @relation(fields: [gameTypeId], references: [id])
+  playerWaiting Int
+  tablesNumber  String
+  casinoId      Int
+  casino        Casino   @relation(fields: [casinoId], references: [id])
+}
+
+model Role {
+  id   Int     @id @default(autoincrement())
+  name String
+  users User[]
+}
+
+model Country {
+  id     Int      @id @default(autoincrement())
+  name   String
+  towns  Town[]
+}
+
+model GameType {
+  id     Int      @id @default(autoincrement())
+  name   String
+  pokerGames PokerGame[]
+}

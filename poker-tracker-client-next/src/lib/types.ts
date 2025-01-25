@@ -51,3 +51,14 @@ export type PokerGame = {
   casinoName: string;
   tablesNumber: string;
 };
+
+export type CasinoDto = {
+  id: number;
+  name: string;
+  town: string;
+}
+
+
+export type GetCasinoPerUSerResponse = {
+  casinos: CasinoDto[];
+}
