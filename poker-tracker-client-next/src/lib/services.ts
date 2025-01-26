@@ -1,6 +1,5 @@
-import axios from 'axios';
-import axiosClient from './axios';
-import { GetCasinoPerUSerResponse as GetCasinoForUserResponse, GetCasinosResponse } from './types';
+import "server-only"
+import { CasinoDto, GetCasinoPerUSerResponse as GetCasinoForUserResponse, GetCasinosResponse } from './types';
 import prisma from './prisma';
 
 
@@ -44,6 +43,25 @@ export const fetchCasinos = async () => {
 };
 
 export const fetchCasinosForUser = async (userId: string) => { 
-  const response = await axiosClient.get<GetCasinoForUserResponse>(`users/${userId}/casinos`);
-  return response.data;
+  console.log()
+  const casinos = await prisma.casino.findMany({
+    where: {
+      owners: {
+        some: {
+          id: userId,
+        },
+      },
+    },
+    include: {
+      town: true
+    }
+  })
+
+  return casinos.map<CasinoDto>((casino) => {
+    return {
+      id: casino.id,
+      name: casino.name,
+      town: casino.town.name,
+    }
+  })
 }

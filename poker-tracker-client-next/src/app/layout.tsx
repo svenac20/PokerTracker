@@ -34,7 +34,7 @@ export default async function RootLayout({
       >
         <SessionProvider session={session}>
           <Providers>
-            <main className="p-12 h-screen">
+            <main className="px-24 py-12 h-screen">
               <Navbar />
               <div className="h-[90%]">{children}</div>
             </main>
