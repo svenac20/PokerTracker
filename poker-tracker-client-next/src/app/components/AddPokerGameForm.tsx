@@ -34,7 +34,7 @@ const formSchema = z.object({
   gameType: z.enum(["PLO", "NLO"], {
     required_error: "Please select game type",
   }),
-  limit: z.string({ required_error: "Please add limit in format xx/yy" }),
+  limit: z.string({ required_error: "Please add limit in format xx/yy" }).nonempty("Limt must be nonempty"),
   tables: z
     .number({ required_error: "Please add table" })
     .min(1, "Table must be at least 1"),
@@ -56,16 +56,15 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+
     console.log(values);
   }
 
   return (
     <Form {...form}>
       <form className="flex flex-col" onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-2 grid-rows-4 gap-12">
+        <div className="grid grid-cols-2 grid-rows-4 gap-6">
           <FormField
             control={form.control}
             name="casinoId"

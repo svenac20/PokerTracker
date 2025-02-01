@@ -2,13 +2,11 @@ using System.Text;
 using Azure.Identity;
 using FastEndpoints;
 using FastEndpoints.Swagger;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.MicrosoftAccount;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using PokerTrackerAPI.Middlewares;
-using PokerTrackerAPI.Persistence;
+using PokerTrackerAPI.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,38 +16,6 @@ builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential()
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-var connectionString = builder.Configuration.GetConnectionString("Default");
-var secretKey = builder.Configuration["SecretKey"]!;
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 40));
-builder.Services.AddDbContext<PokerTrackerDbContext>(options => options.UseMySql(
-    connectionString,
-    serverVersion
-));
-
-builder.Services
-    .AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    }).AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "pokertracker.hr",
-            ValidAudience = "pokertracker.hr",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
-        };
-    })
-    .AddMicrosoftAccount(MicrosoftAccountDefaults.AuthenticationScheme, options =>
-    {
-        options.ClientId = builder.Configuration["Azure:ClientId"]!;
-        options.ClientSecret = builder.Configuration["Azure:ClientSecret"]!;
-    });
 
 builder.Services.AddCors(options =>
 {
@@ -71,7 +37,7 @@ builder.Services
         };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -79,10 +45,9 @@ app
     .UseFastEndpoints(c => { c.Endpoints.RoutePrefix = "api"; })
     .UseSwaggerGen();
 
+app.MapHub<MessagingHub>("/hub");
 
 app.UseHttpsRedirection();
 app.UseCors("Allow");
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.Run();
