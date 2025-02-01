@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,26 +19,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CasinoDto } from "@/lib/types";
+import axios from "@/lib/axios";
+import { createPokerGameAction } from "@/lib/server-actions";
+import { CasinoDto, PokerGame } from "@/lib/types";
+import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Limelight } from "next/font/google";
-import { FunctionComponent } from "react";
+import {
+  HubConnection,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
+import {
+  FunctionComponent,
+  startTransition,
+  useActionState,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const formSchema = z.object({
-  casinoId: z.string({
-    required_error: "Please select a casino",
-  }),
-  gameType: z.enum(["PLO", "NLO"], {
-    required_error: "Please select game type",
-  }),
-  limit: z.string({ required_error: "Please add limit in format xx/yy" }).nonempty("Limt must be nonempty"),
-  tables: z
-    .number({ required_error: "Please add table" })
-    .min(1, "Table must be at least 1"),
-  playersWaiting: z.number({required_error: "Please add number of players waiting"}).nonnegative("Number of players waiting must be positive")
-});
 
 interface AddPokerGameFormProps {
   casinos: CasinoDto[];
@@ -48,17 +47,44 @@ interface AddPokerGameFormProps {
 const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   casinos,
 }) => {
+  const [connection, setConnection] = useState<HubConnection | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      casinoId: undefined,
+      casinoId: "",
+      gameType: "PLO",
+      limit: "",
+      tables: 0,
+      playersWaiting: 0,
     },
   });
 
-  // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  useEffect(() => {
+    const connect = new HubConnectionBuilder()
+      .withUrl(`${process.env.NEXT_PUBLIC_SIGNAL_R_URL}`)
+      .withAutomaticReconnect()
+      .configureLogging(LogLevel.Information)
+      .build();
+    setConnection(connect);
+    connect
+      .start()
+      .then(() => {})
+      .catch((err) =>
+        console.error("Error while connecting to SignalR Hub:", err)
+      );
 
-    console.log(values);
+    return () => {
+      if (connection) {
+        connection.off("ReceiveMessage");
+      }
+    };
+  }, []);
+
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    const response = await axios.post<PokerGame>("/api/pokerGame", data)
+    console.log(response.data)
+    await connection?.send("NewPokerGame", response.data)
   }
 
   return (
@@ -70,6 +96,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
             name="casinoId"
             render={({ field }) => (
               <FormItem>
+                <input type="hidden" name={field.name} value={field.value} />
                 <FormLabel className="font-extrabold">Casino:</FormLabel>
                 <FormControl>
                   <Select onValueChange={field.onChange} value={field.value}>
@@ -97,6 +124,11 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
             name="gameType"
             render={({ field }) => (
               <FormItem>
+                <input
+                  type="hidden"
+                  name={field.name}
+                  value={field.value || ""}
+                />
                 <FormLabel className="font-extrabold">Game type:</FormLabel>
                 <FormControl className="w-full">
                   <Select onValueChange={field.onChange} value={field.value}>
@@ -139,6 +171,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
                   <Input
                     type="number"
                     placeholder="Tables"
+                    min={1}
                     {...field}
                     onChange={(event) =>
                       field.onChange(parseInt(event.target.value))
@@ -154,7 +187,9 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
             name="playersWaiting"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-extrabold">Players waiting:</FormLabel>
+                <FormLabel className="font-extrabold">
+                  Players waiting:
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -170,7 +205,9 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
             )}
           />
           <div className="col-span-2 row-start-4 flex justify-center items-center">
-            <Button className="w-full" type="submit">Submit</Button>
+            <Button className="w-full" type="submit">
+              Submit
+            </Button>
           </div>
         </div>
       </form>

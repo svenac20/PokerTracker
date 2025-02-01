@@ -49,7 +49,8 @@ export type PokerGame = {
   gameType: string;
   playerWaiting: number;
   casinoName: string;
-  tablesNumber: string;
+  casinoId: number;
+  tablesNumber: number;
 };
 
 export type CasinoDto = {

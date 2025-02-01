@@ -21,29 +21,31 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Allow",
         cors => cors 
-            .AllowAnyOrigin()
+            .WithOrigins("http://localhost:3000")
             .AllowAnyHeader()
-            .AllowAnyMethod());
+            .AllowAnyMethod()
+            .AllowCredentials()
+        );
 });
 
-builder.Services
-    .AddFastEndpoints()
-    .SwaggerDocument(o =>
-    {
-        o.DocumentSettings = s =>
-        {
-            s.Title = "Poker Tracker API";
-            s.Version = "v1";
-        };
-    });
+// builder.Services
+//     .AddFastEndpoints()
+//     .SwaggerDocument(o =>
+//     {
+//         o.DocumentSettings = s =>
+//         {
+//             s.Title = "Poker Tracker API";
+//             s.Version = "v1";
+//         };
+//     });
 
 builder.Services.AddSignalR();
 
 var app = builder.Build();
 
-app
-    .UseFastEndpoints(c => { c.Endpoints.RoutePrefix = "api"; })
-    .UseSwaggerGen();
+// app
+//     .UseFastEndpoints(c => { c.Endpoints.RoutePrefix = "api"; })
+//     .UseSwaggerGen();
 
 app.MapHub<MessagingHub>("/hub");
 

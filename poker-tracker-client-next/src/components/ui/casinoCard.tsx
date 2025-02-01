@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Casino } from "../../lib/types";
 import { Card, CardContent, CardFooter } from "./card";
 import {
@@ -9,6 +9,7 @@ import {
 } from "./accordion";
 import PokerGameCard from "./pokerGameCard";
 import PokerGamesTable from "./pokerGamesTable";
+import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 interface CasinoCardProps {
   casino: Casino;

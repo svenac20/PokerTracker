@@ -46,7 +46,7 @@ model PokerGame {
   gameTypeId    Int
   gameType      GameType @relation(fields: [gameTypeId], references: [id])
   playerWaiting Int
-  tablesNumber  String
+  tablesNumber  Int
   casinoId      Int
   casino        Casino   @relation(fields: [casinoId], references: [id])
 }

@@ -8,4 +8,5 @@ public record PokerGame()
     public int PlayerWaiting { get; set; }
     public int TablesNumber { get; set; }
     public int CasinoId { get; set; }
+    public string CasinoName { get; set; }
 };

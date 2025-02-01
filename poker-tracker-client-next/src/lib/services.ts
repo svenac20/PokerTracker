@@ -1,15 +1,16 @@
-import "server-only"
-import { CasinoDto, GetCasinoPerUSerResponse as GetCasinoForUserResponse, GetCasinosResponse } from './types';
-import prisma from './prisma';
-
+import "server-only";
+import prisma from "./prisma";
+import {
+  CasinoDto
+} from "./types";
 
 export const fetchCasinos = async () => {
   const casinos = await prisma.casino.findMany({
     select: {
       town: {
         select: {
-          name: true
-        }
+          name: true,
+        },
       },
       id: true,
       name: true,
@@ -20,9 +21,10 @@ export const fetchCasinos = async () => {
           gameType: true,
           playerWaiting: true,
           tablesNumber: true,
+          casinoId: true,
         },
       },
-    }
+    },
   });
 
   const mappedCasinos = casinos.map((casino) => ({
@@ -36,14 +38,15 @@ export const fetchCasinos = async () => {
       playerWaiting: game.playerWaiting,
       tablesNumber: game.tablesNumber,
       casinoName: casino.name,
+      casinoId: casino.id
     })),
   }));
 
   return mappedCasinos;
 };
 
-export const fetchCasinosForUser = async (userId: string) => { 
-  console.log()
+export const fetchCasinosForUser = async (userId: string) => {
+  console.log();
   const casinos = await prisma.casino.findMany({
     where: {
       owners: {
@@ -53,15 +56,15 @@ export const fetchCasinosForUser = async (userId: string) => {
       },
     },
     include: {
-      town: true
-    }
-  })
+      town: true,
+    },
+  });
 
   return casinos.map<CasinoDto>((casino) => {
     return {
       id: casino.id,
       name: casino.name,
       town: casino.town.name,
-    }
-  })
-}
+    };
+  });
+};
