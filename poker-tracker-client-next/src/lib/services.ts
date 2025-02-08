@@ -1,10 +1,11 @@
 import "server-only";
 import prisma from "./prisma";
 import {
+  Casino,
   CasinoDto
 } from "./types";
 
-export const fetchCasinos = async () => {
+export const fetchCasinos = async () : Promise<Casino[]> => {
   const casinos = await prisma.casino.findMany({
     select: {
       town: {

@@ -1,15 +1,14 @@
 import { PokerGame } from "@/lib/types";
 import { FunctionComponent } from "react";
+import PokerGameCard from "./pokerGameCard";
 import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "./table";
-import PokerGameCard from "./pokerGameCard";
 
 interface PokerGamesTableProps {
   pokerGames: PokerGame[];

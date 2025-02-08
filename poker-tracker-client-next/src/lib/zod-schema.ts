@@ -17,3 +17,19 @@ export const formSchema = z.object({
     .number({ required_error: "Please add number of players waiting" })
     .nonnegative("Number of players waiting must be positive"),
 });
+
+export const registerSchema = z.object({
+  email: z
+    .string({
+      required_error: "Please enter email",
+    })
+    .email("Please enter valid email"),
+  password: z
+    .string({
+      required_error: "Please enter password",
+    })
+    .min(6, "Password must be at least 6 characters"),
+  username: z.string({
+    required_error: "Please enter username",
+  }),
+});

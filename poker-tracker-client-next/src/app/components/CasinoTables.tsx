@@ -51,7 +51,7 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
         connection.off("ReceiveMessage");
       }
     };
-  }, []);
+  }, [connection]);
   return (
     <ul>
       {casinos.map((casino) => {

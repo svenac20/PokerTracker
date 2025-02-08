@@ -20,7 +20,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "@/lib/axios";
-import { createPokerGameAction } from "@/lib/server-actions";
 import { CasinoDto, PokerGame } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,11 +30,8 @@ import {
 } from "@microsoft/signalr";
 import {
   FunctionComponent,
-  startTransition,
-  useActionState,
   useEffect,
-  useRef,
-  useState,
+  useState
 } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -79,7 +75,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         connection.off("ReceiveMessage");
       }
     };
-  }, []);
+  }, [connection]);
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     const response = await axios.post<PokerGame>("/api/pokerGame", data)

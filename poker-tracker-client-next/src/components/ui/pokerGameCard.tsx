@@ -1,6 +1,5 @@
 import { PokerGame } from "@/lib/types";
 import { FunctionComponent } from "react";
-import { Card, CardContent } from "./card";
 import { TableCell, TableRow } from "./table";
 
 interface PokerGameCardProps {

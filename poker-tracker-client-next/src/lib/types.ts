@@ -1,4 +1,3 @@
-import { Session, User } from "next-auth";
 
 export enum Roles {
   ADMIN = 1,
@@ -48,8 +47,8 @@ export type PokerGame = {
   limit: string;
   gameType: string;
   playerWaiting: number;
-  casinoName: string;
   casinoId: number;
+  casinoName: string;
   tablesNumber: number;
 };
 

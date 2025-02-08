@@ -19,7 +19,7 @@ const MyAccount: FunctionComponent<MyAccountProps> = ({session}) => {
         <Avatar>
           <AvatarImage />
           <AvatarFallback>
-            {getInitials(session.user?.name!) || "testteste"}
+            {getInitials(session.user?.name || "") }
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

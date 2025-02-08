@@ -1,21 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { getInitials } from "@/lib/utils";
+import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { FunctionComponent } from "react";
 import MyAccount from "./MyAccount";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { Roles } from "@/lib/types";
+import { authOptions } from "@/lib/authOptions";
 
 const Navbar: FunctionComponent = async () => {
   const session = await getServerSession(authOptions);

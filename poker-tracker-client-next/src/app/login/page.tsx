@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Formik } from "formik";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 export default function Login() {
@@ -23,7 +24,7 @@ export default function Login() {
           });
         }}
       >
-        {(props: any) => {
+        {(props) => {
           const { values, isSubmitting, handleChange, handleSubmit } = props;
           return (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-96">
@@ -47,6 +48,17 @@ export default function Login() {
                   onChange={handleChange}
                 />
               </div>
+              <span className="text-sm text-center">
+                {"Don't have an account? Register"}
+                <Link
+                  href={`/register?callback=${encodeURIComponent(
+                    searchParams.get("callbackUrl") || "/"
+                  )}` as string}
+                  className="font-bold cursor-pointer underline"
+                >
+                  here
+                </Link>
+              </span>
               <Button type="submit" disabled={isSubmitting}>
                 Sign In
               </Button>
