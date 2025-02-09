@@ -20,7 +20,7 @@ jobs:
       contents: read #This is required for actions/checkout
     
     env:
-      DOTNET_ROOT: PokerTrackerAPI
+      project_dir: ${{ github.workspace }}/PokerTrackerAPI/
       output_dir: ${{ github.workspace }}/PokerTrackerAPI/out
 
     
@@ -33,7 +33,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        working-directory: ${{env.DOTNET_ROOT}}
+        working-directory: ${{env.project_dir}}
         run: dotnet build --configuration Release
 
       - name: dotnet publish
