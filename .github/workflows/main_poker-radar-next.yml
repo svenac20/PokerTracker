@@ -46,7 +46,7 @@ jobs:
           APPLICATION_INSIGHTS_CONNECTION_STRING: ${{secrets.APPLICATION_INSIGHTS_CONNECTION_STRING}}
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./build/standalone -r
+        run: zip release.zip poker-tracker-client-next/build/standalone -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
