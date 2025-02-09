@@ -75,7 +75,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         connection.off("ReceiveMessage");
       }
     };
-  }, [connection]);
+  }, []);
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     const response = await axios.post<PokerGame>("/api/pokerGame", data)

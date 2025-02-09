@@ -6,13 +6,15 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "node --require ./load-appinsights.js node_modules/next/dist/bin/next dev",
+    "build": "node --require ./load-appinsights.js node_modules/next/dist/bin/next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@microsoft/applicationinsights-react-js": "^17.3.5",
+    "@microsoft/applicationinsights-web": "^3.3.5",
     "@microsoft/signalr": "^8.0.7",
     "@prisma/client": "^6.2.1",
     "@radix-ui/react-accordion": "^1.2.2",
@@ -24,6 +26,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@tanstack/react-query": "^5.64.1",
     "@tanstack/react-query-devtools": "^5.64.1",
+    "applicationinsights": "^3.5.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
