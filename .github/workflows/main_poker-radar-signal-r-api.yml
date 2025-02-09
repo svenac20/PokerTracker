@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - PokerTrackerAPI/*
+      - main_poker-radar-signal-r-api.yml
     
   workflow_dispatch:
 
@@ -19,7 +20,7 @@ jobs:
       contents: read #This is required for actions/checkout
     
     env:
-      DOTNET_ROOT: ${{ github.workspace }}/PokerTrackerAPI
+      DOTNET_ROOT: PokerTrackerAPI
       output_dir: ${{ github.workspace }}/PokerTrackerAPI/out
 
     

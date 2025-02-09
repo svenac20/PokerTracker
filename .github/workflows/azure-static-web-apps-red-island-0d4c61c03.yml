@@ -6,6 +6,7 @@ on:
       - main
     paths: 
       - poker-tracker-client-next/*
+      - .github/workflows/azure-static-web-apps-red-island-0d4c61c03.yml
 
 jobs:
   build_and_deploy_job:
@@ -31,7 +32,7 @@ jobs:
           output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          NEXTAUTH_URL: "http://localhost:3000"
+          NEXTAUTH_URL: "https://red-island-0d4c61c03.4.azurestaticapps.net"
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
           NEXT_PUBLIC_API_URL: "http://localhost:3000"
           GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
