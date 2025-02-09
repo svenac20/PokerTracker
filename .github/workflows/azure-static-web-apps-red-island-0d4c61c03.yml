@@ -31,6 +31,9 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+          app_build_command: "npm run start"
+          api_build_command: ""
+
         env:
           NEXTAUTH_URL: "https://red-island-0d4c61c03.4.azurestaticapps.net"
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
