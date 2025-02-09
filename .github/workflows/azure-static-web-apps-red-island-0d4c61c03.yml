@@ -27,12 +27,10 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./poker-tracker-client-next" # App source code path
-          api_location: "" # Api source code path - optional
+          app_location: "/poker-tracker-client-next/src" # App source code path
+          api_location: ""
           output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-          app_build_command: "npm run start"
-          api_build_command: ""
 
         env:
           NEXTAUTH_URL: "https://red-island-0d4c61c03.4.azurestaticapps.net"
