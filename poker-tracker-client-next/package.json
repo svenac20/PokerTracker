@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "node --require ./load-appinsights.js node_modules/next/dist/bin/next dev",
-    "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/ ",
+    "build": "next build",
     "start": "node --require ./load-appinsights.js node_modules/next/dist/bin/next start",
     "lint": "next lint"
   },
