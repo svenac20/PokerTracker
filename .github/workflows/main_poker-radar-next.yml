@@ -28,6 +28,22 @@ jobs:
           npm run build
           mv ./build/static ./build/standalone/build
           mv ./public ./build/standalone
+        env:
+          NEXTAUTH_URL: "https://red-island-0d4c61c03.4.azurestaticapps.net"
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXT_PUBLIC_API_URL: "http://localhost:3000"
+          GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
+          GOOGLE_CLIENT_SECRET: ${{secrets.GOOGLE_CLIENT_SECRET}}
+          FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
+          FIREBASE_AUTH_DOMAIN: ${{secrets.FIREBASE_AUTH_DOMAIN}}
+          FIREBASE_PROJECT_ID: ${{secrets.FIREBASE_PROJECT_ID}}
+          FIREBASE_STORAGE_BUCKET: ${{secrets.FIREBASE_STORAGE_BUCKET}}
+          FIREBASE_MESSAGING_SENDER_ID: ${{secrets.FIREBASE_MESSAGING_SENDER_ID}}
+          FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+          FIREBASE_MEASUREMENT_ID: "G-Z85VHGN1ME"
+          NEXT_PUBLIC_SIGNAL_R_URL: "https://localhost:44365/hub"
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          APPLICATION_INSIGHTS_CONNECTION_STRING: ${{secrets.APPLICATION_INSIGHTS_CONNECTION_STRING}}
 
       - name: Zip artifact for deployment
         run: zip release.zip ./build/standalone -r
