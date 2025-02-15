@@ -1,9 +1,11 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  casinoId: z.string({
-    required_error: "Please select a casino",
-  }),
+  casinoId: z
+    .string({
+      required_error: "Please select a casino",
+    })
+    .nonempty("Please select a casino"),
   gameType: z.enum(["PLO", "NLO"], {
     required_error: "Please select game type",
   }),
@@ -35,12 +37,10 @@ export const registerSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z
-    .string({
-      required_error: "Please enter email",
-    }),
-  password: z
-    .string({
-      required_error: "Please enter password",
-    })
+  email: z.string({
+    required_error: "Please enter email",
+  }),
+  password: z.string({
+    required_error: "Please enter password",
+  }),
 });

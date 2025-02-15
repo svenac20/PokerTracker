@@ -1,6 +1,7 @@
 "use client";
 
 import CasinoCard from "@/components/ui/casinoCard";
+import { toast } from "@/hooks/use-toast";
 import { Casino, PokerGame } from "@/lib/types";
 import {
   HubConnection,
@@ -40,6 +41,10 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
               return casino;
             });
           });
+          toast({
+            title: `${pokerGame.casinoName} - New Poker Game added`,
+            description: `New Poker Game at ${pokerGame.casinoName}`,
+          })
         });
       })
       .catch((err) =>

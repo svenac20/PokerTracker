@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
 import Navbar from "./components/Navbar";
 import Providers from "./providers";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default async function RootLayout({
             <main className="px-24 py-12 h-screen">
               <Navbar />
               <div className="h-[90%]">{children}</div>
+              <Toaster />
             </main>
           </Providers>
         </SessionProvider>
