@@ -32,7 +32,7 @@ jobs:
           mv ./build/static ./build/standalone/build
           mv ./public ./build/standalone
         env:
-          NEXTAUTH_URL: "https://red-island-0d4c61c03.4.azurestaticapps.net"
+          NEXTAUTH_URL: "https://poker-radar.com"
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
           NEXT_PUBLIC_API_URL: "http://localhost:3000"
           GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
@@ -44,10 +44,9 @@ jobs:
           FIREBASE_MESSAGING_SENDER_ID: ${{secrets.FIREBASE_MESSAGING_SENDER_ID}}
           FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
           FIREBASE_MEASUREMENT_ID: "G-Z85VHGN1ME"
-          NEXT_PUBLIC_SIGNAL_R_URL: "https://localhost:44365/hub"
+          NEXT_PUBLIC_SIGNAL_R_URL: "https://poker-radar-signal-r-api-b7bba8fxgybketfk.germanywestcentral-01.azurewebsites.net/hub"
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           APPLICATION_INSIGHTS_CONNECTION_STRING: ${{secrets.APPLICATION_INSIGHTS_CONNECTION_STRING}}
-          CORS_ORIGINS: "https://poker-radar.com"
 
       - name: Zip artifact for deployment
         run: zip release.zip poker-tracker-client-next/build/standalone -r
