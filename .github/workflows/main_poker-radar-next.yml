@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - poker-tracker-client-next/*
+      - .github/workflows/main_poker-radar-next.yml
   workflow_dispatch:
 
 jobs:
@@ -44,6 +47,7 @@ jobs:
           NEXT_PUBLIC_SIGNAL_R_URL: "https://localhost:44365/hub"
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           APPLICATION_INSIGHTS_CONNECTION_STRING: ${{secrets.APPLICATION_INSIGHTS_CONNECTION_STRING}}
+          CORS_ORIGINS: "https://poker-radar.com"
 
       - name: Zip artifact for deployment
         run: zip release.zip poker-tracker-client-next/build/standalone -r

@@ -10,10 +10,6 @@ using PokerTrackerAPI.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var keyVaultName = builder.Configuration["KeyVaultName"];
-var keyVaultUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
-builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -21,7 +17,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Allow",
         cors => cors 
-            .WithOrigins("http://localhost:3000")
+            .WithOrigins(builder.Configuration["CorsOrigins"]!)
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials()

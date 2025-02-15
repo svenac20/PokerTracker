@@ -1,81 +1,106 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import GoogleSignInButton from "@/components/ui/google-signin-button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Formik } from "formik";
+import { loginSchema, registerSchema } from "@/lib/zod-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 export default function Login() {
   const searchParams = useSearchParams();
+
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+    await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      callbackUrl: searchParams.get("callback") || "/",
+    });
+  };
   return (
     <div className="flex flex-col items-center h-full gap-4">
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={async (values) => {
-          signIn("credentials", {
-            email: values.email,
-            password: values.password,
-            callbackUrl: searchParams.get("callbackUrl") || "/",
-          });
-        }}
-      >
-        {(props) => {
-          const { values, isSubmitting, handleChange, handleSubmit } = props;
-          return (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-96">
-              <div>
-                <Label htmlFor="email">Email:</Label>
-                <Input
-                  type="email"
-                  id="email"
-                  placeholder="Email"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <Label htmlFor="password">Password:</Label>
-                <Input
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  value={values.password}
-                  onChange={handleChange}
-                />
-              </div>
-              <span className="text-sm text-center">
-                {"Don't have an account? Register"}
-                <Link
-                  href={`/register?callback=${encodeURIComponent(
-                    searchParams.get("callbackUrl") || "/"
-                  )}` as string}
-                  className="font-bold cursor-pointer underline"
-                >
-                  here
-                </Link>
-              </span>
-              <Button type="submit" disabled={isSubmitting}>
+      <Form {...form}>
+        <form
+          className="flex justify-center"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className="w-96 flex gap-4 flex-col">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-extrabold">Email:</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Email" {...field}></Input>
+                  </FormControl>
+                  <FormMessage className="font-bold" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-extrabold">Password:</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Password"
+                      {...field}
+                    ></Input>
+                  </FormControl>
+                  <FormMessage className="font-bold" />
+                </FormItem>
+              )}
+            />
+            <span className="text-sm text-center">
+              {"Don't have an account? Register "}
+              <Link
+                href={`/register`}
+                className="font-bold cursor-pointer underline"
+              >
+                {"here"}
+              </Link>
+            </span>
+            <div className="flex flex-col gap-4">
+              <Button type="submit" className="w-full">
                 Sign In
               </Button>
-            </form>
-          );
-        }}
-      </Formik>
-      <div className="flex flex-col gap-4 w-96">
-        <Separator />
-        <GoogleSignInButton
-          onClick={() =>
-            signIn("google", {
-              callbackUrl: searchParams.get("callbackUrl") || "/",
-            })
-          }
-        />
-      </div>
+              <Separator />
+              <GoogleSignInButton
+                onClick={() =>
+                  signIn("google", {
+                    callbackUrl: searchParams.get("callbackUrl") || "/",
+                  })
+                }
+              />
+            </div>
+          </div>
+        </form>
+      </Form>
     </div>
   );
 }

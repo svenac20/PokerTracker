@@ -33,3 +33,14 @@ export const registerSchema = z.object({
     required_error: "Please enter username",
   }),
 });
+
+export const loginSchema = z.object({
+  email: z
+    .string({
+      required_error: "Please enter email",
+    }),
+  password: z
+    .string({
+      required_error: "Please enter password",
+    })
+});

@@ -6,7 +6,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "scripts": {
-    "dev": "node --require ./load-appinsights.js node_modules/next/dist/bin/next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "node --require ./load-appinsights.js node_modules/next/dist/bin/next start",
     "lint": "next lint"
