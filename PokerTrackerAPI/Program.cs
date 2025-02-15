@@ -1,17 +1,9 @@
-using System.Text;
-using Azure.Identity;
-using FastEndpoints;
-using FastEndpoints.Swagger;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.MicrosoftAccount;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using PokerTrackerAPI.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
