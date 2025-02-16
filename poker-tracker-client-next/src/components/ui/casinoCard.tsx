@@ -17,7 +17,7 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino }) => {
   return (
     <Card>
       <CardContent>
-        <Accordion type="single" collapsible>
+        <Accordion type="single" collapsible defaultValue="item-1">
           <AccordionItem value="item-1">
             <AccordionTrigger>
               <p className="font-bold text-lg">{casino.name}</p>

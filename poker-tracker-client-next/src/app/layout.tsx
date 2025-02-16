@@ -6,6 +6,8 @@ import SessionProvider from "./components/SessionProvider";
 import Navbar from "./components/Navbar";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/toaster";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import AppSidebar from "@/app/components/appSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,11 +37,15 @@ export default async function RootLayout({
       >
         <SessionProvider session={session}>
           <Providers>
-            <main className="px-24 py-12 h-screen">
-              <Navbar />
-              <div className="h-[90%]">{children}</div>
-              <Toaster />
-            </main>
+            <SidebarProvider>
+              <AppSidebar />
+              <main className="px-24 py-12 h-screen w-full">
+                <SidebarTrigger />
+                {/* <Navbar /> */}
+                {children}
+                <Toaster />
+              </main>
+            </SidebarProvider>
           </Providers>
         </SessionProvider>
       </body>

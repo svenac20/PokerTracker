@@ -89,18 +89,20 @@ export default function Login() {
               <Button type="submit" className="w-full">
                 Sign In
               </Button>
-              <Separator />
-              <GoogleSignInButton
-                onClick={() =>
-                  signIn("google", {
-                    callbackUrl: searchParams.get("callbackUrl") || "/",
-                  })
-                }
-              />
             </div>
           </div>
         </form>
       </Form>
+      <div className="flex justify-center flex-col gap-4 w-96">
+        <Separator />
+        <GoogleSignInButton
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: searchParams.get("callbackUrl") || "/",
+            })
+          }
+        />
+      </div>
     </div>
   );
 }
