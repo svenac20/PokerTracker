@@ -4,8 +4,6 @@ import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import AddPokerGameForm from "./addPokerGameForm";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import Error from "@/app/dashboard/error";
 
 const DashboardPage = async () => {
   const session = await getServerSession(authOptions);
