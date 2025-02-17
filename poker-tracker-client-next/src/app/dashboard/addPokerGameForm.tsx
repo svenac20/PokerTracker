@@ -105,7 +105,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
             className=""
             onSubmit={form.handleSubmit(onSubmit)}
           >
-            <div className="grid grid-cols-2 grid-rows-4 gap-6">
+            <div className="grid grid-cols-1 grid-rows-8 lg:grid-cols-2 lg:grid-rows-4 gap-6">
               <FormField
                 control={form.control}
                 name="casinoId"
@@ -233,7 +233,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
                   </FormItem>
                 )}
               />
-              <div className="col-span-2 row-start-4 flex justify-center items-center">
+              <div className="sm:row-start-8 lg:col-span-2 lg:row-start-4 flex justify-center items-center">
                 <Button
                   className="w-full"
                   type="submit"

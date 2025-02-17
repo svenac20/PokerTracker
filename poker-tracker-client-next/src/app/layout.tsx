@@ -38,7 +38,7 @@ export default async function RootLayout({
           <Providers>
             <SidebarProvider>
               <AppSidebar />
-              <main className="px-24 py-12 h-screen w-full">
+              <main className="px-4 lg:px-24 lg:py-12 py-4 h-screen w-full">
                 <SidebarTrigger />
                 {/* <Navbar /> */}
                 {children}

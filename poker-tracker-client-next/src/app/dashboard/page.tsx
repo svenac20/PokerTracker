@@ -16,7 +16,7 @@ const DashboardPage = async () => {
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
         Edit Poker games
       </h1>
-      <div className="grid grid-cols-2 grid-rows-1">
+      <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1">
         <AddPokerGameForm casinos={casinos} />
       </div>
     </div>

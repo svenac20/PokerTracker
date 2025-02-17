@@ -39,10 +39,10 @@ export default function Login() {
     });
   };
   return (
-    <div className="flex flex-col items-center h-full gap-4">
+    <div className="flex flex-col items-center   gap-4">
       <Form {...form}>
         <form
-          className="flex justify-center"
+          className="flex justify-center w-full"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="w-96 flex gap-4 flex-col">
@@ -93,7 +93,7 @@ export default function Login() {
           </div>
         </form>
       </Form>
-      <div className="flex justify-center flex-col gap-4 w-96">
+      <div className="flex justify-center flex-col gap-4 w-full lg:w-96">
         <Separator />
         <GoogleSignInButton
           onClick={() =>
