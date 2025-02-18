@@ -46,6 +46,7 @@ export type PokerGame = {
   id: number;
   limit: string;
   gameType: string;
+  gameTypeId?: number;
   playerWaiting: number;
   casinoId: number;
   casinoName: string;

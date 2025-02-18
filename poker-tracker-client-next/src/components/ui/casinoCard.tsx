@@ -11,9 +11,10 @@ import PokerGamesTable from "./pokerGamesTable";
 
 interface CasinoCardProps {
   casino: Casino;
+  showActions?: boolean;
 }
 
-const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino }) => {
+const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino, showActions }) => {
   return (
     <Card>
       <CardContent>
@@ -23,7 +24,7 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino }) => {
               <p className="font-bold text-lg">{casino.name}</p>
             </AccordionTrigger>
             <AccordionContent>
-              <PokerGamesTable pokerGames={casino.pokerGames} />
+              <PokerGamesTable pokerGames={casino.pokerGames} showActions={showActions}/>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

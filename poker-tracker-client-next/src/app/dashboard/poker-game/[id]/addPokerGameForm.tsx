@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import axios from "@/lib/axios";
-import { CasinoDto, PokerGame } from "@/lib/types";
+import { CasinoDto, GameTypes, PokerGame } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -36,21 +36,23 @@ import { z } from "zod";
 
 interface AddPokerGameFormProps {
   casinos: CasinoDto[];
+  pokerGame?: PokerGame;
 }
 
 const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   casinos,
+  pokerGame,
 }) => {
   const [connection, setConnection] = useState<HubConnection | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      casinoId: "",
-      gameType: "PLO",
-      limit: "",
-      tables: 0,
-      playersWaiting: 0,
+      casinoId: pokerGame?.casinoId.toString() ?? "",
+      gameType: pokerGame ? (pokerGame?.gameTypeId == GameTypes.NLO ? "PLO" : "PLO") : "PLO",
+      limit: pokerGame?.limit ?? "",
+      tables: pokerGame?.tablesNumber ?? 0,
+      playersWaiting: pokerGame?.playerWaiting ?? 0,
     },
   });
 
