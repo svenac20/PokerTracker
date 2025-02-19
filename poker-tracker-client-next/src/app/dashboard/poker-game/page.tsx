@@ -7,9 +7,11 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AddPokerGameForm from "./[id]/addPokerGameForm";
+import { get } from "http";
+import { authOptions } from "@/lib/authOptions";
 
 export default async function AddPokerGame() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/");
   }

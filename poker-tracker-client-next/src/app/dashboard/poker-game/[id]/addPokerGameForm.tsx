@@ -30,7 +30,7 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -45,6 +45,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   pokerGame,
 }) => {
   const [connection, setConnection] = useState<HubConnection | null>(null);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -90,7 +91,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         title: "Poker game added",
         description: "Poker game has been added sucessfully",
       });
-      redirect("/dashboard");
+      router.push("/dashboard")
     } catch (error) {
       toast({
         title: "Error",

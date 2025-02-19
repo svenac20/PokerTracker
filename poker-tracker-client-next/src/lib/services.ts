@@ -94,7 +94,6 @@ export const fetchPokerGamesForUser = async (userId: string) => {
 };
 
 export const fetchCasinosForUser = async (userId: string) => {
-  console.log();
   const casinos = await prisma.casino.findMany({
     where: {
       owners: {
@@ -107,7 +106,6 @@ export const fetchCasinosForUser = async (userId: string) => {
       town: true,
     },
   });
-
   return casinos.map<CasinoDto>((casino) => {
     return {
       id: casino.id,

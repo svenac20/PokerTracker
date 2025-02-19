@@ -29,6 +29,7 @@ import axios from "@/lib/axios";
 import { connect } from "http2";
 import PokerGameCard from "./pokerGameCard";
 import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 
 type DeleteGameDialogProps = {
   pokerGame: PokerGame;
@@ -37,6 +38,7 @@ type DeleteGameDialogProps = {
 const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
   pokerGame,
 }) => {
+  const router = useRouter()
   const [open, setOpen] = useState(false);
   const [connection, setConnection] = useState<HubConnection | null>(null);
 
@@ -69,7 +71,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
     }
     await connection?.send("DeletePokerGame", pokerGameData);
     setOpen(false);
-    revalidatePath("/dashboard")
+    router.refresh()
   };
 
   return (
