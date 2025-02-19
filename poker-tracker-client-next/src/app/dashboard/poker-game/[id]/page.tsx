@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 export default async function EditPokerGame({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
   if (Number.isNaN(parseInt(id))) {

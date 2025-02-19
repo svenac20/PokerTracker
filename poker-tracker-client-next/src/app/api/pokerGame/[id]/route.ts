@@ -5,12 +5,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = parseInt(params.id);
+  const {id} = await params
+  const parsedId = parseInt(id);
 
   // Validate ID is a positive number
-  if (isNaN(id) || id <= 0) {
+  if (isNaN(parsedId) || parsedId <= 0) {
     return new NextResponse(
       JSON.stringify({
         message: "Invalid poker game ID",
@@ -37,7 +38,7 @@ export async function POST(
   // Validate ID is a positive number
   const pokerGame = await prisma.pokerGame.update({
     where: {
-      id: id,
+      id: parsedId,
     },
     data: {
       casinoId: parseInt(pokerGameData.casinoId),
@@ -70,7 +71,7 @@ export async function POST(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const {id} = await params
   const parsedId = parseInt(id);
