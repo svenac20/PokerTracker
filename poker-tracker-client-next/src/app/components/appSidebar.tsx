@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, Lock } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -53,6 +53,7 @@ const AppSidebar: FunctionComponent<AppSidebarProps> = async () => {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
+                      <Lock />
                       <span>Admin</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>

@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - poker-tracker-client-next/*
+      - poker-tracker-client-next/**
       - .github/workflows/main_poker-radar-next.yml
   workflow_dispatch:
 
