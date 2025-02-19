@@ -63,6 +63,9 @@ const AppSidebar: FunctionComponent<AppSidebarProps> = async () => {
                         <SidebarMenuSubButton asChild>
                           <Link href={"/dashboard"}>Dashboard</Link>
                         </SidebarMenuSubButton>
+                        <SidebarMenuSubButton asChild>
+                          <Link href={"/dashboard/poker-game"}>Add poker game</Link>
+                        </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
                   </CollapsibleContent>

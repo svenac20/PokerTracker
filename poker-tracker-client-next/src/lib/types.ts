@@ -63,3 +63,8 @@ export type CasinoDto = {
 export type GetCasinoPerUSerResponse = {
   casinos: CasinoDto[];
 }
+
+export type DeletePokerGame = {
+  pokerGameId: number;
+  casinoId: number;
+}

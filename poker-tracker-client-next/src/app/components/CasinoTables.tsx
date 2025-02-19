@@ -2,7 +2,7 @@
 
 import CasinoCard from "@/components/ui/casinoCard";
 import { toast } from "@/hooks/use-toast";
-import { Casino, PokerGame } from "@/lib/types";
+import { Casino, DeletePokerGame, PokerGame } from "@/lib/types";
 import {
   HubConnection,
   HubConnectionBuilder,
@@ -63,6 +63,28 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
           toast({
             title: `${pokerGame.casinoName} - Poker game updated`,
             description: `Poker Game updated at ${pokerGame.casinoName}`,
+          });
+        });
+      
+        connect.on("DeletePokerGame", (pokerGame: DeletePokerGame) => {
+          console.log(pokerGame.casinoId)
+          setCasinos((prevCasinos) => {
+            return prevCasinos.map((casino) => {
+              if (casino?.id === pokerGame.casinoId) {
+                console.log(casino.pokerGames.filter((game) => game.id !== pokerGame.pokerGameId))
+                return {
+                  ...casino,
+                  pokerGames: casino.pokerGames.filter((game) =>
+                    game.id !== pokerGame.pokerGameId
+                  ),
+                };
+              }
+              return casino;
+            });
+          });
+          toast({
+            title: 'Poker game deleted',
+            description: `Poker Game deleted`,
           });
         });
       })

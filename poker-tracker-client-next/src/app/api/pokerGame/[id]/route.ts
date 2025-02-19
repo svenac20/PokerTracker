@@ -66,3 +66,34 @@ export async function POST(
   } as PokerGame
   return NextResponse.json(pokerGameDto);
 }
+
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const {id} = await params
+  const parsedId = parseInt(id);
+
+  // Validate ID is a positive number
+  if (isNaN(parsedId) || parsedId <= 0) {
+    return new NextResponse(
+      JSON.stringify({
+        message: "Invalid poker game ID",
+        error: "ID must be a positive number",
+      }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+
+  await prisma.pokerGame.delete({
+    where: {
+      id: parsedId,
+    }
+  });
+
+  return NextResponse.json({})
+}

@@ -8,7 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getInitials(name: string) {
-  console.log(name)
   if (!name) 
     return '';
   return name

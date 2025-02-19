@@ -3,6 +3,8 @@ import { FunctionComponent } from "react";
 import { TableCell, TableRow } from "./table";
 import { Pencil, Trash } from "lucide-react";
 import Link from "next/link";
+import { DialogTrigger } from "./dialog";
+import DeleteGameDialog from "./delete-game-dialog";
 
 interface PokerGameCardProps {
   pokerGame: PokerGame;
@@ -24,7 +26,7 @@ const PokerGameCard: FunctionComponent<PokerGameCardProps> = ({
           <Link href={`/dashboard/poker-game/${pokerGame.id}`}>
             <Pencil className="cursor-pointer" />
           </Link>
-          <Trash className="cursor-pointer" />
+          <DeleteGameDialog pokerGame={pokerGame}/>
         </TableCell>
       )}
     </TableRow>

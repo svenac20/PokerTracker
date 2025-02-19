@@ -1,3 +1,4 @@
+"use client";
 import { PokerGame } from "@/lib/types";
 import { FunctionComponent } from "react";
 import PokerGameCard from "./pokerGameCard";
@@ -5,10 +6,13 @@ import {
   Table,
   TableBody,
   TableCaption,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "./table";
+import { Button } from "./button";
+import { redirect } from "next/navigation";
 
 interface PokerGamesTableProps {
   pokerGames: PokerGame[];
@@ -23,6 +27,17 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
     return (
       <Table>
         <TableCaption>No currently running tables</TableCaption>
+        {showActions && (
+          <TableHeader>
+            <TableRow>
+              <TableCell>
+                <Button onClick={() => redirect("dashboard/poker-game")}>
+                  Add poker game
+                </Button>
+              </TableCell>
+            </TableRow>
+          </TableHeader>
+        )}
       </Table>
     );
   }
@@ -43,7 +58,11 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
         </TableHeader>
         <TableBody>
           {pokerGames.map((game) => (
-            <PokerGameCard key={game.id} pokerGame={game} showActions={showActions}/>
+            <PokerGameCard
+              key={game.id}
+              pokerGame={game}
+              showActions={showActions}
+            />
           ))}
         </TableBody>
       </Table>

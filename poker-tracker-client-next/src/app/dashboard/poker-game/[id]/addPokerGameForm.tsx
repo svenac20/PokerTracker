@@ -85,7 +85,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   async function onSubmitAddPokerGame(data: z.infer<typeof formSchema>) {
     try {
       const response = await axios.post<PokerGame>("/api/pokerGame", data);
-      await connection?.send("UpdatePokerGame", response.data);
+      await connection?.send("NewPokerGame", response.data);
       toast({
         title: "Poker game added",
         description: "Poker game has been added sucessfully",

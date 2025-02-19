@@ -10,7 +10,6 @@ const DashboardPage = async () => {
   if (!session || session.user.roleId !== Roles.ADMIN) {
     redirect("/");
   }
-  const casinos = await fetchCasinosForUser(session.user.id);
   const casinosWithPokerGames = await fetchPokerGamesForUser(session.user.id);
   return (
     <div className="py-8">

@@ -16,6 +16,11 @@ namespace PokerTrackerAPI.SignalR
         public async Task UpdatePokerGame(PokerGame pokerGame)
         {
             await Clients.Others.SendAsync("UpdatePokerGame", pokerGame);
-        } 
+        }
+
+        public async Task DeletePokerGame(DeletePokerGame deletePokerGame)
+        {
+            await Clients.Others.SendAsync("DeletePokerGame", deletePokerGame);
+        }
     }
 }

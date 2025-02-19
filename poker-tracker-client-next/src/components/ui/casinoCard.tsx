@@ -8,13 +8,19 @@ import {
 } from "./accordion";
 import { Card, CardContent } from "./card";
 import PokerGamesTable from "./pokerGamesTable";
+import { CirclePlus } from "lucide-react";
+import { Button } from "./button";
+import { redirect } from "next/navigation";
 
 interface CasinoCardProps {
   casino: Casino;
   showActions?: boolean;
 }
 
-const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino, showActions }) => {
+const CasinoCard: FunctionComponent<CasinoCardProps> = ({
+  casino,
+  showActions,
+}) => {
   return (
     <Card>
       <CardContent>
@@ -24,7 +30,10 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({ casino, showActions })
               <p className="font-bold text-lg">{casino.name}</p>
             </AccordionTrigger>
             <AccordionContent>
-              <PokerGamesTable pokerGames={casino.pokerGames} showActions={showActions}/>
+              <PokerGamesTable
+                pokerGames={casino.pokerGames}
+                showActions={showActions}
+              />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
