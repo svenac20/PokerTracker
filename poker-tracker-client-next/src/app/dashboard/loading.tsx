@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <div className="py-8">
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
-        Edit Poker games
+        Edit poker games
       </h1>
       <div className="grid grid-cols-2 grid-rows-1">
         <div className="grid grid-cols-2 grid-rows-3 w-full gap-8">

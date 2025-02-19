@@ -30,7 +30,6 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
       .then(() => {
         connect.on("NewPokerGame", (pokerGame: PokerGame) => {
           setCasinos((prevCasinos) => {
-            console.log(pokerGame)
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
                 return {
@@ -44,7 +43,27 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
           toast({
             title: `${pokerGame.casinoName} - New Poker Game added`,
             description: `New Poker Game at ${pokerGame.casinoName}`,
-          })
+          });
+        });
+
+        connect.on("UpdatePokerGame", (pokerGame: PokerGame) => {
+          setCasinos((prevCasinos) => {
+            return prevCasinos.map((casino) => {
+              if (casino?.id === pokerGame.casinoId) {
+                return {
+                  ...casino,
+                  pokerGames: casino.pokerGames.map((game) =>
+                    game.id === pokerGame.id ? pokerGame : game
+                  ),
+                };
+              }
+              return casino;
+            });
+          });
+          toast({
+            title: `${pokerGame.casinoName} - Poker game updated`,
+            description: `Poker Game updated at ${pokerGame.casinoName}`,
+          });
         });
       })
       .catch((err) =>
@@ -57,6 +76,7 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
       }
     };
   }, []);
+
   return (
     <ul>
       {casinos.map((casino) => {

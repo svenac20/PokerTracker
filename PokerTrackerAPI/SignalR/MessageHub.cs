@@ -8,13 +8,14 @@ namespace PokerTrackerAPI.SignalR
 {
     public class MessagingHub : Hub
     {
-        public async Task AddToGroup(string groupName)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-        }
         public async Task NewPokerGame(PokerGame pokerGame)
         {
             await Clients.Others.SendAsync("NewPokerGame", pokerGame);
+        } 
+        
+        public async Task UpdatePokerGame(PokerGame pokerGame)
+        {
+            await Clients.Others.SendAsync("UpdatePokerGame", pokerGame);
         } 
     }
 }
