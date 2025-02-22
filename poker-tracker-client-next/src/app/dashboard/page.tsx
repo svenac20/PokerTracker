@@ -1,10 +1,10 @@
-import CasinoCard from "@/components/custom/casinoPokerGame/casinoCard";
+import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { authOptions } from "@/lib/authOptions";
-import { fetchCasinosForUser, fetchPokerGamesForUser } from "@/lib/services";
+import { fetchPokerGamesForUser } from "@/lib/services";
 import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import CasinoTables from "../../components/custom/casinoPokerGame/casinoTables";
+import CasinosListDashboard from "./casionsListDashboard";
 
 const DashboardPage = async () => {
   const session = await getServerSession(authOptions);
@@ -17,9 +17,7 @@ const DashboardPage = async () => {
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
         Edit poker games
       </h1>
-      {casinosWithPokerGames.map((casino) => (
-        <CasinoCard casino={casino} key={casino.id} showActions={true}/>
-      ))}
+      <CasinosListDashboard casinos={casinosWithPokerGames} showActions={true} />
     </div>
   );
 };

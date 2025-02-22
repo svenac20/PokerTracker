@@ -11,7 +11,7 @@ interface PokerGameCardProps {
   showActions?: boolean;
 }
 
-const PokerGameCard: FunctionComponent<PokerGameCardProps> = ({
+const PokerGameRow: FunctionComponent<PokerGameCardProps> = ({
   pokerGame,
   showActions,
 }) => {
@@ -26,11 +26,11 @@ const PokerGameCard: FunctionComponent<PokerGameCardProps> = ({
           <Link href={`/dashboard/poker-game/${pokerGame.id}`}>
             <Pencil className="cursor-pointer" />
           </Link>
-          <DeleteGameDialog pokerGame={pokerGame}/>
+          <DeleteGameDialog pokerGame={pokerGame} />
         </TableCell>
       )}
     </TableRow>
   );
 };
 
-export default PokerGameCard;
+export default PokerGameRow;

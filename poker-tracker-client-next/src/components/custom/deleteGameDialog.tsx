@@ -7,10 +7,10 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -28,6 +28,7 @@ import {
   TableRow,
 } from "../ui/table";
 import useHubConnection from "@/hooks/useHubConnection";
+import { ConnectionContext } from "@/app/dashboard/casionsListDashboard";
 
 type DeleteGameDialogProps = {
   pokerGame: PokerGameDto;
@@ -38,7 +39,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
 }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false);
-  const {connection} = useHubConnection();
+  const connection = useContext(ConnectionContext);
 
   const deletePokerGame = async () => {
     await axios.delete(`api/pokerGame/${pokerGame.id}`);
@@ -79,6 +80,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
             </TableRow>
           </TableBody>
         </Table>
+        <DialogDescription className="hidden">Delete poker game dialog</DialogDescription>
         <DialogFooter>
           <Button
             type="submit"

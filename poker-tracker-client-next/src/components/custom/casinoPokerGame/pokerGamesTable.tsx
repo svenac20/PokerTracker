@@ -1,7 +1,7 @@
 "use client";
 import { PokerGameDto } from "@/lib/types";
 import { FunctionComponent } from "react";
-import PokerGameCard from "./pokerGameCard";
+import PokerGameRow from "./pokerGameCard";
 import {
   Table,
   TableBody,
@@ -58,7 +58,7 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
         </TableHeader>
         <TableBody>
           {pokerGames.map((game) => (
-            <PokerGameCard
+            <PokerGameRow
               key={game.id}
               pokerGame={game}
               showActions={showActions}
