@@ -1,17 +1,24 @@
 "use client";
 
+import axios from "@/lib/axios";
+import { DeletePokerGame, PokerGameDto } from "@/lib/types";
+import {
+  HubConnection,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { FunctionComponent, useEffect, useState } from "react";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTrigger,
-} from "./dialog";
-import { Trash } from "lucide-react";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { Button } from "./button";
-import { DeletePokerGame, PokerGame } from "@/lib/types";
+} from "../ui/dialog";
 import {
   Table,
   TableBody,
@@ -19,20 +26,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./table";
-import {
-  HubConnection,
-  HubConnectionBuilder,
-  LogLevel,
-} from "@microsoft/signalr";
-import axios from "@/lib/axios";
-import { connect } from "http2";
-import PokerGameCard from "./pokerGameCard";
-import { revalidatePath } from "next/cache";
-import { useRouter } from "next/navigation";
+} from "../ui/table";
+import useHubConnection from "@/hooks/useHubConnection";
 
 type DeleteGameDialogProps = {
-  pokerGame: PokerGame;
+  pokerGame: PokerGameDto;
 };
 
 const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
@@ -40,28 +38,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
 }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false);
-  const [connection, setConnection] = useState<HubConnection | null>(null);
-
-  useEffect(() => {
-    const connect = new HubConnectionBuilder()
-      .withUrl(`${process.env.NEXT_PUBLIC_SIGNAL_R_URL}`)
-      .withAutomaticReconnect()
-      .configureLogging(LogLevel.Information)
-      .build();
-    setConnection(connect);
-    connect
-      .start()
-      .then(() => {})
-      .catch((err) =>
-        console.error("Error while connecting to SignalR Hub:", err)
-      );
-
-    return () => {
-      if (connection) {
-        connection.stop();
-      }
-    };
-  }, []);
+  const {connection} = useHubConnection();
 
   const deletePokerGame = async () => {
     await axios.delete(`api/pokerGame/${pokerGame.id}`);

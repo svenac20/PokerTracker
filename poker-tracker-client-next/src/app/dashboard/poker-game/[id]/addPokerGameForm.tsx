@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoadingSpinner } from "@/components/ui/loading";
+import { LoadingSpinner } from "@/components/custom/loading";
 import {
   Select,
   SelectContent,
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import axios from "@/lib/axios";
-import { CasinoDto, GameTypes, PokerGame } from "@/lib/types";
+import { CasinoDropdownDto, GameTypes, PokerGameDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -34,17 +34,18 @@ import { useRouter } from "next/navigation";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import useHubConnection from "@/hooks/useHubConnection";
 
 interface AddPokerGameFormProps {
-  casinos: CasinoDto[];
-  pokerGame?: PokerGame;
+  casinos: CasinoDropdownDto[];
+  pokerGame?: PokerGameDto;
 }
 
 const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   casinos,
   pokerGame,
 }) => {
-  const [connection, setConnection] = useState<HubConnection | null>(null);
+  const {connection} = useHubConnection();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -62,30 +63,9 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
     },
   });
 
-  useEffect(() => {
-    const connect = new HubConnectionBuilder()
-      .withUrl(`${process.env.NEXT_PUBLIC_SIGNAL_R_URL}`)
-      .withAutomaticReconnect()
-      .configureLogging(LogLevel.Information)
-      .build();
-    setConnection(connect);
-    connect
-      .start()
-      .then(() => {})
-      .catch((err) =>
-        console.error("Error while connecting to SignalR Hub:", err)
-      );
-
-    return () => {
-      if (connection) {
-        connection.stop();
-      }
-    };
-  }, []);
-
   async function onSubmitAddPokerGame(data: z.infer<typeof formSchema>) {
     try {
-      const response = await axios.post<PokerGame>("/api/pokerGame", data);
+      const response = await axios.post<PokerGameDto>("/api/pokerGame", data);
       await connection?.send("NewPokerGame", response.data);
       toast({
         title: "Poker game added",
@@ -103,7 +83,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
 
   async function onSubmitEditPokerGame(data: z.infer<typeof formSchema>) {
     try {
-      const response = await axios.post<PokerGame>(
+      const response = await axios.post<PokerGameDto>(
         `/api/pokerGame/${pokerGame?.id}`,
         data
       );

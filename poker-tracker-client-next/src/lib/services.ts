@@ -1,6 +1,6 @@
 import "server-only";
 import prisma from "./prisma";
-import { Casino, CasinoDto, PokerGame } from "./types";
+import { Casino, CasinoDropdownDto, PokerGameDto } from "./types";
 import PokerGameCard from "@/components/ui/pokerGameCard";
 
 export const fetchCasinos = async (): Promise<Casino[]> => {
@@ -106,7 +106,7 @@ export const fetchCasinosForUser = async (userId: string) => {
       town: true,
     },
   });
-  return casinos.map<CasinoDto>((casino) => {
+  return casinos.map<CasinoDropdownDto>((casino) => {
     return {
       id: casino.id,
       name: casino.name,
@@ -153,7 +153,7 @@ export const getPokerGameByIdForUser = async (pokerGameId: number, userId: strin
     limit: pokerGame.limit,
     playerWaiting: pokerGame.playerWaiting,
     tablesNumber: pokerGame.tablesNumber,
-  } as PokerGame
+  } as PokerGameDto
 }
 
 

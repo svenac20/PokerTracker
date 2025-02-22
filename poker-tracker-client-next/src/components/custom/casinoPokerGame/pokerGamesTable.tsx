@@ -1,5 +1,5 @@
 "use client";
-import { PokerGame } from "@/lib/types";
+import { PokerGameDto } from "@/lib/types";
 import { FunctionComponent } from "react";
 import PokerGameCard from "./pokerGameCard";
 import {
@@ -10,12 +10,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./table";
-import { Button } from "./button";
+} from "../../ui/table";
+import { Button } from "../../ui/button";
 import { redirect } from "next/navigation";
 
 interface PokerGamesTableProps {
-  pokerGames: PokerGame[];
+  pokerGames: PokerGameDto[];
   showActions?: boolean;
 }
 

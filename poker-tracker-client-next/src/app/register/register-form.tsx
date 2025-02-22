@@ -31,14 +31,18 @@ const RegisterForm: FunctionComponent = () => {
     },
   });
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
-    const user = await createUserWithEmailAndPassword(auth, data.email, data.password);
+    const user = await createUserWithEmailAndPassword(
+      auth,
+      data.email,
+      data.password
+    );
     await updateProfile(user.user, {
       displayName: data.username,
-    })
+    });
     await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        callbackUrl: searchParams.get("callback") || "/",
+      email: data.email,
+      password: data.password,
+      callbackUrl: searchParams.get("callback") || "/",
     });
   };
 

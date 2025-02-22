@@ -8,41 +8,19 @@ export enum GameTypes {
   PLO = 1,
   NLO = 2,
 }
-export interface CreateUserRequest {
-  id?: string;
-  googleId?: string;
-  email: string;
-  username?: string;
-  roleId?: number;
-}
-
-export type CreateUserResponse = {
-  id: string;
-  googleId: string;
-  email: string;
-  name: string;
-  roleId: number;
-}
-
-export interface GetUserResponse {
-  id: string;
-  email: string;
-  name: string;
-  roleId: number;
-}
 
 export type Casino = {
   id: number;
   name: string;
   town: string;
-  pokerGames: PokerGame[];
+  pokerGames: PokerGameDto[];
 };
 
 export type GetCasinosResponse = {
   casinos: Casino[];
 };
 
-export type PokerGame = {
+export type PokerGameDto = {
   id: number;
   limit: string;
   gameType: string;
@@ -53,15 +31,15 @@ export type PokerGame = {
   tablesNumber: number;
 };
 
-export type CasinoDto = {
+export type CasinoDropdownDto = {
   id: number;
   name: string;
   town: string;
 }
 
 
-export type GetCasinoPerUSerResponse = {
-  casinos: CasinoDto[];
+export type GetCasinoPerUserResponse = {
+  casinos: CasinoDropdownDto[];
 }
 
 export type DeletePokerGame = {

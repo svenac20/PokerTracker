@@ -21,7 +21,7 @@ interface MyAccountProps {
   session: Session;
 }
 
-const MyAccount: FunctionComponent<MyAccountProps> = ({ session }) => {
+const MyAccountMenu: FunctionComponent<MyAccountProps> = ({ session }) => {
   const { isMobile } = useSidebar();
 
   return (
@@ -59,4 +59,4 @@ const MyAccount: FunctionComponent<MyAccountProps> = ({ session }) => {
   );
 };
 
-export default MyAccount;
+export default MyAccountMenu;

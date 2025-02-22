@@ -1,16 +1,13 @@
 import { FunctionComponent } from "react";
-import { Casino } from "../../lib/types";
+import { Casino } from "../../../lib/types";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./accordion";
-import { Card, CardContent } from "./card";
+} from "../../ui/accordion";
+import { Card, CardContent } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
-import { CirclePlus } from "lucide-react";
-import { Button } from "./button";
-import { redirect } from "next/navigation";
 
 interface CasinoCardProps {
   casino: Casino;

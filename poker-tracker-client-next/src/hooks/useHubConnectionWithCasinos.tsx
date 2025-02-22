@@ -1,22 +1,11 @@
-"use client";
+import { Casino, DeletePokerGame, PokerGameDto } from "@/lib/types";
+import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { useEffect, useState } from "react";
+import { toast } from "./use-toast";
 
-import CasinoCard from "@/components/ui/casinoCard";
-import { toast } from "@/hooks/use-toast";
-import { Casino, DeletePokerGame, PokerGame } from "@/lib/types";
-import {
-  HubConnection,
-  HubConnectionBuilder,
-  LogLevel,
-} from "@microsoft/signalr";
-import { FunctionComponent, useEffect, useState } from "react";
-
-interface CasinoTableProps {
-  casinoInit: Casino[];
-}
-
-const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
+export function useHubConnectionWithCasinos(casinosList: Casino[]) {
   const [connection, setConnection] = useState<HubConnection | null>(null);
-  const [casinos, setCasinos] = useState<Casino[]>(casinoInit);
+  const [casinos, setCasinos] = useState<Casino[]>(casinosList);
 
   useEffect(() => {
     const connect = new HubConnectionBuilder()
@@ -28,7 +17,7 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
     connect
       .start()
       .then(() => {
-        connect.on("NewPokerGame", (pokerGame: PokerGame) => {
+        connect.on("NewPokerGame", (pokerGame: PokerGameDto) => {
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
@@ -46,7 +35,7 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
           });
         });
 
-        connect.on("UpdatePokerGame", (pokerGame: PokerGame) => {
+        connect.on("UpdatePokerGame", (pokerGame: PokerGameDto) => {
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
@@ -99,13 +88,5 @@ const CasinoTable: FunctionComponent<CasinoTableProps> = ({ casinoInit }) => {
     };
   }, []);
 
-  return (
-    <ul>
-      {casinos.map((casino) => {
-        return <CasinoCard key={casino.id} casino={casino} />;
-      })}
-    </ul>
-  );
-};
-
-export default CasinoTable;
+  return {connection, casinos, setCasinos}
+}

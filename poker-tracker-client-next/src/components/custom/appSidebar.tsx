@@ -15,14 +15,14 @@ import {
 } from "@/components/ui/sidebar";
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
+import { CollapsibleContent } from "@radix-ui/react-collapsible";
 import { ChevronRight, Home, Lock } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import MyAccount from "./MyAccount";
-import { CollapsibleContent } from "@radix-ui/react-collapsible";
 import logo from "../../../public/poker-radar-logo.svg";
+import MyAccountMenu from "./myAccountMenu";
 
 interface AppSidebarProps {}
 
@@ -78,7 +78,7 @@ const AppSidebar: FunctionComponent<AppSidebarProps> = async () => {
       </SidebarContent>
       <SidebarFooter>
         {session ? (
-          <MyAccount session={session} />
+          <MyAccountMenu session={session} />
         ) : (
           <Link href="/api/auth/signin" className="w-full">
             <Button variant="default" className="w-full">

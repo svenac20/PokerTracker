@@ -1,13 +1,13 @@
-import { PokerGame } from "@/lib/types";
-import { FunctionComponent } from "react";
-import { TableCell, TableRow } from "./table";
-import { Pencil, Trash } from "lucide-react";
+import { PokerGameDto } from "@/lib/types";
+import { Pencil } from "lucide-react";
 import Link from "next/link";
-import { DialogTrigger } from "./dialog";
-import DeleteGameDialog from "./delete-game-dialog";
+import { FunctionComponent } from "react";
+import DeleteGameDialog from "../deleteGameDialog";
+import { TableCell, TableRow } from "@/components/ui/table";
+
 
 interface PokerGameCardProps {
-  pokerGame: PokerGame;
+  pokerGame: PokerGameDto;
   showActions?: boolean;
 }
 

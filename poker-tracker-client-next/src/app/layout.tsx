@@ -1,10 +1,10 @@
-import AppSidebar from "@/app/components/appSidebar";
+import AppSidebar from "@/components/custom/appSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Geist, Geist_Mono } from "next/font/google";
-import SessionProvider from "./components/SessionProvider";
+import SessionProvider from "../components/custom/SessionProvider";
 import "./globals.css";
 import Providers from "./providers";
 
@@ -40,9 +40,7 @@ export default async function RootLayout({
               <AppSidebar />
               <main className="px-4 lg:px-24 lg:py-12 py-4 h-screen w-full">
                 <SidebarTrigger >
-                  test
                 </SidebarTrigger>
-                {/* <Navbar /> */}
                 {children}
                 <Toaster />
               </main>

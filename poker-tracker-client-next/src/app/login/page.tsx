@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import GoogleSignInButton from "@/components/ui/google-signin-button";
+import GoogleSignInButton from "@/components/custom/googleSigninButton";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { loginSchema, registerSchema } from "@/lib/zod-schema";

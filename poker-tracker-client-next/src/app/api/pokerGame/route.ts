@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma"; // Ensure you have Prisma set up
-import { PokerGame } from "@/lib/types";
+import { PokerGameDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
         }
       }
     });
-    const pokerGameDto: PokerGame = {
+    const pokerGameDto: PokerGameDto = {
         id: game.id,
         casinoId: game.casinoId,
         gameType: game.gameType.name,

@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { PokerGame } from "@/lib/types";
+import { PokerGameDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -64,7 +64,7 @@ export async function POST(
     tablesNumber: pokerGame.tablesNumber,
     playerWaiting: pokerGame.playerWaiting,
     gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLO",
-  } as PokerGame
+  } as PokerGameDto
   return NextResponse.json(pokerGameDto);
 }
 
