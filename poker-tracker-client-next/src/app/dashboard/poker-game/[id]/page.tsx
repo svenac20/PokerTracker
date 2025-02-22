@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AddPokerGameForm from "./addPokerGameForm";
+import { authOptions } from "@/lib/authOptions";
 
 export default async function EditPokerGame({
   params,
@@ -14,7 +15,7 @@ export default async function EditPokerGame({
   if (Number.isNaN(parseInt(id))) {
     redirect("/dashboard");
   }
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/");
   }

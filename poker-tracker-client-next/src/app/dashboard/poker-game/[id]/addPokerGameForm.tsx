@@ -48,7 +48,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
     defaultValues: {
       casinoId: pokerGame?.casinoId.toString() ?? "",
       gameType: pokerGame
-        ? pokerGame?.gameTypeId == GameTypes.NLO
+        ? pokerGame?.gameTypeId == GameTypes.NLH
           ? "PLO"
           : "PLO"
         : "PLO",
@@ -158,7 +158,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
                         <SelectGroup>
                           <SelectLabel>Game Type</SelectLabel>
                           <SelectItem value="PLO">PLO</SelectItem>
-                          <SelectItem value="NLO">NLO</SelectItem>
+                          <SelectItem value="NLH">NLH</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>

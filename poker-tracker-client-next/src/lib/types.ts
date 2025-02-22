@@ -5,7 +5,7 @@ export enum Roles {
 
 export enum GameTypes {
   PLO = 1,
-  NLO = 2,
+  NLH = 2,
 }
 
 export type Casino = {

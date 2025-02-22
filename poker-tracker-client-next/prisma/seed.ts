@@ -52,7 +52,7 @@ async function main() {
     },
     create: {
       id: 1,
-      name: "PLO",
+      name: "NLH",
     },
   });
 
@@ -61,11 +61,11 @@ async function main() {
       id: 2,
     },
     update: {
-      name: "NLO",
+      name: "NLH",
     },
     create: {
       id: 2,
-      name: "NLO",
+      name: "NLH",
     },
   });
 

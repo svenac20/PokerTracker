@@ -8,14 +8,12 @@ import { createContext, FunctionComponent } from "react";
 
 interface CasinosListDashboardProps {
   casinos: Casino[];
-  showActions?: boolean;
 }
 
 export const ConnectionContext = createContext<HubConnection | null>(null);
 
 const CasinosListDashboard: FunctionComponent<CasinosListDashboardProps> = ({
   casinos,
-  showActions,
 }) => {
   const { connection } = useHubConnection();
   return (
@@ -26,7 +24,7 @@ const CasinosListDashboard: FunctionComponent<CasinosListDashboardProps> = ({
             <CasinoCard
               key={casino.id}
               casino={casino}
-              showActions={showActions}
+              showActions={true}
             />
           );
         })}

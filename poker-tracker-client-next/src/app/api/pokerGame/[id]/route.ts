@@ -63,7 +63,7 @@ export async function POST(
     limit: pokerGame.limit,
     tablesNumber: pokerGame.tablesNumber,
     playerWaiting: pokerGame.playerWaiting,
-    gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLO",
+    gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLH",
   } as PokerGameDto;
   return NextResponse.json(pokerGameDto);
 }

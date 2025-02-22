@@ -6,7 +6,7 @@ export const formSchema = z.object({
       required_error: "Please select a casino",
     })
     .nonempty("Please select a casino"),
-  gameType: z.enum(["PLO", "NLO"], {
+  gameType: z.enum(["PLO", "NLH"], {
     required_error: "Please select game type",
   }),
   limit: z

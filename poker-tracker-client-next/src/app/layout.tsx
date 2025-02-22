@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Poker Tracker",
+  title: "Poker Radar",
   description: "Used for tracking poker games",
 };
 

@@ -14,11 +14,10 @@ const DashboardPage = async () => {
   return (
     <div className="py-8">
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
-        Edit poker games
+        Currently running poker games 
       </h1>
       <CasinosListDashboard
         casinos={casinosWithPokerGames}
-        showActions={true}
       />
     </div>
   );
