@@ -4,18 +4,17 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useSidebar } from "@/components/ui/sidebar";
 import { getInitials } from "@/lib/utils";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FunctionComponent } from "react";
-import { signOut } from "next-auth/react";
-import { useSidebar } from "@/components/ui/sidebar";
-import Link from "next/link";
 
 interface MyAccountProps {
   session: Session;
@@ -42,7 +41,9 @@ const MyAccountMenu: FunctionComponent<MyAccountProps> = ({ session }) => {
         className="mb-2"
       >
         <DropdownMenuItem className="cursor-pointer">
-          <Link href={"/myAccount"} className="cursor-pointer font-bold">My Account</Link>
+          <Link href={"/myAccount"} className="cursor-pointer font-bold">
+            My Account
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

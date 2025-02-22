@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
   distDir: 'build',
   /* config options here */
   eslint: {
-    ignoreDuringBuilds: true
+    ignoreDuringBuilds: true,
+    dirs: ["src/app", "src/components/custom", "src/hooks", "src/lib"],
   }
 };
 

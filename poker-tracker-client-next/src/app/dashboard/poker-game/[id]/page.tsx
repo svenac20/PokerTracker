@@ -1,13 +1,9 @@
-import {
-  checkIfUserIsOwner,
-  fetchCasinosForUser,
-  getPokerGameByIdForUser,
-} from "@/lib/services";
+import { Button } from "@/components/ui/button";
+import { fetchCasinosForUser, getPokerGameByIdForUser } from "@/lib/services";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import AddPokerGameForm from "./addPokerGameForm";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export default async function EditPokerGame({
   params,
@@ -24,7 +20,7 @@ export default async function EditPokerGame({
   }
   const casinoGame = await getPokerGameByIdForUser(
     parseInt(id),
-    session.user.id
+    session.user.id,
   );
   if (!casinoGame) {
     redirect("/dashboard");

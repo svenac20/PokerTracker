@@ -1,5 +1,6 @@
 "use client";
 
+import { LoadingSpinner } from "@/components/custom/loading";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,7 +11,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoadingSpinner } from "@/components/custom/loading";
 import {
   Select,
   SelectContent,
@@ -21,20 +21,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import useHubConnection from "@/hooks/useHubConnection";
 import axios from "@/lib/axios";
 import { CasinoDropdownDto, GameTypes, PokerGameDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  HubConnection,
-  HubConnectionBuilder,
-  LogLevel,
-} from "@microsoft/signalr";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import useHubConnection from "@/hooks/useHubConnection";
 
 interface AddPokerGameFormProps {
   casinos: CasinoDropdownDto[];
@@ -45,7 +40,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   casinos,
   pokerGame,
 }) => {
-  const {connection} = useHubConnection();
+  const { connection } = useHubConnection();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -71,8 +66,9 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         title: "Poker game added",
         description: "Poker game has been added sucessfully",
       });
-      router.push("/dashboard")
+      router.push("/dashboard");
     } catch (error) {
+      console.error(error);
       toast({
         title: "Error",
         description: "An error occurred while adding poker game",
@@ -85,7 +81,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
     try {
       const response = await axios.post<PokerGameDto>(
         `/api/pokerGame/${pokerGame?.id}`,
-        data
+        data,
       );
       await connection?.send("UpdatePokerGame", response.data);
       toast({
@@ -93,6 +89,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         description: "Poker game has been added sucessfully",
       });
     } catch (error) {
+      console.error(error);
       toast({
         title: "Error",
         description: "An error occurred while adding poker game",
@@ -231,7 +228,7 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
                 type="submit"
                 disabled={form.formState.isSubmitting}
               >
-                {form.formState.isSubmitting ? (<LoadingSpinner/>) : "Submit"}
+                {form.formState.isSubmitting ? <LoadingSpinner /> : "Submit"}
               </Button>
             </div>
           </div>

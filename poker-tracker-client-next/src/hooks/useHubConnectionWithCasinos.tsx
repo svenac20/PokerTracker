@@ -1,5 +1,9 @@
 import { Casino, DeletePokerGame, PokerGameDto } from "@/lib/types";
-import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import {
+  HubConnection,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
 import { useEffect, useState } from "react";
 import { toast } from "./use-toast";
 
@@ -42,7 +46,7 @@ export function useHubConnectionWithCasinos(casinosList: Casino[]) {
                 return {
                   ...casino,
                   pokerGames: casino.pokerGames.map((game) =>
-                    game.id === pokerGame.id ? pokerGame : game
+                    game.id === pokerGame.id ? pokerGame : game,
                   ),
                 };
               }
@@ -54,17 +58,21 @@ export function useHubConnectionWithCasinos(casinosList: Casino[]) {
             description: `Poker Game updated at ${pokerGame.casinoName}`,
           });
         });
-      
+
         connect.on("DeletePokerGame", (pokerGame: DeletePokerGame) => {
-          console.log(pokerGame.casinoId)
+          console.log(pokerGame.casinoId);
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
-                console.log(casino.pokerGames.filter((game) => game.id !== pokerGame.pokerGameId))
+                console.log(
+                  casino.pokerGames.filter(
+                    (game) => game.id !== pokerGame.pokerGameId,
+                  ),
+                );
                 return {
                   ...casino,
-                  pokerGames: casino.pokerGames.filter((game) =>
-                    game.id !== pokerGame.pokerGameId
+                  pokerGames: casino.pokerGames.filter(
+                    (game) => game.id !== pokerGame.pokerGameId,
                   ),
                 };
               }
@@ -72,13 +80,13 @@ export function useHubConnectionWithCasinos(casinosList: Casino[]) {
             });
           });
           toast({
-            title: 'Poker game deleted',
+            title: "Poker game deleted",
             description: `Poker Game deleted`,
           });
         });
       })
       .catch((err) =>
-        console.error("Error while connecting to SignalR Hub:", err)
+        console.error("Error while connecting to SignalR Hub:", err),
       );
 
     return () => {
@@ -88,5 +96,5 @@ export function useHubConnectionWithCasinos(casinosList: Casino[]) {
     };
   }, []);
 
-  return {connection, casinos, setCasinos}
+  return { connection, casinos, setCasinos };
 }

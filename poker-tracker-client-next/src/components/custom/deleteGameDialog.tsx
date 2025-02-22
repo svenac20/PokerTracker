@@ -1,16 +1,12 @@
 "use client";
 
+import { ConnectionContext } from "@/app/dashboard/casionsListDashboard";
 import axios from "@/lib/axios";
 import { DeletePokerGame, PokerGameDto } from "@/lib/types";
-import {
-  HubConnection,
-  HubConnectionBuilder,
-  LogLevel,
-} from "@microsoft/signalr";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useContext, useEffect, useState } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -27,8 +23,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import useHubConnection from "@/hooks/useHubConnection";
-import { ConnectionContext } from "@/app/dashboard/casionsListDashboard";
 
 type DeleteGameDialogProps = {
   pokerGame: PokerGameDto;
@@ -37,7 +31,7 @@ type DeleteGameDialogProps = {
 const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
   pokerGame,
 }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const connection = useContext(ConnectionContext);
 
@@ -46,10 +40,10 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
     const pokerGameData: DeletePokerGame = {
       casinoId: pokerGame.casinoId,
       pokerGameId: pokerGame.id,
-    }
+    };
     await connection?.send("DeletePokerGame", pokerGameData);
     setOpen(false);
-    router.refresh()
+    router.refresh();
   };
 
   return (
@@ -80,7 +74,9 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
             </TableRow>
           </TableBody>
         </Table>
-        <DialogDescription className="hidden">Delete poker game dialog</DialogDescription>
+        <DialogDescription className="hidden">
+          Delete poker game dialog
+        </DialogDescription>
         <DialogFooter>
           <Button
             type="submit"

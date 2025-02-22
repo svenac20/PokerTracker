@@ -5,7 +5,6 @@ import { FunctionComponent } from "react";
 import DeleteGameDialog from "../deleteGameDialog";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-
 interface PokerGameCardProps {
   pokerGame: PokerGameDto;
   showActions?: boolean;

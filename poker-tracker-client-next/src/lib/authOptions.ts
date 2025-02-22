@@ -1,7 +1,5 @@
 import prisma from "@/lib/prisma";
-import {
-    Roles
-} from "@/lib/types";
+import { Roles } from "@/lib/types";
 import { mapUserToToken } from "@/lib/utils";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { NextAuthOptions } from "next-auth";
@@ -26,11 +24,11 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          console.log("OVDJEEEEEEEEEEEEEEEEEEEE")
+          console.log("OVDJEEEEEEEEEEEEEEEEEEEE");
           const userCredential = await signInWithEmailAndPassword(
             auth,
             credentials!.email,
-            credentials!.password
+            credentials!.password,
           );
           const user = userCredential.user;
           return {
@@ -38,9 +36,9 @@ export const authOptions: NextAuthOptions = {
             email: user.email,
             name: user.displayName,
             roleId: Roles.PLAYER,
-          }
+          };
         } catch (e) {
-          console.log("ERROR")
+          console.log("ERROR");
           console.log(e);
           return null;
         }
@@ -63,51 +61,48 @@ export const authOptions: NextAuthOptions = {
       // Add the user data to the session object
       session.user.id = token.id;
       session.user.googleId = token.googleId;
-      session.user.email = token.email
+      session.user.email = token.email;
       session.user.roleId = token.roleId;
       session.user.name = token.name;
 
       return session;
     },
     async jwt({ token, user, account }) {
-      let userDb = null
+      let userDb = null;
       if (account && user && account.provider === "google") {
         userDb = await prisma.user.upsert({
           where: {
-            email: user.email!
+            email: user.email!,
           },
           create: {
             email: user.email!,
             googleId: user.id!,
             username: user.name!,
             roleId: Roles.PLAYER,
-          }, 
+          },
           update: {
             googleId: user.id,
-          }
-        })
-        mapUserToToken(token, userDb)
-      }
-
-      else if(account && user && account.provider === "credentials") {
-          userDb = await prisma.user.upsert({
-            where: {
-              email: user.email!
-            },
-            create: {
-              email: user.email!,
-              username: user.name || "",
-              roleId: Roles.PLAYER,
-            },
-            update: {
-              email: user.email!,
-            }
-          })
-          mapUserToToken(token, userDb)
+          },
+        });
+        mapUserToToken(token, userDb);
+      } else if (account && user && account.provider === "credentials") {
+        userDb = await prisma.user.upsert({
+          where: {
+            email: user.email!,
+          },
+          create: {
+            email: user.email!,
+            username: user.name || "",
+            roleId: Roles.PLAYER,
+          },
+          update: {
+            email: user.email!,
+          },
+        });
+        mapUserToToken(token, userDb);
       }
 
       return token;
     },
-
   },
 };

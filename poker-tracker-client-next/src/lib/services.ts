@@ -88,7 +88,7 @@ export const fetchPokerGamesForUser = async (userId: string) => {
           casinoName: casino.name,
           casinoId: casino.id,
         })),
-      } as Casino)
+      }) as Casino,
   );
 };
 
@@ -114,7 +114,10 @@ export const fetchCasinosForUser = async (userId: string) => {
   });
 };
 
-export const getPokerGameByIdForUser = async (pokerGameId: number, userId: string) => {
+export const getPokerGameByIdForUser = async (
+  pokerGameId: number,
+  userId: string,
+) => {
   const pokerGame = await prisma.pokerGame.findUnique({
     where: {
       id: pokerGameId,
@@ -123,8 +126,8 @@ export const getPokerGameByIdForUser = async (pokerGameId: number, userId: strin
           some: {
             id: userId,
           },
-        }
-      }
+        },
+      },
     },
     include: {
       casino: {
@@ -134,14 +137,14 @@ export const getPokerGameByIdForUser = async (pokerGameId: number, userId: strin
       },
       gameType: {
         select: {
-          name: true
-        }
-      }
+          name: true,
+        },
+      },
     },
   });
 
   if (!pokerGame) {
-    return
+    return;
   }
 
   return {
@@ -152,21 +155,23 @@ export const getPokerGameByIdForUser = async (pokerGameId: number, userId: strin
     limit: pokerGame.limit,
     playerWaiting: pokerGame.playerWaiting,
     tablesNumber: pokerGame.tablesNumber,
-  } as PokerGameDto
-}
+  } as PokerGameDto;
+};
 
-
-export const checkIfUserIsOwner = async (userId: string, pokerGameId: number) => {
-  return !!await prisma.pokerGame.findFirst({
+export const checkIfUserIsOwner = async (
+  userId: string,
+  pokerGameId: number,
+) => {
+  return !!(await prisma.pokerGame.findFirst({
     where: {
       casino: {
         owners: {
           some: {
             id: userId,
           },
-        },  
+        },
       },
-      id: pokerGameId
-    }
-  })
-}
+      id: pokerGameId,
+    },
+  }));
+};

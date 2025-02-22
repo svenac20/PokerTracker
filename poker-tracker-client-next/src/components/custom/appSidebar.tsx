@@ -24,15 +24,13 @@ import { FunctionComponent } from "react";
 import logo from "../../../public/poker-radar-logo.svg";
 import MyAccountMenu from "./myAccountMenu";
 
-interface AppSidebarProps {}
-
-const AppSidebar: FunctionComponent<AppSidebarProps> = async () => {
+const AppSidebar: FunctionComponent = async () => {
   const session = await getServerSession(authOptions);
   return (
     <Sidebar>
       <SidebarHeader className="text-xl font-bold text-black h-40 py-4">
         <div className="relative h-full w-full p-6">
-          <Image src={logo} alt="logo" fill/>
+          <Image src={logo} alt="logo" fill />
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -65,7 +63,9 @@ const AppSidebar: FunctionComponent<AppSidebarProps> = async () => {
                           <Link href={"/dashboard"}>Dashboard</Link>
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
-                          <Link href={"/dashboard/poker-game"}>Add poker game</Link>
+                          <Link href={"/dashboard/poker-game"}>
+                            Add poker game
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>

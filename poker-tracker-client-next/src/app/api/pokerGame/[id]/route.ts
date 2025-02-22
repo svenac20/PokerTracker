@@ -5,9 +5,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
-  const {id} = await params
+  const { id } = await params;
   const parsedId = parseInt(id);
 
   // Validate ID is a positive number
@@ -20,7 +20,7 @@ export async function POST(
       {
         status: 400,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 
@@ -31,7 +31,7 @@ export async function POST(
   if (!validatedData.success || !validatedData.data) {
     return NextResponse.json(
       { success: false, errors: validatedData.error },
-      { status: 400 }
+      { status: 400 },
     );
   }
   const pokerGameData = validatedData.data;
@@ -64,16 +64,15 @@ export async function POST(
     tablesNumber: pokerGame.tablesNumber,
     playerWaiting: pokerGame.playerWaiting,
     gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLO",
-  } as PokerGameDto
+  } as PokerGameDto;
   return NextResponse.json(pokerGameDto);
 }
 
-
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
-  const {id} = await params
+  const { id } = await params;
   const parsedId = parseInt(id);
 
   // Validate ID is a positive number
@@ -86,15 +85,15 @@ export async function DELETE(
       {
         status: 400,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 
   await prisma.pokerGame.delete({
     where: {
       id: parsedId,
-    }
+    },
   });
 
-  return NextResponse.json({})
+  return NextResponse.json({});
 }

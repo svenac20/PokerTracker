@@ -9,11 +9,7 @@ export default async function Home() {
       <ul>
         {casinos.map((casino) => {
           return (
-            <CasinoCard
-              key={casino.id}
-              casino={casino}
-              showActions={true}
-            />
+            <CasinoCard key={casino.id} casino={casino} showActions={true} />
           );
         })}
       </ul>

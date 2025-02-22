@@ -1,19 +1,18 @@
 import { User } from "@prisma/client";
-import { clsx, type ClassValue } from "clsx"
+import { clsx, type ClassValue } from "clsx";
 import { JWT } from "next-auth/jwt";
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function getInitials(name: string) {
-  if (!name) 
-    return '';
+  if (!name) return "";
   return name
-    .split(' ')
+    .split(" ")
     .map((word) => word[0])
-    .join('');
+    .join("");
 }
 
 // export function getErrorMessage(error: FirebaseError) {
@@ -24,9 +23,9 @@ export function getInitials(name: string) {
 // };
 
 export function mapUserToToken(token: JWT, userDb: User) {
-    token.id = userDb!.id;
-    token.googleId = userDb!.googleId || "";
-    token.email = userDb!.email;
-    token.roleId = userDb!.roleId;
-    token.name = userDb!.username;
+  token.id = userDb!.id;
+  token.googleId = userDb!.googleId || "";
+  token.email = userDb!.email;
+  token.roleId = userDb!.roleId;
+  token.name = userDb!.username;
 }

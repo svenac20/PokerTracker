@@ -1,4 +1,3 @@
-
 export enum Roles {
   ADMIN = 1,
   PLAYER = 2,
@@ -35,14 +34,13 @@ export type CasinoDropdownDto = {
   id: number;
   name: string;
   town: string;
-}
-
+};
 
 export type GetCasinoPerUserResponse = {
   casinos: CasinoDropdownDto[];
-}
+};
 
 export type DeletePokerGame = {
   pokerGameId: number;
   casinoId: number;
-}
+};

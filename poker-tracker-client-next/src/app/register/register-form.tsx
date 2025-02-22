@@ -34,7 +34,7 @@ const RegisterForm: FunctionComponent = () => {
     const user = await createUserWithEmailAndPassword(
       auth,
       data.email,
-      data.password
+      data.password,
     );
     await updateProfile(user.user, {
       displayName: data.username,

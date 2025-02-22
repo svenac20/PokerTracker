@@ -1,4 +1,8 @@
-import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import {
+  HubConnection,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
 import { useState, useEffect } from "react";
 
 export default function useHubConnection() {
@@ -15,7 +19,7 @@ export default function useHubConnection() {
       .start()
       .then(() => {})
       .catch((err) =>
-        console.error("Error while connecting to SignalR Hub:", err)
+        console.error("Error while connecting to SignalR Hub:", err),
       );
 
     return () => {
@@ -25,5 +29,5 @@ export default function useHubConnection() {
     };
   }, []);
 
-  return {connection}
+  return { connection };
 }

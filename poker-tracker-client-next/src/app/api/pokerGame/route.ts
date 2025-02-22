@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     if (!validatedData.success || !validatedData.data) {
       return NextResponse.json(
         { success: false, errors: validatedData.error },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const game = await prisma.pokerGame.create({
@@ -25,32 +25,32 @@ export async function POST(req: NextRequest) {
       },
       include: {
         gameType: {
-            select: {
-                name: true,
-            },
+          select: {
+            name: true,
+          },
         },
         casino: {
           select: {
             name: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
     const pokerGameDto: PokerGameDto = {
-        id: game.id,
-        casinoId: game.casinoId,
-        gameType: game.gameType.name,
-        limit: game.limit,
-        casinoName: game.casino.name,
-        tablesNumber: game.tablesNumber,
-        playerWaiting: game.playerWaiting
-    }
+      id: game.id,
+      casinoId: game.casinoId,
+      gameType: game.gameType.name,
+      limit: game.limit,
+      casinoName: game.casino.name,
+      tablesNumber: game.tablesNumber,
+      playerWaiting: game.playerWaiting,
+    };
     return NextResponse.json(pokerGameDto);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json(
       { success: false, message: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

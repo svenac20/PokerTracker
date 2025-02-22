@@ -1,4 +1,3 @@
-import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { authOptions } from "@/lib/authOptions";
 import { fetchPokerGamesForUser } from "@/lib/services";
 import { Roles } from "@/lib/types";
@@ -17,7 +16,10 @@ const DashboardPage = async () => {
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
         Edit poker games
       </h1>
-      <CasinosListDashboard casinos={casinosWithPokerGames} showActions={true} />
+      <CasinosListDashboard
+        casinos={casinosWithPokerGames}
+        showActions={true}
+      />
     </div>
   );
 };
