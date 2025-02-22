@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     };
     return NextResponse.json(pokerGameDto);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return NextResponse.json(
       { success: false, message: "Internal Server Error" },
       { status: 500 },
