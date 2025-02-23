@@ -43,6 +43,7 @@ model Town {
 model PokerGame {
   id            Int      @id @default(autoincrement())
   limit         String
+  startTime     DateTime @default(now())
   gameTypeId    Int
   gameType      GameType @relation(fields: [gameTypeId], references: [id])
   playerWaiting Int
