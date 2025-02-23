@@ -2,12 +2,12 @@
 
 import CasinoCard from "@/components/custom/casinoPokerGame/casinoCard";
 import useHubConnection from "@/hooks/useHubConnection";
-import { Casino } from "@/lib/types";
+import { CasinoDto } from "@/lib/types";
 import { HubConnection } from "@microsoft/signalr";
 import { createContext, FunctionComponent } from "react";
 
 interface CasinosListDashboardProps {
-  casinos: Casino[];
+  casinos: CasinoDto[];
 }
 
 export const ConnectionContext = createContext<HubConnection | null>(null);

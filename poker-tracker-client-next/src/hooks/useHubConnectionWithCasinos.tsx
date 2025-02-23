@@ -1,4 +1,4 @@
-import { Casino, DeletePokerGame, PokerGameDto } from "@/lib/types";
+import { CasinoDto, DeletePokerGameMessage, PokerGameDto } from "@/lib/types";
 import {
   HubConnection,
   HubConnectionBuilder,
@@ -7,9 +7,9 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "./use-toast";
 
-export function useHubConnectionWithCasinos(casinosList: Casino[]) {
+export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
   const [connection, setConnection] = useState<HubConnection | null>(null);
-  const [casinos, setCasinos] = useState<Casino[]>(casinosList);
+  const [casinos, setCasinos] = useState<CasinoDto[]>(casinosList);
 
   useEffect(() => {
     const connect = new HubConnectionBuilder()
@@ -59,7 +59,7 @@ export function useHubConnectionWithCasinos(casinosList: Casino[]) {
           });
         });
 
-        connect.on("DeletePokerGame", (pokerGame: DeletePokerGame) => {
+        connect.on("DeletePokerGame", (pokerGame: DeletePokerGameMessage) => {
           console.log(pokerGame.casinoId);
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {

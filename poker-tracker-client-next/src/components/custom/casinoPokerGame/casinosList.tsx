@@ -2,11 +2,11 @@
 
 import CasinoCard from "@/components/custom/casinoPokerGame/casinoCard";
 import { useHubConnectionWithCasinos } from "@/hooks/useHubConnectionWithCasinos";
-import { Casino } from "@/lib/types";
+import { CasinoDto } from "@/lib/types";
 import { FunctionComponent } from "react";
 
 interface CasinoTableProps {
-  casinoInit: Casino[];
+  casinoInit: CasinoDto[];
   showActions?: boolean;
 }
 

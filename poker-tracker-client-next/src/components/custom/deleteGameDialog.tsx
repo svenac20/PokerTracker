@@ -2,7 +2,7 @@
 
 import { ConnectionContext } from "@/app/dashboard/casionsListDashboard";
 import axios from "@/lib/axios";
-import { DeletePokerGame, PokerGameDto } from "@/lib/types";
+import { DeletePokerGameMessage, PokerGameDto } from "@/lib/types";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
 
   const deletePokerGame = async () => {
     await axios.delete(`api/pokerGame/${pokerGame.id}`);
-    const pokerGameData: DeletePokerGame = {
+    const pokerGameData: DeletePokerGameMessage = {
       casinoId: pokerGame.casinoId,
       pokerGameId: pokerGame.id,
     };

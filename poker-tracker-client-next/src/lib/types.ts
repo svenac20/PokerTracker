@@ -8,7 +8,7 @@ export enum GameTypes {
   NLH = 2,
 }
 
-export type Casino = {
+export type CasinoDto = {
   id: number;
   name: string;
   town: string;
@@ -16,7 +16,7 @@ export type Casino = {
 };
 
 export type GetCasinosResponse = {
-  casinos: Casino[];
+  casinos: CasinoDto[];
 };
 
 export type PokerGameDto = {
@@ -36,11 +36,7 @@ export type CasinoDropdownDto = {
   town: string;
 };
 
-export type GetCasinoPerUserResponse = {
-  casinos: CasinoDropdownDto[];
-};
-
-export type DeletePokerGame = {
+export type DeletePokerGameMessage = {
   pokerGameId: number;
   casinoId: number;
 };

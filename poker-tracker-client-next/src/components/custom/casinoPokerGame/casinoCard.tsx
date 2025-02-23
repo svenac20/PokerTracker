@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Casino } from "../../../lib/types";
+import { CasinoDto } from "../../../lib/types";
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +10,7 @@ import { Card, CardContent } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
 
 interface CasinoCardProps {
-  casino: Casino;
+  casino: CasinoDto;
   showActions?: boolean;
 }
 
