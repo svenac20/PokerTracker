@@ -23,6 +23,7 @@ import Link from "next/link";
 import { FunctionComponent } from "react";
 import logo from "../../../public/poker-radar-logo.svg";
 import MyAccountMenu from "./myAccountMenu";
+import SidebarMenuLink from "./sidebarMenuLink";
 
 const AppSidebar: FunctionComponent = async () => {
   const session = await getServerSession(authOptions);
@@ -38,11 +39,8 @@ const AppSidebar: FunctionComponent = async () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link href="/">
-                  <Home />
-                  <span>Home</span>
-                </Link>
-              </SidebarMenuButton>{" "}
+                <SidebarMenuLink href="/" text="Home" icon={<Home />} />
+              </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
           {session?.user.roleId == Roles.ADMIN && (
@@ -60,12 +58,13 @@ const AppSidebar: FunctionComponent = async () => {
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link href={"/dashboard"}>Dashboard</Link>
+                          <SidebarMenuLink href="/dashboard" text="Dashboard" />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
-                          <Link href={"/dashboard/poker-game"}>
-                            Add poker game
-                          </Link>
+                          <SidebarMenuLink
+                            href="/dashboard/poker-game"
+                            text="Add poker game"
+                          />
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>

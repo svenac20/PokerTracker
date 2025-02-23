@@ -38,9 +38,9 @@ export default async function RootLayout({
           <Providers>
             <SidebarProvider>
               <AppSidebar />
-              <main className="px-4 lg:px-24 lg:py-12 py-4 h-screen w-full">
+              <main className="px-6 pt-8 lg:px-24 lg:py-12 lg:h-screen w-full ">
                 <SidebarTrigger></SidebarTrigger>
-                {children}
+                <div className="lg:py-8">{children}</div>
                 <Toaster />
               </main>
             </SidebarProvider>

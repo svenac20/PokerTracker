@@ -16,13 +16,13 @@ export default async function AddPokerGame() {
     <div className="py-8">
       <div className="flex justify-between">
         <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
-          Edit poker games
+          Add poker game
         </h1>
         <Link href="/dashboard">
-          <Button variant={"default"}>Dashboard page </Button>
+          <Button variant={"default"}>Dashboard page</Button>
         </Link>
       </div>
-      <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1">
+      <div className="grid grid-cols-1 grid-rows-1 lg:grid-cols-2 lg:grid-rows-1">
         <AddPokerGameForm casinos={casinos} />
       </div>
     </div>

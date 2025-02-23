@@ -12,14 +12,14 @@ const DashboardPage = async () => {
   }
   const casinosWithPokerGames = await fetchPokerGamesForUser(session.user.id);
   return (
-    <div className="py-8">
-      <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
-        Currently running poker games 
+    <>
+      <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl py-6 lg:pb-12">
+        Dashboard
       </h1>
       <CasinosListDashboard
         casinos={casinosWithPokerGames}
       />
-    </div>
+    </>
   );
 };
 
