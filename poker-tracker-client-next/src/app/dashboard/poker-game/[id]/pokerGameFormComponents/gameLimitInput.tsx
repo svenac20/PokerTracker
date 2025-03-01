@@ -1,4 +1,4 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/zod-schema";
 import { FunctionComponent } from "react";
@@ -21,6 +21,7 @@ const GameLimitInput: FunctionComponent<GameLimitInputProps> = ({ form }) => {
             <Input placeholder="Game limit" {...field}></Input>
           </FormControl>
           <FormMessage className="font-bold" />
+          {/* <FormDescription>Set game limit in form nn/nn</FormDescription> */}
         </FormItem>
       )}
     />

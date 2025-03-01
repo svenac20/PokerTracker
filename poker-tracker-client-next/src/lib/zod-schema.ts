@@ -12,7 +12,7 @@ export const formSchema = z.object({
   }),
   limit: z
     .string({ required_error: "Please add limit in format xx/yy" })
-    .nonempty("Limt must be nonempty"),
+    .nonempty("Limit must be nonempty"),
   tables: z.coerce
     .number({ required_error: "Please add table" })
     .min(1, "Table must be at least 1"),

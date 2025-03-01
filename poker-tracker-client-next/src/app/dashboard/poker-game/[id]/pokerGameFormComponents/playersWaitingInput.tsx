@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -34,6 +35,7 @@ const PlayersWaitingInput: FunctionComponent<PlayersWaitingInputProps> = ({
             ></Input>
           </FormControl>
           <FormMessage className="font-bold" />
+          {/* <FormDescription>Set number of players waiting to join the game</FormDescription> */}
         </FormItem>
       )}
     />

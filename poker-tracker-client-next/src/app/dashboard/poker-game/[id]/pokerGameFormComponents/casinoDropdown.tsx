@@ -1,7 +1,7 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CasinoDropdownDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@radix-ui/react-select";
 import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
@@ -37,6 +37,7 @@ const CasinosDropdown: FunctionComponent<CasinosDropdownProps> = ({form, casinos
               </SelectContent>
             </Select>
           </FormControl>
+          {/* <FormDescription>Select the casino which hosts the poker game</FormDescription> */}
           <FormMessage className="font-bold" />
         </FormItem>
       )}

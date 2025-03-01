@@ -52,8 +52,8 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
       control={form.control}
       name="startTime"
       render={({ field }) => (
-        <FormItem className="flex flex-col">
-          <FormLabel>Enter your date & time (24h)</FormLabel>
+        <FormItem>
+          <FormLabel className="font-extrabold">Start time:</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -65,9 +65,9 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
                   )}
                 >
                   {field.value ? (
-                    format(field.value, "MM/dd/yyyy HH:mm")
+                    format(field.value, "dd/MM/yyyy HH:mm")
                   ) : (
-                    <span>MM/DD/YYYY HH:mm</span>
+                    <span>dd/MM/YYYY HH:mm</span>
                   )}
                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
@@ -134,9 +134,9 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
               </div>
             </PopoverContent>
           </Popover>
-          <FormDescription>
-            Please select your preferred date and time.
-          </FormDescription>
+          {/* <FormDescription>
+            Select your preferred date and time.
+          </FormDescription> */}
           <FormMessage />
         </FormItem>
       )}

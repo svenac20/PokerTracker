@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,6 +33,7 @@ const TablesInput: FunctionComponent<TablesInputProps> = ({form}) => {
             ></Input>
           </FormControl>
           <FormMessage className="font-bold" />
+          {/* <FormDescription>Set a number of active tables</FormDescription> */}
         </FormItem>
       )}
     />

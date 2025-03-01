@@ -3,7 +3,7 @@ import { fetchCasinosForUser, getPokerGameByIdForUser } from "@/lib/services";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import AddPokerGameForm from "./pokerGameFormComponents/addPokerGameForm";
+import AddPokerGameForm from "./addPokerGameForm";
 import { authOptions } from "@/lib/authOptions";
 
 export default async function EditPokerGame({
@@ -30,7 +30,7 @@ export default async function EditPokerGame({
   return (
     <div className="py-8">
       <div className="flex justify-between">
-        <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
+        <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-2 lg:pb-12">
           Edit poker games
         </h1>
         <Link href="/dashboard">

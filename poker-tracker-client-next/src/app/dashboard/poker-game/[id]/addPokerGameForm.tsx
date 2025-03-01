@@ -3,23 +3,8 @@
 import { LoadingSpinner } from "@/components/custom/loading";
 import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
+  Form
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import useHubConnection from "@/hooks/useHubConnection";
 import axios from "@/lib/axios";
@@ -30,12 +15,12 @@ import { useRouter } from "next/navigation";
 import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import CasinosDropdown from "./casinoDropdown";
-import DateTimePicker from "./dateTimePicker";
-import GameLimitInput from "./gameLimitInput";
-import TablesInput from "./tablesInput";
-import PlayersWaitingInput from "./playersWaitingInput";
-import GameTypeDropdown from "./gameTypeDropdown";
+import CasinosDropdown from "./pokerGameFormComponents/casinoDropdown";
+import DateTimePicker from "./pokerGameFormComponents/dateTimePicker";
+import GameLimitInput from "./pokerGameFormComponents/gameLimitInput";
+import GameTypeDropdown from "./pokerGameFormComponents/gameTypeDropdown";
+import PlayersWaitingInput from "./pokerGameFormComponents/playersWaitingInput";
+import TablesInput from "./pokerGameFormComponents/tablesInput";
 
 interface AddPokerGameFormProps {
   casinos: CasinoDropdownDto[];
