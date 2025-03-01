@@ -15,13 +15,10 @@ export type CasinoDto = {
   pokerGames: PokerGameDto[];
 };
 
-export type GetCasinosResponse = {
-  casinos: CasinoDto[];
-};
-
 export type PokerGameDto = {
   id: number;
   limit: string;
+  startTime: Date;
   gameType: string;
   gameTypeId?: number;
   playerWaiting: number;
@@ -39,4 +36,40 @@ export type CasinoDropdownDto = {
 export type DeletePokerGameMessage = {
   pokerGameId: number;
   casinoId: number;
+};
+
+export type CasinoWithPokerGames = {
+  id: number;
+  name: string;
+  town: {
+    name: string;
+  };
+  pokerGames: {
+    id: number;
+    limit: string;
+    startTime: Date;
+    playerWaiting: number;
+    tablesNumber: number;
+    casinoId: number;
+    gameType: {
+      id: number;
+      name: string;
+    };
+  }[];
+};
+
+export type PokerGameWithCasino = {
+  id: number;
+  limit: string;
+  startTime: Date;
+  gameTypeId: number;
+  playerWaiting: number;
+  tablesNumber: number;
+  casinoId: number;
+  gameType: {
+    name: string;
+  };
+  casino: {
+    name: string;
+  };
 };

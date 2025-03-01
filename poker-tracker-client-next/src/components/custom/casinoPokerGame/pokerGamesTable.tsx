@@ -27,17 +27,6 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
     return (
       <Table>
         <TableCaption>No currently running tables</TableCaption>
-        {showActions && (
-          <TableHeader>
-            <TableRow>
-              <TableCell>
-                <Button onClick={() => redirect("dashboard/poker-game")}>
-                  Add poker game
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableHeader>
-        )}
       </Table>
     );
   }

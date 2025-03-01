@@ -1,6 +1,7 @@
 import "server-only";
 import prisma from "./prisma";
 import { CasinoDto, CasinoDropdownDto, PokerGameDto } from "./types";
+import { mapCasinoToCasinoDto, mapPokerGameToPokerGameDto } from "./utils";
 
 export const fetchCasinos = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
@@ -17,6 +18,7 @@ export const fetchCasinos = async (): Promise<CasinoDto[]> => {
           id: true,
           limit: true,
           gameType: true,
+          startTime: true,
           playerWaiting: true,
           tablesNumber: true,
           casinoId: true,
@@ -25,21 +27,7 @@ export const fetchCasinos = async (): Promise<CasinoDto[]> => {
     },
   });
 
-  const mappedCasinos = casinos.map((casino) => ({
-    id: casino.id,
-    name: casino.name,
-    town: casino.town.name, // Get the town name as a string
-    pokerGames: casino.pokerGames.map((game) => ({
-      id: game.id,
-      limit: game.limit,
-      gameType: game.gameType.name,
-      playerWaiting: game.playerWaiting,
-      tablesNumber: game.tablesNumber,
-      casinoName: casino.name,
-      casinoId: casino.id,
-    })),
-  }));
-
+  const mappedCasinos = casinos.map((casino) => mapCasinoToCasinoDto(casino));
   return mappedCasinos;
 };
 
@@ -68,28 +56,13 @@ export const fetchPokerGamesForUser = async (userId: string) => {
           playerWaiting: true,
           tablesNumber: true,
           casinoId: true,
+          startTime: true,
         },
       },
     },
   });
 
-  return casinos.map(
-    (casino) =>
-      ({
-        id: casino.id,
-        name: casino.name,
-        town: casino.town.name, // Get the town name as a string
-        pokerGames: casino.pokerGames.map((game) => ({
-          id: game.id,
-          limit: game.limit,
-          gameType: game.gameType.name,
-          playerWaiting: game.playerWaiting,
-          tablesNumber: game.tablesNumber,
-          casinoName: casino.name,
-          casinoId: casino.id,
-        })),
-      }) as CasinoDto,
-  );
+  return casinos.map((casino) => mapCasinoToCasinoDto(casino));
 };
 
 export const fetchCasinosForUser = async (userId: string) => {
@@ -116,7 +89,7 @@ export const fetchCasinosForUser = async (userId: string) => {
 
 export const getPokerGameByIdForUser = async (
   pokerGameId: number,
-  userId: string,
+  userId: string
 ) => {
   const pokerGame = await prisma.pokerGame.findUnique({
     where: {
@@ -147,31 +120,5 @@ export const getPokerGameByIdForUser = async (
     return;
   }
 
-  return {
-    id: pokerGame.id,
-    casinoId: pokerGame.casinoId,
-    casinoName: pokerGame.casino.name,
-    gameTypeId: pokerGame.gameTypeId,
-    limit: pokerGame.limit,
-    playerWaiting: pokerGame.playerWaiting,
-    tablesNumber: pokerGame.tablesNumber,
-  } as PokerGameDto;
-};
-
-export const checkIfUserIsOwner = async (
-  userId: string,
-  pokerGameId: number,
-) => {
-  return !!(await prisma.pokerGame.findFirst({
-    where: {
-      casino: {
-        owners: {
-          some: {
-            id: userId,
-          },
-        },
-      },
-      id: pokerGameId,
-    },
-  }));
+  return mapPokerGameToPokerGameDto(pokerGame);
 };

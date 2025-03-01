@@ -1,4 +1,5 @@
 import CasinoCard from "@/components/custom/casinoPokerGame/casinoCard";
+import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { fetchCasinos } from "@/lib/services";
 
 export default async function Home() {
@@ -9,9 +10,7 @@ export default async function Home() {
         Current poker games
       </h1>
       <ul>
-        {casinos.map((casino) => {
-          return <CasinoCard key={casino.id} casino={casino} />;
-        })}
+        <CasinosList casinoInit={casinos}/>
       </ul>
     </>
   );

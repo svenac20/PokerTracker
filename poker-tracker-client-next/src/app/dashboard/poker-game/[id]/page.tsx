@@ -3,7 +3,7 @@ import { fetchCasinosForUser, getPokerGameByIdForUser } from "@/lib/services";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import AddPokerGameForm from "./addPokerGameForm";
+import AddPokerGameForm from "./pokerGameFormComponents/addPokerGameForm";
 import { authOptions } from "@/lib/authOptions";
 
 export default async function EditPokerGame({
