@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma"; // Ensure you have Prisma set up
 import { PokerGameDto } from "@/lib/types";
+import { mapPokerGameToPokerGameDto } from "@/lib/utils";
 import { formSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -36,15 +37,7 @@ export async function POST(req: NextRequest) {
         },
       },
     });
-    const pokerGameDto: PokerGameDto = {
-      id: game.id,
-      casinoId: game.casinoId,
-      gameType: game.gameType.name,
-      limit: game.limit,
-      casinoName: game.casino.name,
-      tablesNumber: game.tablesNumber,
-      playerWaiting: game.playerWaiting,
-    };
+    const pokerGameDto: PokerGameDto = mapPokerGameToPokerGameDto(game);
     return NextResponse.json(pokerGameDto);
   } catch (error) {
     console.error(error);
