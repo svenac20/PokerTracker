@@ -33,11 +33,12 @@ export type CasinoDropdownDto = {
   town: string;
 };
 
-export type CasinoCardEditPage = {
+export type CasinoCardData = {
   id: number;
   name: string;
   town: string;
-}
+  rake: string | null;
+};
 
 export type DeletePokerGameMessage = {
   pokerGameId: number;
@@ -77,5 +78,17 @@ export type PokerGameWithCasino = {
   };
   casino: {
     name: string;
+  };
+};
+
+export type CasinoWithTown = {
+  id: number;
+  name: string;
+  townId: number;
+  rake: string | null;
+  town: {
+    id: number;
+    name: string;
+    countryId: number;
   };
 };

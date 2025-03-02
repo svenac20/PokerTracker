@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { JWT } from "next-auth/jwt";
 import { twMerge } from "tailwind-merge";
-import { CasinoDto, CasinoWithPokerGames, PokerGameDto, PokerGameWithCasino } from "./types";
+import { CasinoCardData, CasinoDto, CasinoWithPokerGames, CasinoWithTown, PokerGameDto, PokerGameWithCasino } from "./types";
 import { User } from "@prisma/client";
 
 export function cn(...inputs: ClassValue[]) {
@@ -59,5 +59,14 @@ export function mapPokerGameToPokerGameDto(pokerGame: PokerGameWithCasino) : Pok
     tablesNumber: pokerGame.tablesNumber,
     casinoId: pokerGame.casinoId,
     casinoName: pokerGame.casino.name,
+  };
+}
+
+export function mapCasinoWithTownToCasinoCardDetails(casino: CasinoWithTown): CasinoCardData {
+  return {
+    id: casino.id,
+    name: casino.name,
+    town: casino.town.name,
+    rake: casino.rake,
   };
 }

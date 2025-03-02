@@ -14,31 +14,32 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  email    String  @unique
-  googleId String? @unique
+  id       String   @id @default(uuid())
+  email    String   @unique
+  googleId String?  @unique
   username String
   roleId   Int
-  role     Role    @relation(fields: [roleId], references: [id])
+  role     Role     @relation(fields: [roleId], references: [id])
   casinos  Casino[] @relation("UserCasinos")
 }
 
 model Casino {
-  id         Int        @id @default(autoincrement())
-  name       String
-  townId     Int
-  rake       String?
-  town       Town       @relation(fields: [townId], references: [id])
-  pokerGames PokerGame[]
-  owners     User[]     @relation("UserCasinos")
+  id          Int         @id @default(autoincrement())
+  name        String
+  townId      Int
+  rake        String?
+  information String?
+  town        Town        @relation(fields: [townId], references: [id])
+  pokerGames  PokerGame[]
+  owners      User[]      @relation("UserCasinos")
 }
 
 model Town {
-  id       Int      @id @default(autoincrement())
-  name     String
+  id        Int      @id @default(autoincrement())
+  name      String
   countryId Int
-  country  Country  @relation(fields: [countryId], references: [id])
-  casinos  Casino[]
+  country   Country  @relation(fields: [countryId], references: [id])
+  casinos   Casino[]
 }
 
 model PokerGame {
@@ -54,19 +55,19 @@ model PokerGame {
 }
 
 model Role {
-  id   Int     @id @default(autoincrement())
-  name String
+  id    Int    @id @default(autoincrement())
+  name  String
   users User[]
 }
 
 model Country {
-  id     Int      @id @default(autoincrement())
-  name   String
-  towns  Town[]
+  id    Int    @id @default(autoincrement())
+  name  String
+  towns Town[]
 }
 
 model GameType {
-  id     Int      @id @default(autoincrement())
-  name   String
+  id         Int         @id @default(autoincrement())
+  name       String
   pokerGames PokerGame[]
 }
