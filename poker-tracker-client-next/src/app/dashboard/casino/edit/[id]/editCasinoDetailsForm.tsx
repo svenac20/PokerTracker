@@ -9,6 +9,11 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import CasinoRakeInput from "./casinoRakeInput";
 import CasinoInformationInput from "./casinoInformationInput";
+import { Button } from "@/components/ui/button";
+import { LoadingSpinner } from "@/components/custom/loading";
+import axios from "@/lib/axios";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface EditCasinoDetailsFormProps {
   casino: CasinoCardData;
@@ -17,6 +22,7 @@ interface EditCasinoDetailsFormProps {
 const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
   casino,
 }) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof casinoDetailsSchema>>({
     resolver: zodResolver(casinoDetailsSchema),
     defaultValues: {
@@ -28,7 +34,24 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
   async function onSubmitEditCasinoDetails(
     data: z.infer<typeof casinoDetailsSchema>
   ) {
-    console.log("edit rake and info");
+    try {
+      const response = await axios.post<CasinoCardData>(
+        `/api/casino/${casino.id}`,
+        data
+      );
+      toast({
+        title: "Poker game added",
+        description: "Casino information has been updated sucessfully",
+      });
+      router.push("/dashboard/casino");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "An error occurred while editing casino information",
+        className: "bg-red-500 text-white",
+      });
+    }
   }
 
   return (
@@ -38,8 +61,15 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
         onSubmit={form.handleSubmit(onSubmitEditCasinoDetails)}
       >
         <div className="grid grid-cols-1 gap-6 lg:w-1/2">
-            <CasinoRakeInput form={form} />
-            <CasinoInformationInput form={form} />
+          <CasinoRakeInput form={form} />
+          <CasinoInformationInput form={form} />
+          <Button
+            className="w-full"
+            type="submit"
+            disabled={form.formState.isSubmitting}
+          >
+            {form.formState.isSubmitting ? <LoadingSpinner /> : "Submit"}
+          </Button>
         </div>
       </form>
     </Form>

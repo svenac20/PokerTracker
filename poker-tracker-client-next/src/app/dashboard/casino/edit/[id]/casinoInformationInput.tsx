@@ -30,6 +30,7 @@ const CasinoInformationInput: FunctionComponent<
             <Textarea
               placeholder="Add additional information about the casino"
               {...field}
+              onChange={(event) => field.onChange(event.target.value)}
             />
           </FormControl>
           <FormMessage className="font-bold" />

@@ -68,5 +68,6 @@ export function mapCasinoWithTownToCasinoCardDetails(casino: CasinoWithTown): Ca
     name: casino.name,
     town: casino.town.name,
     rake: casino.rake,
+    information: casino.information,
   };
 }

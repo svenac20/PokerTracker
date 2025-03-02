@@ -33,7 +33,7 @@ const CasinoCardEditPage: FunctionComponent<CasinoCardEditPageProps> = ({
           </div>
         </CardContent>
         <CardFooter>
-          <p>Click on the card to edit infromation</p>
+          <p>{casino.information || ""} </p>
         </CardFooter>
       </Card>
     </Link>

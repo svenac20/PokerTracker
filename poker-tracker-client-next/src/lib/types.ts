@@ -87,6 +87,7 @@ export type CasinoWithTown = {
   name: string;
   townId: number;
   rake: string | null;
+  information: string | null;
   town: {
     id: number;
     name: string;

@@ -31,7 +31,7 @@ const CasinoRakeInput: FunctionComponent<CasinoRakeInputProps> = ({
               type="text"
               placeholder="Enter rake information"
               {...field}
-              onChange={(event) => field.onChange(parseInt(event.target.value))}
+              onChange={(event) => field.onChange(event.target.value)}
             ></Input>
           </FormControl>
           <FormMessage className="font-bold" />

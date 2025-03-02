@@ -19,7 +19,7 @@ export default async function CasinoEditPage() {
           Edit your casinos information
         </h1>
       </div>
-      <div className="flex flex-row lg:grid lg:grid-cols-2 lg:gap-8">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8">
         {casinosForUser.map((casino) => (
           <CasinoCardEditPage key={casino.id} casino={casino} />
         ))}
