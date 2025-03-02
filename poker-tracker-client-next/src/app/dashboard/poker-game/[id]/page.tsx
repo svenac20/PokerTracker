@@ -3,7 +3,7 @@ import { fetchCasinosForUser, getPokerGameByIdForUser } from "@/lib/services";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import AddPokerGameForm from "./addPokerGameForm";
+import AddEditPokerGameForm from "./addEditPokerGameForm";
 import { authOptions } from "@/lib/authOptions";
 
 export default async function EditPokerGame({
@@ -38,7 +38,7 @@ export default async function EditPokerGame({
         </Link>
       </div>
       <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1">
-        <AddPokerGameForm casinos={casinos} pokerGame={casinoGame} />
+        <AddEditPokerGameForm casinos={casinos} pokerGame={casinoGame} />
       </div>
     </div>
   );

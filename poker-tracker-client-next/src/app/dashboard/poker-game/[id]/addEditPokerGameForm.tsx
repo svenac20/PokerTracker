@@ -27,7 +27,7 @@ interface AddPokerGameFormProps {
   pokerGame?: PokerGameDto;
 }
 
-const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
+const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   casinos,
   pokerGame,
 }) => {
@@ -75,6 +75,8 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         `/api/pokerGame/${pokerGame?.id}`,
         data
       );
+      console.log("AAA")
+      console.log(response)
       await connection?.send("UpdatePokerGame", response.data);
       toast({
         title: "Poker game added",
@@ -124,4 +126,4 @@ const AddPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   );
 };
 
-export default AddPokerGameForm;
+export default AddEditPokerGameForm;

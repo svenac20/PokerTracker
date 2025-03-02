@@ -40,6 +40,7 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
         });
 
         connect.on("UpdatePokerGame", (pokerGame: PokerGameDto) => {
+          console.log(pokerGame)
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {

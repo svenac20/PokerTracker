@@ -68,6 +68,7 @@ export async function POST(
     playerWaiting: pokerGame.playerWaiting,
     gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLH",
   } as PokerGameDto;
+  console.log(pokerGameDto)
   return NextResponse.json(pokerGameDto);
 }
 

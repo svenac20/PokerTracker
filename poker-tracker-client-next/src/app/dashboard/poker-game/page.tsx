@@ -4,7 +4,7 @@ import { fetchCasinosForUser } from "@/lib/services";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import AddPokerGameForm from "./[id]/addPokerGameForm";
+import AddEditPokerGameForm from "./[id]/addEditPokerGameForm";
 
 export default async function AddPokerGame() {
   const session = await getServerSession(authOptions);
@@ -23,7 +23,7 @@ export default async function AddPokerGame() {
         </Link>
       </div>
       <div className="grid grid-cols-1 grid-rows-1 lg:grid-cols-2 lg:grid-rows-1">
-        <AddPokerGameForm casinos={casinos} />
+        <AddEditPokerGameForm casinos={casinos} />
       </div>
     </div>
   );

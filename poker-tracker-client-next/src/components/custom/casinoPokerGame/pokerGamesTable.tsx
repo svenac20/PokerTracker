@@ -36,6 +36,7 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
         <TableCaption>A list of all currently running tables.</TableCaption>
         <TableHeader>
           <TableRow>
+            <TableHead>Start time</TableHead>
             <TableHead>Game type</TableHead>
             <TableHead>Limit (€)</TableHead>
             <TableHead>Tables</TableHead>
