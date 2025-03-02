@@ -1,92 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model casino {
-  id         Int           @id @default(autoincrement())
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  googleId String? @unique
+  username String
+  roleId   Int
+  role     Role    @relation(fields: [roleId], references: [id])
+  casinos  Casino[] @relation("UserCasinos")
+}
+
+model Casino {
+  id         Int        @id @default(autoincrement())
   name       String
-  town       town          @relation(fields: [townId], references: [id])
   townId     Int
-  pokerGames pokerGame[]
-  owners     userCasinos[]
-
-  @@index([townId], map: "Casino_townId_fkey")
-	@@map("casino")
+  rake       String?
+  town       Town       @relation(fields: [townId], references: [id])
+  pokerGames PokerGame[]
+  owners     User[]     @relation("UserCasinos")
 }
 
-model country {
-  id   Int    @id @default(autoincrement())
-  name String
-	@@map("country")
+model Town {
+  id       Int      @id @default(autoincrement())
+  name     String
+  countryId Int
+  country  Country  @relation(fields: [countryId], references: [id])
+  casinos  Casino[]
 }
 
-model gameType {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  pokergame pokerGame[]
-	@@map("gametype")
-}
-
-model pokerGame {
+model PokerGame {
   id            Int      @id @default(autoincrement())
   limit         String
   startTime     DateTime @default(now())
   gameTypeId    Int
-  gameType      gameType @relation(fields: [gameTypeId], references: [id])
+  gameType      GameType @relation(fields: [gameTypeId], references: [id])
   playerWaiting Int
   tablesNumber  Int
   casinoId      Int
-  casino        casino @relation(fields: [casinoId], references: [id])
-
-  @@index([casinoId], map: "PokerGame_casinoId_fkey")
-  @@index([gameTypeId], map: "PokerGame_gameTypeId_fkey")
-	@@map("pokergame")
+  casino        Casino   @relation(fields: [casinoId], references: [id])
 }
 
-model role {
-  id   Int    @id @default(autoincrement())
+model Role {
+  id   Int     @id @default(autoincrement())
   name String
-  user user[]
-
-  @@map("role")
+  users User[]
 }
 
-model town {
-  id        Int      @id @default(autoincrement())
-  name      String
-  countryId Int
-  casino    casino[]
-
-  @@index([countryId], map: "Town_countryId_fkey")
-  @@map("town")
+model Country {
+  id     Int      @id @default(autoincrement())
+  name   String
+  towns  Town[]
 }
 
-model user {
-  id          String        @id
-  email       String        @unique(map: "User_email_key")
-  googleId    String?       @unique(map: "User_googleId_key")
-  username    String
-  roleId      Int
-  role        role          @relation(fields: [roleId], references: [id])
-  usercasinos userCasinos[]
-
-  @@index([roleId], map: "User_roleId_fkey")
-  @@map("user")
-}
-
-model userCasinos {
-  id       Int      @id @default(autoincrement())
-  userId   String
-  casinoId Int
-  casino   casino   @relation(fields: [casinoId], references: [id])
-  user     user     @relation(fields: [userId], references: [id])
-
-  @@index([casinoId], map: "UserCasinos_casinoId_fkey")
-  @@map("usercasinos")
+model GameType {
+  id     Int      @id @default(autoincrement())
+  name   String
+  pokerGames PokerGame[]
 }

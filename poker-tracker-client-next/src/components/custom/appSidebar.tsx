@@ -66,6 +66,12 @@ const AppSidebar: FunctionComponent = async () => {
                             text="Add poker game"
                           />
                         </SidebarMenuSubButton>
+                        <SidebarMenuSubButton asChild>
+                          <SidebarMenuLink
+                            href="/dashboard/casino"
+                            text="Edit casino information"
+                          />
+                        </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
                   </CollapsibleContent>

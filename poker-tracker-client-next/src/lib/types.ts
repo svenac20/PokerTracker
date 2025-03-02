@@ -33,6 +33,12 @@ export type CasinoDropdownDto = {
   town: string;
 };
 
+export type CasinoCardEditPage = {
+  id: number;
+  name: string;
+  town: string;
+}
+
 export type DeletePokerGameMessage = {
   pokerGameId: number;
   casinoId: number;

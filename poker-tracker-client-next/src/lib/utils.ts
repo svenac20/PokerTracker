@@ -1,8 +1,8 @@
-import { Casino, PokerGame, User } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { JWT } from "next-auth/jwt";
 import { twMerge } from "tailwind-merge";
 import { CasinoDto, CasinoWithPokerGames, PokerGameDto, PokerGameWithCasino } from "./types";
+import { User } from "@prisma/client";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

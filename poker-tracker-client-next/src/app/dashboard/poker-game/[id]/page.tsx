@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { fetchCasinosForUser, getPokerGameByIdForUser } from "@/lib/services";
+import { getCasinosDropdownForUser, getPokerGameByIdForUser } from "@/lib/services";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -26,7 +26,7 @@ export default async function EditPokerGame({
   if (!casinoGame) {
     redirect("/dashboard");
   }
-  const casinos = await fetchCasinosForUser(session.user.id);
+  const casinos = await getCasinosDropdownForUser(session.user.id);
   return (
     <div className="py-8">
       <div className="flex justify-between">
