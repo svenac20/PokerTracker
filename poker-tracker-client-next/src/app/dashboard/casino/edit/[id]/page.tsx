@@ -1,7 +1,9 @@
+import { Input } from "@/components/ui/input";
 import { authOptions } from "@/lib/authOptions";
 import { getCasinoDetailsById } from "@/lib/services";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import EditCasinoDetailsForm from "./editCasinoDetailsForm";
 
 export default async function EditCasinoInformationPage({
   params,
@@ -24,9 +26,7 @@ export default async function EditCasinoInformationPage({
           Edit Casino Information - {casino.name}
         </h1>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-
-      </div>
+      <EditCasinoDetailsForm casino={casino} />
     </div>
   );
 }

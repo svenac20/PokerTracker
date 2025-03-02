@@ -38,6 +38,7 @@ export type CasinoCardData = {
   name: string;
   town: string;
   rake: string | null;
+  information: string | null;
 };
 
 export type DeletePokerGameMessage = {

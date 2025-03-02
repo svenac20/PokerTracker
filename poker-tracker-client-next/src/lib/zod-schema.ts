@@ -45,3 +45,8 @@ export const loginSchema = z.object({
     required_error: "Please enter password",
   }),
 });
+
+export const casinoDetailsSchema = z.object({
+  rake: z.string({}),
+  information: z.string({})
+})
