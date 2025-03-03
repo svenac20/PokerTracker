@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../ui/accordion";
-import { Card, CardContent } from "../../ui/card";
+import { Card, CardContent, CardHeader } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
 
 interface CasinoCardProps {
@@ -24,13 +24,21 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
         <Accordion type="single" collapsible defaultValue="item-1">
           <AccordionItem value="item-1">
             <AccordionTrigger>
-              <p className="font-bold text-lg">{casino.name}</p>
+              <div className="flex gap-4 items-center">
+                <p className="font-bold text-lg ">{casino.name}</p>
+              </div>
             </AccordionTrigger>
             <AccordionContent>
-              <PokerGamesTable
-                pokerGames={casino.pokerGames}
-                showActions={showActions}
-              />
+              <div className="flex flex-col gap-4">
+                {!!casino.rake && !!casino.information && <Card className="rounded-sm">
+                  <CardHeader className="font-extrabold">Rake: {casino.rake}</CardHeader>
+                  <CardContent>{casino.information}</CardContent>
+                </Card>}
+                <PokerGamesTable
+                  pokerGames={casino.pokerGames}
+                  showActions={showActions}
+                />
+              </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

@@ -38,15 +38,20 @@ export const registerSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.string({
-    required_error: "Please enter email",
-  }),
-  password: z.string({
-    required_error: "Please enter password",
-  }),
+  email: z
+    .string({
+      required_error: "Please enter email",
+    })
+    .nonempty("Please enter email")
+    .email("Please enter valid email"),
+  password: z
+    .string({
+      required_error: "Please enter password",
+    })
+    .nonempty("Please enter password"),
 });
 
 export const casinoDetailsSchema = z.object({
   rake: z.string({}),
-  information: z.string({})
-})
+  information: z.string({}),
+});

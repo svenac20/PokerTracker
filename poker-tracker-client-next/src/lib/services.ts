@@ -22,6 +22,8 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
       },
       id: true,
       name: true,
+      rake: true,
+      information: true,
       pokerGames: {
         select: {
           id: true,
@@ -57,6 +59,8 @@ export const getCasinosWithPokerGamesForUser = async (userId: string) => {
       },
       id: true,
       name: true,
+      rake: true,
+      information: true,
       pokerGames: {
         select: {
           id: true,

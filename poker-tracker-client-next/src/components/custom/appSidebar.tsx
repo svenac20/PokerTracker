@@ -31,7 +31,7 @@ const AppSidebar: FunctionComponent = async () => {
     <Sidebar>
       <SidebarHeader className="text-xl font-bold text-black h-40 py-4">
         <div className="relative h-full w-full p-6">
-          <Image src={logo} alt="logo" fill />
+          <Image src={logo} alt="logo" fill priority/>
         </div>
       </SidebarHeader>
       <SidebarContent>

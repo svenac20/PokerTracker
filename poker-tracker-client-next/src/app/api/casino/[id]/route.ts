@@ -34,7 +34,6 @@ export async function POST(
     );
   }
   const casinoData = validatedData.data;
-
   const casino = await prisma.casino.update({
     where: {
       id: parsedId,

@@ -1,5 +1,7 @@
 "use client";
 
+import GoogleSignInButton from "@/components/custom/googleSigninButton";
+import { LoadingSpinner } from "@/components/custom/loading";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -9,10 +11,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import GoogleSignInButton from "@/components/custom/googleSigninButton";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { loginSchema, registerSchema } from "@/lib/zod-schema";
+import { loginSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -24,7 +25,7 @@ export default function Login() {
   const searchParams = useSearchParams();
 
   const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -39,7 +40,7 @@ export default function Login() {
     });
   };
   return (
-    <div className="flex flex-col items-center   gap-4">
+    <div className="flex flex-col items-center pt-4 lg:pt-0 gap-4">
       <Form {...form}>
         <form
           className="flex justify-center w-full"
@@ -53,7 +54,11 @@ export default function Login() {
                 <FormItem>
                   <FormLabel className="font-extrabold">Email:</FormLabel>
                   <FormControl>
-                    <Input placeholder="Email" {...field}></Input>
+                    <Input
+                      placeholder="Email"
+                      {...field}
+                      autoComplete="email"
+                    ></Input>
                   </FormControl>
                   <FormMessage className="font-bold" />
                 </FormItem>
@@ -69,6 +74,7 @@ export default function Login() {
                     <Input
                       type="password"
                       placeholder="Password"
+                      autoComplete="current-password"
                       {...field}
                     ></Input>
                   </FormControl>
@@ -86,8 +92,13 @@ export default function Login() {
               </Link>
             </span>
             <div className="flex flex-col gap-4">
+              {searchParams.get("error") == "CredentialsSignin" && (
+                <FormMessage className="font-extrabold text-center">
+                  Invalid username or password
+                </FormMessage>
+              )}
               <Button type="submit" className="w-full">
-                Sign In
+                {form.formState.isSubmitting ? <LoadingSpinner /> : "Sign in"}
               </Button>
             </div>
           </div>

@@ -35,7 +35,9 @@ export function mapCasinoToCasinoDto(casino: CasinoWithPokerGames) : CasinoDto {
   return {
     id: casino.id,
     name: casino.name,
-    town: casino.town.name, // Get the town name as a string
+    town: casino.town.name,
+    rake: casino.rake,
+    information: casino.information,
     pokerGames: casino.pokerGames.map((game) => ({
       id: game.id,
       startTime: game.startTime,

@@ -19,6 +19,7 @@ import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../firebaseconfig";
+import { LoadingSpinner } from "@/components/custom/loading";
 
 const RegisterForm: FunctionComponent = () => {
   const searchParams = useSearchParams();
@@ -98,7 +99,7 @@ const RegisterForm: FunctionComponent = () => {
           />
           <div className="pt-4">
             <Button className="w-full" type="submit">
-              Register
+              {form.formState.isSubmitting ? <LoadingSpinner /> : "Submit"}
             </Button>
           </div>
         </div>
