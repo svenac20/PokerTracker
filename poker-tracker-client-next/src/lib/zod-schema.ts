@@ -32,9 +32,11 @@ export const registerSchema = z.object({
       required_error: "Please enter password",
     })
     .min(6, "Password must be at least 6 characters"),
-  username: z.string({
-    required_error: "Please enter username",
-  }),
+  username: z
+    .string({
+      required_error: "Please enter username",
+    })
+    .nonempty("Please enter username"),
 });
 
 export const loginSchema = z.object({
