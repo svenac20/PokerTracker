@@ -52,7 +52,7 @@ async function main() {
     },
     create: {
       id: 1,
-      name: "NLH",
+      name: "PLO",
     },
   });
 

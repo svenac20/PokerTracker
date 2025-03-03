@@ -44,6 +44,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
       newDate.setMinutes(parseInt(value, 10));
     }
  
+    console.log(newDate)
     form.setValue("startTime", newDate);
   }
 

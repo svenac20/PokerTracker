@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
+    console.log(validatedData.data)
     const game = await prisma.pokerGame.create({
       data: {
         casinoId: parseInt(validatedData.data.casinoId),
@@ -23,6 +24,7 @@ export async function POST(req: NextRequest) {
         limit: validatedData.data.limit,
         tablesNumber: validatedData.data.tables,
         playerWaiting: validatedData.data.playersWaiting,
+        startTime: validatedData.data.startTime,
       },
       include: {
         gameType: {

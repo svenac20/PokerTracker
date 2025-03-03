@@ -40,9 +40,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
       casinoId: pokerGame?.casinoId.toString() ?? "",
       startTime: pokerGame?.startTime ?? new Date(),
       gameType: pokerGame
-        ? pokerGame?.gameTypeId == GameTypes.NLH
-          ? "PLO"
-          : "PLO"
+        ? pokerGame.gameType as "PLO" | "NLH"
         : "PLO",
       limit: pokerGame?.limit ?? "",
       tables: pokerGame?.tablesNumber ?? 0,
@@ -75,8 +73,6 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         `/api/pokerGame/${pokerGame?.id}`,
         data
       );
-      console.log("AAA")
-      console.log(response)
       await connection?.send("UpdatePokerGame", response.data);
       toast({
         title: "Poker game added",
