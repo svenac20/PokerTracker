@@ -25,9 +25,16 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
+                const updatedPokerGames = [...casino.pokerGames, pokerGame];
+                updatedPokerGames.sort((a, b) => {
+                  if (a.gameStarted === b.gameStarted) {
+                    return new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
+                  }
+                  return a.gameStarted ? -1 : 1;
+                });
                 return {
                   ...casino,
-                  pokerGames: [...casino.pokerGames, pokerGame],
+                  pokerGames: updatedPokerGames,
                 };
               }
               return casino;
@@ -44,12 +51,18 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
+                const updatedPokerGames = casino.pokerGames.map((game) =>
+                  game.id === pokerGame.id ? pokerGame : game,
+                );
+                updatedPokerGames.sort((a, b) => {
+                  if (a.gameStarted === b.gameStarted) {
+                    return new Date(a.startTime).getTime() - new Date(b.startTime).getTime();
+                  }
+                  return a.gameStarted ? -1 : 1;
+                });
                 return {
                   ...casino,
-                  pokerGames: casino.pokerGames.map((game) =>
-                    game.id === pokerGame.id ? pokerGame : game,
-                  ),
-                };
+                  pokerGames: updatedPokerGames,                };
               }
               return casino;
             });
