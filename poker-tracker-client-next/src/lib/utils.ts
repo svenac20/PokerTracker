@@ -68,6 +68,7 @@ export function mapCasinoWithTownToCasinoCardDetails(casino: CasinoWithTown): Ca
   return {
     id: casino.id,
     name: casino.name,
+    location: casino.location,
     town: casino.town.name,
     rake: casino.rake,
     information: casino.information,

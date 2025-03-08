@@ -39,8 +39,7 @@ export async function POST(
       id: parsedId,
     },
     data: {
-      rake: casinoData.rake,
-      information: casinoData.information,
+      ...casinoData
     },
   });
   return NextResponse.json(casino)

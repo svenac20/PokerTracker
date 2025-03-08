@@ -56,4 +56,5 @@ export const loginSchema = z.object({
 export const casinoDetailsSchema = z.object({
   rake: z.string({}),
   information: z.string({}),
+  location: z.string({})
 });

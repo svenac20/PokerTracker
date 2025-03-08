@@ -24,8 +24,8 @@ const CasinoCardEditPage: FunctionComponent<CasinoCardEditPageProps> = ({
         </CardHeader>
         <CardContent>
           <div>
-            <span className="font-bold">Town: </span>
-            {casino.town}
+            <span className="font-bold">Location: </span>
+            {casino.location}
           </div>
           <div>
             <span className="font-bold">Rake: </span>

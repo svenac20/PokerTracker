@@ -14,6 +14,7 @@ import { LoadingSpinner } from "@/components/custom/loading";
 import axios from "@/lib/axios";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import CasinoLocationInput from "./casinoLocationInput";
 
 interface EditCasinoDetailsFormProps {
   casino: CasinoCardData;
@@ -26,6 +27,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
   const form = useForm<z.infer<typeof casinoDetailsSchema>>({
     resolver: zodResolver(casinoDetailsSchema),
     defaultValues: {
+      location: casino.location ?? "",
       information: casino.information ?? "",
       rake: casino.rake ?? "",
     },
@@ -40,7 +42,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
         data
       );
       toast({
-        title: "Poker game added",
+        title: "Casino information updated",
         description: "Casino information has been updated sucessfully",
       });
       router.push("/dashboard/casino");
@@ -61,6 +63,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
         onSubmit={form.handleSubmit(onSubmitEditCasinoDetails)}
       >
         <div className="grid grid-cols-1 gap-6 lg:w-1/2">
+          <CasinoLocationInput form={form} />
           <CasinoRakeInput form={form} />
           <CasinoInformationInput form={form} />
           <Button

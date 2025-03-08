@@ -39,6 +39,7 @@ export type CasinoCardData = {
   id: number;
   name: string;
   town: string;
+  location: string | null;
   rake: string | null;
   information: string | null;
 };
@@ -91,6 +92,7 @@ export type CasinoWithTown = {
   name: string;
   townId: number;
   rake: string | null;
+  location: string | null;
   information: string | null;
   town: {
     id: number;

@@ -29,6 +29,7 @@ model Casino {
   townId      Int
   rake        String?
   information String?
+  location    String?
   town        Town        @relation(fields: [townId], references: [id])
   pokerGames  PokerGame[]
   owners      User[]      @relation("UserCasinos")
