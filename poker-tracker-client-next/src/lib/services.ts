@@ -12,6 +12,7 @@ import {
 
 export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
+    orderBy: [{priority: 'desc'}],
     select: {
       town: {
         select: {
@@ -48,6 +49,7 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
 
 export const getCasinosWithPokerGamesForUser = async (userId: string) => {
   const casinos = await prisma.casino.findMany({
+    orderBy: [{priority: 'desc'}],
     where: {
       owners: {
         some: {
