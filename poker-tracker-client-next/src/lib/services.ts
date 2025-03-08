@@ -24,6 +24,10 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
       rake: true,
       information: true,
       pokerGames: {
+        orderBy: [
+          {gameStarted: 'desc'},
+          {startTime: 'asc'},
+        ],
         select: {
           id: true,
           limit: true,
@@ -63,6 +67,10 @@ export const getCasinosWithPokerGamesForUser = async (userId: string) => {
       location: true,
       information: true,
       pokerGames: {
+        orderBy: [
+          {gameStarted: 'desc'},
+          {startTime: 'asc'},
+        ],
         select: {
           id: true,
           limit: true,
