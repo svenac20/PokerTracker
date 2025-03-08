@@ -64,12 +64,12 @@ export async function POST(
     casinoId: pokerGame.casinoId,
     casinoName: pokerGame.casino.name,
     startTime: pokerGame.startTime,
+    gameStarted: pokerGame.gameStarted,
     limit: pokerGame.limit,
     tablesNumber: pokerGame.tablesNumber,
     playerWaiting: pokerGame.playerWaiting,
     gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLH",
   } as PokerGameDto;
-  console.log(pokerGameDto)
   return NextResponse.json(pokerGameDto);
 }
 
