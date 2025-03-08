@@ -1,10 +1,8 @@
 import "server-only";
 import prisma from "./prisma";
 import {
-  CasinoDto,
   CasinoDropdownDto,
-  PokerGameDto,
-  CasinoCardData,
+  CasinoDto
 } from "./types";
 import {
   mapCasinoToCasinoDto,
@@ -30,6 +28,7 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
           id: true,
           limit: true,
           gameType: true,
+          gameStarted: true,
           startTime: true,
           playerWaiting: true,
           tablesNumber: true,
@@ -72,6 +71,7 @@ export const getCasinosWithPokerGamesForUser = async (userId: string) => {
           tablesNumber: true,
           casinoId: true,
           startTime: true,
+          gameStarted: true,
         },
       },
     },

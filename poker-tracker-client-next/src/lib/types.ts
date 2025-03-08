@@ -24,6 +24,7 @@ export type PokerGameDto = {
   startTime: Date;
   gameType: string;
   gameTypeId?: number;
+  gameStarted: boolean;
   playerWaiting: number;
   casinoId: number;
   casinoName: string;
@@ -65,6 +66,7 @@ export type CasinoWithPokerGames = {
     startTime: Date;
     playerWaiting: number;
     tablesNumber: number;
+    gameStarted: boolean;
     casinoId: number;
     gameType: {
       id: number;
@@ -80,6 +82,7 @@ export type PokerGameWithCasino = {
   gameTypeId: number;
   playerWaiting: number;
   tablesNumber: number;
+  gameStarted: boolean;
   casinoId: number;
   gameType: {
     name: string;

@@ -16,8 +16,12 @@ const PokerGameRow: FunctionComponent<PokerGameCardProps> = ({
   showActions,
 }) => {
   return (
-    <TableRow>
-      <TableCell>{format(pokerGame.startTime, "dd/MM HH:mm")}</TableCell>
+    <TableRow className={pokerGame.gameStarted ? "bg-green-100" : ""}>
+      <TableCell className="font-bold">
+        {pokerGame.gameStarted
+          ? "LIVE"
+          : format(pokerGame.startTime, "dd/MM HH:mm")}
+      </TableCell>
       <TableCell className="font-bold">{pokerGame.gameType}</TableCell>
       <TableCell>{pokerGame.limit}</TableCell>
       <TableCell>{pokerGame.tablesNumber}</TableCell>

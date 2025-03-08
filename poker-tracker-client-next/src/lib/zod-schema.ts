@@ -19,7 +19,7 @@ export const formSchema = z.object({
   playersWaiting: z.coerce
     .number({ required_error: "Please add number of players waiting" })
     .nonnegative("Number of players waiting must be positive"),
-  gameStarted: z.boolean(),
+  gameStarted: z.boolean().default(false),
 });
 
 export const registerSchema = z.object({

@@ -46,6 +46,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
       limit: pokerGame?.limit ?? "",
       tables: pokerGame?.tablesNumber ?? 0,
       playersWaiting: pokerGame?.playerWaiting ?? 0,
+      gameStarted: pokerGame?.gameStarted,
     },
   });
 
@@ -79,6 +80,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         title: "Poker game added",
         description: "Poker game has been added sucessfully",
       });
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
       toast({
