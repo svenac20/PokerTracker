@@ -12,6 +12,7 @@ export type CasinoDto = {
   id: number;
   name: string;
   town: string;
+  location: string | null;
   pokerGames: PokerGameDto[];
   rake: string | null;
   information: string | null;
@@ -53,6 +54,7 @@ export type CasinoWithPokerGames = {
   id: number;
   name: string;
   rake: string | null;
+  location: string | null;
   information: string | null;
   town: {
     name: string;

@@ -30,10 +30,15 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col gap-4">
-                {!!casino.rake && !!casino.information && <Card className="rounded-sm">
-                  <CardHeader className="font-extrabold">Rake: {casino.rake}</CardHeader>
-                  <CardContent>{casino.information}</CardContent>
-                </Card>}
+                {!!casino.rake && !!casino.information && (
+                  <Card className="rounded-sm">
+                    <CardHeader className="font-extrabold">
+                      <p>Location: {casino.location}</p>
+                      <p>Rake: {casino.rake}</p>
+                    </CardHeader>
+                    <CardContent>{casino.information}</CardContent>
+                  </Card>
+                )}
                 <PokerGamesTable
                   pokerGames={casino.pokerGames}
                   showActions={showActions}

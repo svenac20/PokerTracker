@@ -37,6 +37,7 @@ export function mapCasinoToCasinoDto(casino: CasinoWithPokerGames) : CasinoDto {
     name: casino.name,
     town: casino.town.name,
     rake: casino.rake,
+    location: casino.location,
     information: casino.information,
     pokerGames: casino.pokerGames.map((game) => ({
       id: game.id,
