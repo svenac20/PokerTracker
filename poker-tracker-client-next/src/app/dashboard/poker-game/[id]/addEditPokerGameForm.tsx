@@ -21,6 +21,7 @@ import GameLimitInput from "./pokerGameFormComponents/gameLimitInput";
 import GameTypeDropdown from "./pokerGameFormComponents/gameTypeDropdown";
 import PlayersWaitingInput from "./pokerGameFormComponents/playersWaitingInput";
 import TablesInput from "./pokerGameFormComponents/tablesInput";
+import GameStartedCheckbox from "./pokerGameFormComponents/gameStartedCheckbox";
 
 interface AddPokerGameFormProps {
   casinos: CasinoDropdownDto[];
@@ -99,14 +100,15 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
               : form.handleSubmit(onSubmitAddPokerGame)
           }
         >
-          <div className="grid grid-cols-1 grid-rows-8 lg:grid-cols-2 lg:grid-rows-4 gap-6">
+          <div className="grid grid-cols-1 grid-rows-9 lg:grid-cols-2 lg:grid-rows-4 lg:gap-6">
             <CasinosDropdown form={form} casinos={casinos} />
             <DateTimePicker form={form} />
             <GameTypeDropdown form={form} />
             <GameLimitInput form={form} />
             <TablesInput form={form} />
             <PlayersWaitingInput form={form} />
-            <div className="sm:row-start-8 lg:col-span-2 lg:row-start-4 flex justify-center items-center">
+            <GameStartedCheckbox form={form} />
+            <div className="sm:row-start-9 lg:col-span-2 lg:row-start-5 flex justify-center items-center">
               <Button
                 className="w-full"
                 type="submit"

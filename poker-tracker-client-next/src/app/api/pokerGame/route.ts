@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
       data: {
         casinoId: parseInt(validatedData.data.casinoId),
         gameTypeId: validatedData.data.gameType === "PLO" ? 1 : 2,
+        gameStarted: validatedData.data.gameStarted,
         limit: validatedData.data.limit,
         tablesNumber: validatedData.data.tables,
         playerWaiting: validatedData.data.playersWaiting,

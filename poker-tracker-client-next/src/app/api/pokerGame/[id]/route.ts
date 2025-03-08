@@ -44,6 +44,7 @@ export async function POST(
     data: {
       casinoId: parseInt(pokerGameData.casinoId),
       gameTypeId: pokerGameData.gameType === "PLO" ? 1 : 2,
+      gameStarted: pokerGameData.gameStarted,
       startTime: pokerGameData.startTime,
       limit: pokerGameData.limit,
       tablesNumber: pokerGameData.tables,

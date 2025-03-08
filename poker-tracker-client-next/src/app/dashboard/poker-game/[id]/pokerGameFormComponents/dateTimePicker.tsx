@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 import { formSchema } from "@/lib/zod-schema";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
@@ -27,6 +27,8 @@ interface DateTimePickerProps {
 }
 
 const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
+  const isGameStarted = form.watch("gameStarted");
+
   function handleDateSelect(date: Date | undefined) {
     if (date) {
       form.setValue("startTime", date);
@@ -44,7 +46,6 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
       newDate.setMinutes(parseInt(value, 10));
     }
  
-    console.log(newDate)
     form.setValue("startTime", newDate);
   }
 
@@ -59,6 +60,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
+                  disabled={isGameStarted}
                   variant={"outline"}
                   className={cn(
                     "w-full pl-3 text-left font-normal",
@@ -89,6 +91,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
                         .reverse()
                         .map((hour) => (
                           <Button
+                            disabled={form.getValues("gameStarted")}
                             key={hour}
                             size="icon"
                             variant={
@@ -112,6 +115,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
                       {Array.from({ length: 12 }, (_, i) => i * 5).map(
                         (minute) => (
                           <Button
+                            disabled={form.getValues("gameStarted")}
                             key={minute}
                             size="icon"
                             variant={
