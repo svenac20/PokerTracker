@@ -39,7 +39,7 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
             <TableHead>Start time</TableHead>
             <TableHead>Game type</TableHead>
             <TableHead>Limit (€)</TableHead>
-            <TableHead>Tables</TableHead>
+            <TableHead>Players</TableHead>
             <TableHead>Waiting list</TableHead>
             {showActions && (
               <TableHead className="flex justify-center">Actions</TableHead>

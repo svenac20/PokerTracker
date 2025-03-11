@@ -23,11 +23,11 @@ const TablesInput: FunctionComponent<TablesInputProps> = ({form}) => {
       name="tables"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="font-extrabold">Tables:</FormLabel>
+          <FormLabel className="font-extrabold">Players:</FormLabel>
           <FormControl>
             <Input
               type="number"
-              placeholder="Tables"
+              placeholder=""
               {...field}
               onChange={(event) => field.onChange(parseInt(event.target.value))}
             ></Input>

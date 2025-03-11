@@ -36,7 +36,9 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
                       <p>Location: {casino.location}</p>
                       <p>Rake: {casino.rake}</p>
                     </CardHeader>
-                    <CardContent>{casino.information}</CardContent>
+                    <CardContent className="whitespace-pre-wrap">
+                      {casino.information}
+                    </CardContent>
                   </Card>
                 )}
                 <PokerGamesTable
