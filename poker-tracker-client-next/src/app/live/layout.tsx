@@ -4,9 +4,9 @@ import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Geist, Geist_Mono } from "next/font/google";
-import SessionProvider from "../components/custom/SessionProvider";
 import "./globals.css";
-import Providers from "./providers";
+import { SessionProvider } from "next-auth/react";
+import Providers from "../providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   description: "Used for tracking poker games",
   twitter: {
-    card: "summary_large_image",
+    card: "summary_large_image"
   },
 };
 
@@ -40,9 +40,17 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="lg:h-screen w-full ">
-          <div>{children}</div>
-        </main>
+        <SessionProvider session={session}>
+          <Providers>
+            <SidebarProvider>
+              <AppSidebar />
+              <main className="lg:h-screen w-full ">
+                <div>{children}</div>
+                <Toaster />
+              </main>
+            </SidebarProvider>
+          </Providers>
+        </SessionProvider>
       </body>
     </html>
   );

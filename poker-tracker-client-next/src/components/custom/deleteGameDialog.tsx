@@ -1,6 +1,6 @@
 "use client";
 
-import { ConnectionContext } from "@/app/dashboard/casionsListDashboard";
+import { ConnectionContext } from "@/app/live/dashboard/casionsListDashboard";
 import axios from "@/lib/axios";
 import { DeletePokerGameMessage, PokerGameDto } from "@/lib/types";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
