@@ -19,7 +19,7 @@ export default function Home() {
                 <p className="text-xl mb-6">Real-time information on cash games, tournaments, and poker venues across Croatia</p>
                 <div className="flex space-x-4">
                   <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-                    <Link href="/current-games">
+                    <Link href="/live">
                       <span className="flex items-center">
                         View Live Games <ArrowRight className="ml-2 h-5 w-5" />
                       </span>

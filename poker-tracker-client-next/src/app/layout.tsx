@@ -1,12 +1,6 @@
-import AppSidebar from "@/components/custom/appSidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import { Geist, Geist_Mono } from "next/font/google";
-import SessionProvider from "../components/custom/SessionProvider";
 import "./globals.css";
-import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +28,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
   return (
     <html lang="en">
       <body
