@@ -4,6 +4,11 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Poker Radar's privacy policy - learn how we collect, use, and protect your personal information.",
+}
+
 export default function PrivacyPolicy() {
   return (
     <>
@@ -322,7 +327,7 @@ export default function PrivacyPolicy() {
               <div>
                 <h4 className="text-lg font-semibold mb-2">Contact</h4>
                 <ul className="space-y-1">
-                  <li className="text-gray-300">Email: info@poker-radar.com</li>
+                  <li className="text-gray-300">Email: filip@poker-radar.com</li>
                 </ul>
               </div>
             </div>
