@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, Clock, MapPin, Star } from 'lucide-react';
+import { ArrowRight, Clock, Dot, MapPin, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,8 +15,8 @@ export default function Home() {
           <div className="container mx-auto px-4 py-12 md:py-20">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-8 md:mb-0">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Find Live Poker in Zagreb</h1>
-                <p className="text-xl mb-6">Real-time information on cash games, tournaments, and poker venues across Croatia</p>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Find Live Poker in Croatia</h1>
+                <p className="text-xl mb-6">Real-time information on cash games and poker venues across Croatia</p>
                 <div className="flex space-x-4">
                   <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
                     <Link href="/live">
@@ -54,7 +54,7 @@ export default function Home() {
                   <CardTitle>Real-Time Updates</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Get instant information about active cash games, tournaments, and waiting lists at all poker venues in Zagreb and throughout Croatia.</p>
+                  <p>Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia.</p>
                 </CardContent>
               </Card>
               
@@ -74,7 +74,7 @@ export default function Home() {
                   <CardTitle>Game Information</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Compare rake rates, game types, blind levels, and player counts to find the perfect poker game for your preferences and bankroll.</p>
+                  <p>Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.</p>
                 </CardContent>
               </Card>
             </div>
@@ -162,7 +162,7 @@ export default function Home() {
               <TabsContent value="rijeka" className="mt-6">
                 <Card>
                   <CardContent className="pt-6">
-                    <p className="text-center text-gray-500">Information about poker games in Rijeka coming soon!</p>
+                    <p className="text-center text-gray-500">Information about poker games in Poreč coming soon!</p>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -170,7 +170,7 @@ export default function Home() {
               <TabsContent value="dubrovnik" className="mt-6">
                 <Card>
                   <CardContent className="pt-6">
-                    <p className="text-center text-gray-500">Information about poker games in Dubrovnik coming soon!</p>
+                    <p className="text-center text-gray-500">Information about poker games in Opatija coming soon!</p>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -186,7 +186,12 @@ export default function Home() {
                   <CardTitle>Where can I play poker in Zagreb?</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Zagreb offers several excellent poker venues including Cezar (Ul. Isidora Kršnjavoga 1), Luckia (Zagrebačka avenija 100a), and Admiral (various locations). Each venue offers different cash games and tournaments with varying rake structures.</p>
+                  <p>Zagreb offers several excellent poker venues including </p> 
+                  <ul className="font-bold">
+                    <li><Dot className="inline"/>Casino Cezar Zagreb</li>
+                    <li><Dot className="inline"/>Casino Cezar Poreč</li>
+                    <li><Dot className="inline"/>Luckia Casino</li>
+                  </ul>
                 </CardContent>
               </Card>
               
@@ -204,7 +209,7 @@ export default function Home() {
                   <CardTitle>What is the rake structure for poker cash games in Zagreb?</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Rake structures in Zagreb generally range from 3-5% with various caps depending on the venue. Cezar typically charges 5% with a cap, while Luckia offers a 3% + 5 structure. Detailed information about rake and promotions is available on our venue detail pages.</p>
+                  <p>Rake structures in Zagreb generally range 5% while CAP varies from 5€ to 10€ depending on the venue. Detailed information about rake and promotions is available on our venue detail pages.</p>
                 </CardContent>
               </Card>
               
@@ -213,7 +218,7 @@ export default function Home() {
                   <CardTitle>Are there poker tournaments in Zagreb and Croatia?</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Yes, multiple venues in Zagreb run daily poker tournaments. Luckia is known for its regular tournament schedule. Additionally, Croatia hosts several major poker festivals throughout the year, bringing players from across Europe to venues in Zagreb, Split, and other Croatian cities.</p>
+                  <p>Yes, multiple venues in Zagreb run daily poker tournaments. You can check tournament schedules on every casino's official site or contact them directly. .Luckia is known for its regular tournament schedule. Additionally, Croatia hosts several major poker festivals throughout the year, bringing players from across Europe.</p>
                 </CardContent>
               </Card>
             </div>
@@ -247,16 +252,14 @@ export default function Home() {
                 <ul className="space-y-2">
                   <li><Link href="/current-games" className="text-gray-300 hover:text-white">Current Games</Link></li>
                   <li><Link href="/venues" className="text-gray-300 hover:text-white">Venues</Link></li>
-                  <li><Link href="/tournaments" className="text-gray-300 hover:text-white">Tournaments</Link></li>
-                  <li><Link href="/about" className="text-gray-300 hover:text-white">About Us</Link></li>
+                  <li><Link href="/" className="text-gray-300 hover:text-white">About Us</Link></li>
                 </ul>
               </div>
               
               <div>
                 <h4 className="text-lg font-semibold mb-3">Contact</h4>
                 <ul className="space-y-2">
-                  <li className="text-gray-300">Email: info@poker-radar.com</li>
-                  <li className="text-gray-300">Follow us on social media</li>
+                  <li className="text-gray-300">Email: filip@poker-radar.com</li>
                 </ul>
               </div>
             </div>

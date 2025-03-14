@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     default: "Poker Radar",
     template: "%s | Poker Radar",
   },
-  description: "Used for tracking poker games",
+  description: "Used for tracking poker games in Croatia",
   twitter: {
     card: "summary_large_image",
   },

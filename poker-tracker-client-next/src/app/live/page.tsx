@@ -1,6 +1,7 @@
-import CasinoCard from "@/components/custom/casinoPokerGame/casinoCard";
 import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { getCasinosWithPokerGames } from "@/lib/services";
+
+
 
 export default async function Home() {
   const casinos = await getCasinosWithPokerGames();
