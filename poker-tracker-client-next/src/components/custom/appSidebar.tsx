@@ -89,10 +89,6 @@ const AppSidebar: FunctionComponent = async () => {
               </Collapsible>
             </SidebarMenu>
           )}
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter>
-        <>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="font-bold">
@@ -100,6 +96,10 @@ const AppSidebar: FunctionComponent = async () => {
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter>
+        <>
           {session ? (
             <MyAccountMenu session={session} />
           ) : (

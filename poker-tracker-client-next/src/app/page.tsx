@@ -114,7 +114,7 @@ export default function Home() {
             </h2>
 
             <Tabs defaultValue="zagreb" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="zagreb" className="font-bold">
                   Zagreb
                 </TabsTrigger>
