@@ -5,6 +5,12 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AddEditPokerGameForm from "./[id]/addEditPokerGameForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Add poker game",
+  description: "Add poker game",
+};
 
 export default async function AddPokerGame() {
   const session = await getServerSession(authOptions);

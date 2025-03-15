@@ -5,6 +5,12 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import AddEditPokerGameForm from "./addEditPokerGameForm";
 import { authOptions } from "@/lib/authOptions";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Edit poker game",
+  description: "Edit poker game",
+}
 
 export default async function EditPokerGame({
   params,

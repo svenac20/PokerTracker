@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",

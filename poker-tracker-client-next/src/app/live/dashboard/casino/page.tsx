@@ -2,9 +2,15 @@ import { authOptions } from "@/lib/authOptions";
 import {
   getCasinoDetailsForUser
 } from "@/lib/services";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import CasinoCardEditPage from "./casinoCardEditPage";
+
+export const metadata: Metadata = {
+  title: "Casinos",
+  description: "Edit your casinos information"
+}
 
 export default async function CasinoEditPage() {
   const session = await getServerSession(authOptions);
