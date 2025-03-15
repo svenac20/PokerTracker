@@ -15,6 +15,7 @@ import axios from "@/lib/axios";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import CasinoLocationInput from "./casinoLocationInput";
+import { revalidatePath } from "next/cache";
 
 interface EditCasinoDetailsFormProps {
   casino: CasinoCardData;
@@ -45,6 +46,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
         title: "Casino information updated",
         description: "Casino information has been updated sucessfully",
       });
+      revalidatePath("/dashboard/casino");
       router.push("/dashboard/casino");
     } catch (error) {
       console.error(error);

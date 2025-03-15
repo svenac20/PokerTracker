@@ -154,7 +154,7 @@ export default function Home() {
                     </CardContent>
                     <CardFooter>
                       <Button variant="outline" className="w-full">
-                        <Link href="/venue/cezar">
+                        <Link href="/live/casinos">
                           <span className="flex items-center justify-center w-full">
                             View Details <ArrowRight className="ml-2 h-4 w-4" />
                           </span>
@@ -164,17 +164,17 @@ export default function Home() {
                   </Card>
 
                   {/* Luckia Venue */}
-                  <Card>
+                  <Card className="flex flex-col h-full">
                     <CardHeader>
-                      <CardTitle>Luckia</CardTitle>
+                      <CardTitle>Diamond Palace</CardTitle>
                       <CardDescription>
                         <div className="flex items-center">
                           <MapPin className="h-4 w-4 mr-2" />
-                          <span>Zagrebačka avenija 100a, 10090, Zagreb</span>
+                          <span>Draškovićeva ulica 43 10000 Zagreb</span>
                         </div>
                       </CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex-grow">
                       <p className="mb-2">
                         <strong>Rake:</strong> 3% + 5
                       </p>
@@ -183,9 +183,9 @@ export default function Home() {
                       </p>
                       <p>Daily tournaments!</p>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="items-end">
                       <Button variant="outline" className="w-full">
-                        <Link href="/venue/luckia">
+                        <Link href="/live/casinos">
                           <span className="flex items-center justify-center w-full">
                             View Details <ArrowRight className="ml-2 h-4 w-4" />
                           </span>
@@ -249,10 +249,6 @@ export default function Home() {
                       <Dot className="inline" />
                       Casino Cezar Poreč
                     </li>
-                    <li>
-                      <Dot className="inline" />
-                      Luckia Casino
-                    </li>
                   </ul>
                 </CardContent>
               </Card>
@@ -300,8 +296,7 @@ export default function Home() {
                   <p>
                     Yes, multiple venues in Zagreb run daily poker tournaments.
                     You can check tournament schedules on every casino's
-                    official site or contact them directly. .Luckia is known for
-                    its regular tournament schedule. Additionally, Croatia hosts
+                    official site or contact them directly. Additionally, Croatia hosts
                     several major poker festivals throughout the year, bringing
                     players from across Europe.
                   </p>

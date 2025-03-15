@@ -210,3 +210,13 @@ export const getCasinosIds = async () => {
     }
   });
 }
+
+export const getCasinos = async () => {
+  const casinos = await prisma.casino.findMany({
+    include: {
+      town: true,
+    },
+  });
+
+  return casinos.map((casino) => mapCasinoWithTownToCasinoCardData(casino));
+}

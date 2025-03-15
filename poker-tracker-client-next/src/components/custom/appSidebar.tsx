@@ -16,7 +16,7 @@ import {
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { ChevronRight, Home, Info, Lock } from "lucide-react";
+import { Building, ChevronRight, Home, Info, Lock } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +39,14 @@ const AppSidebar: FunctionComponent = async () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <SidebarMenuLink href="/live" text="Home" icon={<Home />} />
+                <SidebarMenuLink href="/live" text="Live games" icon={<Home />} />
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <SidebarMenuLink href="/live/casinos" text="Casinos" icon={<Building />} />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -89,7 +96,7 @@ const AppSidebar: FunctionComponent = async () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="font-bold">
-                <SidebarMenuLink href="/live" text="About us" icon={<Info />} />
+                <SidebarMenuLink href="/" text="About us" icon={<Info />} />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
