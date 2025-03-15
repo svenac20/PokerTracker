@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: "Poker Radar",
+    default: "Home | Poker Radar",
     template: "%s | Poker Radar",
   },
   description: "Used for tracking poker games in Croatia",
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     images: 'url/image.png'
   },
   openGraph: {
-    title: 'Poker Radar',
-    description: 'Find Live Poker in Croatia',
+    title: 'Home | Poker Radar',
+    description: 'Find Live Poker games in Croatia and try your luck.',
     images: '/opengraph-image.png',
   },
 };

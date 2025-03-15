@@ -3,8 +3,8 @@ import { getCasinosWithPokerGames } from "@/lib/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata ={
-  title: "Live",
-  description: "List of live poker games",
+  title: "Live games",
+  description: "List of live poker games. Find the best poker games in Croatia.",
 }
 
 export default async function Home() {
