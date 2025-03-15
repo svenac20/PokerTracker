@@ -21,14 +21,15 @@ export const metadata: Metadata = {
     default: "Home | Poker Radar",
     template: "%s | Poker Radar",
   },
-  description: "Used for tracking poker games in Croatia",
+  description: "Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.",
   twitter: {
     card: "summary_large_image",
-    images: 'url/image.png'
+    images: 'url/image.png',
+    description: 'Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.',
   },
   openGraph: {
     title: 'Home | Poker Radar',
-    description: 'Find Live Poker games in Croatia and try your luck.',
+    description: 'Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.',
     images: '/opengraph-image.png',
   },
 };
