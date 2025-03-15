@@ -16,7 +16,7 @@ import {
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { ChevronRight, Home, Lock } from "lucide-react";
+import { Building, ChevronRight, Home, Info, Lock } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +31,7 @@ const AppSidebar: FunctionComponent = async () => {
     <Sidebar>
       <SidebarHeader className="text-xl font-bold text-black h-40 py-4">
         <div className="relative h-full w-full p-6">
-          <Image src={logo} alt="logo" fill priority/>
+          <Image src={logo} alt="logo" fill priority />
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -39,7 +39,14 @@ const AppSidebar: FunctionComponent = async () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <SidebarMenuLink href="/" text="Home" icon={<Home />} />
+                <SidebarMenuLink href="/live" text="Live games" icon={<Home />} />
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <SidebarMenuLink href="/live/casinos" text="Casinos" icon={<Building />} />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -58,17 +65,20 @@ const AppSidebar: FunctionComponent = async () => {
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <SidebarMenuLink href="/dashboard" text="Dashboard" />
+                          <SidebarMenuLink
+                            href="/live/dashboard"
+                            text="Dashboard"
+                          />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
                           <SidebarMenuLink
-                            href="/dashboard/poker-game"
+                            href="/live/dashboard/poker-game"
                             text="Add poker game"
                           />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
                           <SidebarMenuLink
-                            href="/dashboard/casino"
+                            href="/live/dashboard/casino"
                             text="Edit casino information"
                           />
                         </SidebarMenuSubButton>
@@ -82,15 +92,24 @@ const AppSidebar: FunctionComponent = async () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        {session ? (
-          <MyAccountMenu session={session} />
-        ) : (
-          <Link href="/api/auth/signin" className="w-full">
-            <Button variant="default" className="w-full">
-              Sign in
-            </Button>
-          </Link>
-        )}
+        <>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild className="font-bold">
+                <SidebarMenuLink href="/" text="About us" icon={<Info />} />
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+          {session ? (
+            <MyAccountMenu session={session} />
+          ) : (
+            <Link href="/api/auth/signin" className="w-full">
+              <Button variant="default" className="w-full">
+                Sign in
+              </Button>
+            </Link>
+          )}
+        </>
       </SidebarFooter>
     </Sidebar>
   );

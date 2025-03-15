@@ -190,3 +190,33 @@ export const getCasinoDetailsById = async (id: string, userId: string) => {
 
   return mapCasinoWithTownToCasinoCardData(casino);
 };
+
+export const getCasinoById = async(id: string) => {
+  if (Number.isNaN(Number(id))) {
+    return null;
+  }
+
+  return await prisma.casino.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+}
+
+export const getCasinosIds = async () => {
+  return await prisma.casino.findMany({
+    select: {
+      id: true,
+    }
+  });
+}
+
+export const getCasinos = async () => {
+  const casinos = await prisma.casino.findMany({
+    include: {
+      town: true,
+    },
+  });
+
+  return casinos.map((casino) => mapCasinoWithTownToCasinoCardData(casino));
+}

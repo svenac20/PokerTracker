@@ -4,6 +4,12 @@ import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import CasinosListDashboard from "./casionsListDashboard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Dashboard for admin users",
+}
 
 const DashboardPage = async () => {
   const session = await getServerSession(authOptions);

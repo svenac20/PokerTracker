@@ -1,12 +1,6 @@
-import AppSidebar from "@/components/custom/appSidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import { Geist, Geist_Mono } from "next/font/google";
-import SessionProvider from "../components/custom/SessionProvider";
 import "./globals.css";
-import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Poker Radar",
-  description: "Used for tracking poker games",
+  metadataBase: new URL("http://poker-radar.com"),
+  alternates: {
+    canonical: '/',
+  },
+  title: {
+    default: "Poker Radar",
+    template: "%s | Poker Radar",
+  },
+  description: "Used for tracking poker games in Croatia",
+  twitter: {
+    card: "summary_large_image",
+    images: 'url/image.png'
+  },
+  openGraph: {
+    title: 'Poker Radar',
+    description: 'Find Live Poker in Croatia',
+    images: '/opengraph-image.png',
+  },
 };
 
 export default async function RootLayout({
@@ -28,24 +38,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider session={session}>
-          <Providers>
-            <SidebarProvider>
-              <AppSidebar />
-              <main className="px-6 pt-8 lg:px-24 lg:py-12 lg:h-screen w-full ">
-                <SidebarTrigger></SidebarTrigger>
-                <div className="lg:py-8">{children}</div>
-                <Toaster />
-              </main>
-            </SidebarProvider>
-          </Providers>
-        </SessionProvider>
+        <main className="lg:h-screen w-full ">
+          <div>{children}</div>
+        </main>
       </body>
     </html>
   );

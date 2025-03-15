@@ -1,9 +1,27 @@
-import { Input } from "@/components/ui/input";
 import { authOptions } from "@/lib/authOptions";
-import { getCasinoDetailsById } from "@/lib/services";
+import { getCasinoById, getCasinoDetailsById, getCasinosIds } from "@/lib/services";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import EditCasinoDetailsForm from "./editCasinoDetailsForm";
+
+export async function generateStaticParams() {
+  const ids = await getCasinosIds();
+  return ids.map((id) => ({ params: { id: id.toString() } }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const {id} = await params;
+  const casinoId = await getCasinoById(id);
+  return {
+    title: `${casinoId?.name}`,
+    description: `Edit Casino Information for ${casinoId?.name}`,
+  };
+}
 
 export default async function EditCasinoInformationPage({
   params,

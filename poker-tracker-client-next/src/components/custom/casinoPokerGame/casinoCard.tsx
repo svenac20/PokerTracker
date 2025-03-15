@@ -6,8 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../ui/accordion";
-import { Card, CardContent, CardHeader } from "../../ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
+import { MapPin } from "lucide-react";
 
 interface CasinoCardProps {
   casino: CasinoDto;
@@ -33,7 +34,12 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
                 {!!casino.rake && !!casino.information && (
                   <Card className="rounded-sm">
                     <CardHeader className="font-extrabold">
-                      <p>Location: {casino.location}</p>
+                      <CardDescription>
+                        <div className="flex items-center font-bold">
+                          <MapPin className="h-4 w-4 mr-2" />
+                          <span>{casino.location}</span>
+                        </div>
+                      </CardDescription>
                       <p>Rake: {casino.rake}</p>
                     </CardHeader>
                     <CardContent className="whitespace-pre-wrap">
