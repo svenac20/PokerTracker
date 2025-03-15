@@ -17,7 +17,7 @@ const CasinoCardEditPage: FunctionComponent<CasinoCardEditPageProps> = ({
   casino,
 }) => {
   return (
-    <Link href={`/dashboard/casino/edit/${casino.id}`}>
+    <Link href={`/live/dashboard/casino/edit/${casino.id}`}>
       <Card className="cursor-pointer hover:bg-sidebar-accent">
         <CardHeader>
           <CardTitle>{casino.name}</CardTitle>

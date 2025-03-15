@@ -28,7 +28,7 @@ const PokerGameRow: FunctionComponent<PokerGameCardProps> = ({
       <TableCell>{pokerGame.playerWaiting}</TableCell>
       {showActions && (
         <TableCell className="flex flex-row gap-2 justify-center">
-          <Link href={`/dashboard/poker-game/${pokerGame.id}`}>
+          <Link href={`/live/dashboard/poker-game/${pokerGame.id}`}>
             <Pencil className="cursor-pointer" />
           </Link>
           <DeleteGameDialog pokerGame={pokerGame} />
