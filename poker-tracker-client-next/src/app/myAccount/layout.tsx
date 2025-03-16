@@ -1,27 +1,13 @@
 import AppSidebar from "@/components/custom/appSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/toaster";
-import type { Metadata } from "next";
-import { getServerSession } from "next-auth";
-import { Geist, Geist_Mono } from "next/font/google";
-import { SessionProvider } from "next-auth/react";
-import "../globals.css";
-import Providers from "../providers";
 import { authOptions } from "@/lib/authOptions";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { getServerSession } from "next-auth";
+import Providers from "../providers";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Live games",
-  description: "Used for tracking poker games",
+  title: "My account",
+  description: "Get information about your user account",
   twitter: {
     card: "summary_large_image",
   },
@@ -40,7 +26,6 @@ export default async function RootLayout({
         <main className="px-6 pt-8 lg:px-24 lg:py-12 lg:h-screen w-full ">
           <SidebarTrigger />
           <div className="pt-6">{children}</div>
-          <Toaster />
         </main>
       </SidebarProvider>
     </Providers>

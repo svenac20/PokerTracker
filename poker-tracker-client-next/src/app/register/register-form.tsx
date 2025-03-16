@@ -17,9 +17,15 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  AuthError,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../../../firebaseconfig";
 import { LoadingSpinner } from "@/components/custom/loading";
+import { FirebaseError } from "firebase/app";
+import { Separator } from "@radix-ui/react-separator";
 
 const RegisterForm: FunctionComponent = () => {
   const searchParams = useSearchParams();
@@ -32,19 +38,34 @@ const RegisterForm: FunctionComponent = () => {
     },
   });
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
-    const user = await createUserWithEmailAndPassword(
-      auth,
-      data.email,
-      data.password,
-    );
-    await updateProfile(user.user, {
-      displayName: data.username,
-    });
-    await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      callbackUrl: searchParams.get("callback") || "/",
-    });
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      await updateProfile(user.user, {
+        displayName: data.username,
+      });
+      await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        callbackUrl: searchParams.get("callback") || "/",
+      });
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") {
+          form.setError("root", {
+            message: "Email already in use",
+          });
+        }
+        if (error.code === "auth/invalid-password") {
+          form.setError("root", {
+            message: "Password is too weak",
+          });
+        }
+      }
+    }
   };
 
   return (
@@ -98,6 +119,11 @@ const RegisterForm: FunctionComponent = () => {
             )}
           />
           <div className="pt-4">
+            {form.formState.errors.root && (
+              <FormMessage className="font-extrabold text-center pb-2">
+                Error: {form.formState.errors.root.message}
+              </FormMessage>
+            )}
             <Button className="w-full" type="submit">
               {form.formState.isSubmitting ? <LoadingSpinner /> : "Submit"}
             </Button>
