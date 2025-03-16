@@ -1,8 +1,10 @@
 import "server-only";
 import prisma from "./prisma";
 import {
+  CasinoCardData,
   CasinoDropdownDto,
-  CasinoDto
+  CasinoDto,
+  CasinoGroupedByTownDto
 } from "./types";
 import {
   mapCasinoToCasinoDto,
@@ -223,3 +225,25 @@ export const getCasinos = async () => {
 
   return casinos.map((casino) => mapCasinoWithTownToCasinoCardData(casino));
 }
+
+export const getCasinosGroupedByTown = async (): Promise<Record<string, CasinoCardData[]>> => {
+  const casinos = await prisma.casino.findMany({
+    include: {
+      town: true,
+    },
+    orderBy: {
+      priority: "desc",
+    },
+  });
+
+  const groupedCasinos = casinos.reduce((acc, casino) => {
+    const townName = casino.town.name.toLocaleLowerCase();
+    if (!acc[townName]) {
+      acc[townName] = [];
+    }
+    acc[townName].push(mapCasinoWithTownToCasinoCardData(casino));
+    return acc;
+  }, {} as Record<string, CasinoCardData[]>);
+
+  return groupedCasinos;
+};

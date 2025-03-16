@@ -1,4 +1,5 @@
 // pages/index.js or app/page.js (depending on your NextJS setup)
+import HomePageCasinoCard from "@/components/custom/homePageCasinoCard";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,11 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowRight, Clock, Dot, MapPin, Star } from "lucide-react";
+import { getCasinos, getCasinosGroupedByTown } from "@/lib/services";
+import { ArrowRight, Clock, Dot, Instagram, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const casinos = await getCasinosGroupedByTown();
+
   return (
     <>
       <div className="flex flex-col min-h-screen p-0">
@@ -30,16 +34,16 @@ export default function Home() {
                   Croatia
                 </p>
                 <div className="flex space-x-4">
-                  <Button
-                    size="lg"
-                    className="bg-white text-blue-600 hover:bg-gray-100 w-full h-14"
-                  >
-                    <Link href="/live" prefetch={false}>
+                  <Link href="live" prefetch={false} className="w-full">
+                    <Button
+                      size="lg"
+                      className="bg-white text-blue-600 hover:bg-gray-100 w-full h-14"
+                    >
                       <span className="flex items-center font-bold">
                         View Live Games <ArrowRight className="ml-2 h-5 w-5" />
                       </span>
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <div className="md:w-1/2 flex justify-center">
@@ -131,111 +135,49 @@ export default function Home() {
 
               <TabsContent value="zagreb" className="mt-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  {/* Cezar Venue */}
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Cezar</CardTitle>
-                      <CardDescription>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>Ul. Isidora Kršnjavoga 1, 10000, Zagreb</span>
-                        </div>
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-2">
-                        <strong>Rake:</strong> 5% + Cap
-                      </p>
-                      <p className="mb-4">
-                        <strong>Games:</strong> PLO, NLH
-                      </p>
-                      <p>Games start at 20h</p>
-                      <p>+385 91 520 5605</p>
-                    </CardContent>
-                    <CardFooter>
-                      <Button variant="outline" className="w-full">
-                        <Link href="/live/casinos">
-                          <span className="flex items-center justify-center w-full">
-                            View Details <ArrowRight className="ml-2 h-4 w-4" />
-                          </span>
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-
-                  <Card className="flex flex-col h-full">
-                    <CardHeader>
-                      <CardTitle>Diamond Palace</CardTitle>
-                      <CardDescription>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>Draškovićeva ulica 43 10000 Zagreb</span>
-                        </div>
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="mb-2">
-                        <strong>Rake:</strong> 3% + 5
-                      </p>
-                      <p className="mb-4">
-                        <strong>Games:</strong> NLH
-                      </p>
-                      <p>Daily tournaments!</p>
-                    </CardContent>
-                    <CardFooter className="items-end">
-                      <Button variant="outline" className="w-full">
-                        <Link href="/live/casinos">
-                          <span className="flex items-center justify-center w-full">
-                            View Details <ArrowRight className="ml-2 h-4 w-4" />
-                          </span>
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                  {casinos["zagreb"] &&
+                    casinos["zagreb"].map((casino) => {
+                      return (
+                        <HomePageCasinoCard key={casino.id} casino={casino} />
+                      );
+                    })}
                 </div>
               </TabsContent>
 
               <TabsContent value="split" className="mt-6">
-                <Card>
-                  <CardContent className="pt-6">
-                    <p className="text-center text-gray-500">
-                      Information about poker games in Split coming soon!
-                    </p>
-                  </CardContent>
-                </Card>
+                {casinos["split"] ? (
+                  casinos["split"].map((casino) => {
+                    return (
+                      <HomePageCasinoCard key={casino.id} casino={casino} />
+                    );
+                  })
+                ) : (
+                  <Card>
+                    <CardContent className="pt-6">
+                      <p className="text-center text-gray-500">
+                        Information about poker games in Split coming soon!
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
               </TabsContent>
 
               <TabsContent value="poreč" className="mt-6">
+                {casinos["poreč"] ? (
+                  casinos["poreč"].map((casino) => {
+                    return (
+                      <HomePageCasinoCard key={casino.id} casino={casino} />
+                    );
+                  })
+                ) : (
                   <Card>
-                    <CardHeader>
-                      <CardTitle>Cezar</CardTitle>
-                      <CardDescription>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>Ulica Rade Končara 1, 52440, Poreč, Croatia</span>
-                        </div>
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-2">
-                        <strong>Rake:</strong> 5% + Cap
+                    <CardContent className="pt-6">
+                      <p className="text-center text-gray-500">
+                        Information about poker games in Split coming soon!
                       </p>
-                      <p className="mb-4">
-                        <strong>Games:</strong> PLO, NLH
-                      </p>
-                      <p>Games start at 20h</p>
-                      <p>+385 91 520 5605</p>
                     </CardContent>
-                    <CardFooter>
-                      <Button variant="outline" className="w-full">
-                        <Link href="/live/casinos">
-                          <span className="flex items-center justify-center w-full">
-                            View Details <ArrowRight className="ml-2 h-4 w-4" />
-                          </span>
-                        </Link>
-                      </Button>
-                    </CardFooter>
                   </Card>
+                )}
               </TabsContent>
 
               <TabsContent value="opatija" className="mt-6">
@@ -267,7 +209,7 @@ export default function Home() {
                       <Dot className="inline" />
                       Casino Cezar Zagreb
                     </li>
-                  <p>If you want to play poker in Poreč head to:</p>
+                    <p>If you want to play poker in Poreč head to:</p>
                     <li>
                       <Dot className="inline" />
                       Casino Cezar Poreč
@@ -296,7 +238,8 @@ export default function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>
-                    What is the rake structure for poker cash games in Zagreb and Poreč?
+                    What is the rake structure for poker cash games in Zagreb
+                    and Poreč?
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -319,9 +262,9 @@ export default function Home() {
                   <p>
                     Yes, multiple venues in Zagreb run daily poker tournaments.
                     You can check tournament schedules on every casino's
-                    official site or contact them directly. Additionally, Croatia hosts
-                    several major poker festivals throughout the year, bringing
-                    players from across Europe.
+                    official site or contact them directly. Additionally,
+                    Croatia hosts several major poker festivals throughout the
+                    year, bringing players from across Europe.
                   </p>
                 </CardContent>
               </Card>
@@ -366,7 +309,7 @@ export default function Home() {
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="/current-games"
+                      href="live"
                       className="text-gray-300 hover:text-white"
                     >
                       Current Games
@@ -374,19 +317,22 @@ export default function Home() {
                   </li>
                   <li>
                     <Link
-                      href="/venues"
+                      href="live/casinos"
                       className="text-gray-300 hover:text-white"
                     >
                       Venues
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="text-gray-300 hover:text-white">
+                    <Link href="" className="text-gray-300 hover:text-white">
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/policy" className="text-gray-300 hover:text-white">
+                    <Link
+                      href="/policy"
+                      className="text-gray-300 hover:text-white"
+                    >
                       Privacy policy
                     </Link>
                   </li>
@@ -396,6 +342,9 @@ export default function Home() {
               <div>
                 <h4 className="text-lg font-semibold mb-3">Contact</h4>
                 <ul className="space-y-2">
+                  <Link href={"https://www.instagram.com/poker.radar/"}>
+                    <li className="text-gray-300">Instagram</li>
+                  </Link>
                   <li className="text-gray-300">
                     Email: filip@poker-radar.com
                   </li>

@@ -105,3 +105,8 @@ export type CasinoWithTown = {
     countryId: number;
   };
 };
+
+export interface CasinoGroupedByTownDto {
+  town: string;
+  casinos: CasinoCardData[];
+}

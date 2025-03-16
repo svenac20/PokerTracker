@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: '/home',
   },
   title: {
-    default: "Home | Poker Radar",
+    default: "Policy | Poker Radar",
     template: "%s | Poker Radar",
   },
   description: "Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.",
@@ -44,8 +44,8 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main>
-          {children}
+        <main className="lg:h-screen w-full ">
+          <div>{children}</div>
         </main>
       </body>
     </html>
