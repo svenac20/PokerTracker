@@ -35,6 +35,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${process.env.NEXT_PUBLIC_API_URL}/myAccount`
         },
         {
+            url: `${process.env.NEXT_PUBLIC_API_URL}/home`
+        },
+        {
             url: `${process.env.NEXT_PUBLIC_API_URL}/register`
         },
         ...casinoEditEntries
