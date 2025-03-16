@@ -7,8 +7,9 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Poker Radar's privacy policy - learn how we collect, use, and protect your personal information.",
-}
+  description:
+    "Poker Radar's privacy policy - learn how we collect, use, and protect your personal information.",
+};
 
 export default function PrivacyPolicy() {
   return (
@@ -300,26 +301,10 @@ export default function PrivacyPolicy() {
                 <ul className="space-y-1">
                   <li>
                     <Link
-                      href="/privacy-policy"
+                      href="/home"
                       className="text-gray-300 hover:text-white"
                     >
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/terms-of-service"
-                      className="text-gray-300 hover:text-white"
-                    >
-                      Terms of Service
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/cookie-policy"
-                      className="text-gray-300 hover:text-white"
-                    >
-                      Cookie Policy
+                      Home
                     </Link>
                   </li>
                 </ul>
@@ -328,7 +313,9 @@ export default function PrivacyPolicy() {
               <div>
                 <h4 className="text-lg font-semibold mb-2">Contact</h4>
                 <ul className="space-y-1">
-                  <li className="text-gray-300">Email: filip@poker-radar.com</li>
+                  <li className="text-gray-300">
+                    Email: filip@poker-radar.com
+                  </li>
                 </ul>
               </div>
             </div>
