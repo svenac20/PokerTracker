@@ -216,6 +216,9 @@ export const getCasinos = async () => {
     include: {
       town: true,
     },
+    orderBy: {
+      priority: 'desc'
+    }
   });
 
   return casinos.map((casino) => mapCasinoWithTownToCasinoCardData(casino));

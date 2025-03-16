@@ -24,7 +24,7 @@ export default async function AddPokerGame() {
         <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-6 lg:pb-12">
           Add poker game
         </h1>
-        <Link href="/dashboard">
+        <Link href="/live/dashboard">
           <Button variant={"default"}>Dashboard page</Button>
         </Link>
       </div>

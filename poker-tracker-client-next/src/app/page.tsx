@@ -34,7 +34,7 @@ export default function Home() {
                     size="lg"
                     className="bg-white text-blue-600 hover:bg-gray-100 w-full h-14"
                   >
-                    <Link href="/live">
+                    <Link href="/live" prefetch={false}>
                       <span className="flex items-center font-bold">
                         View Live Games <ArrowRight className="ml-2 h-5 w-5" />
                       </span>
@@ -121,10 +121,10 @@ export default function Home() {
                 <TabsTrigger value="split" className="font-bold">
                   Split
                 </TabsTrigger>
-                <TabsTrigger value="rijeka" className="font-bold">
+                <TabsTrigger value="poreč" className="font-bold">
                   Poreč
                 </TabsTrigger>
-                <TabsTrigger value="dubrovnik" className="font-bold">
+                <TabsTrigger value="opatija" className="font-bold">
                   Opatija
                 </TabsTrigger>
               </TabsList>
@@ -163,7 +163,6 @@ export default function Home() {
                     </CardFooter>
                   </Card>
 
-                  {/* Luckia Venue */}
                   <Card className="flex flex-col h-full">
                     <CardHeader>
                       <CardTitle>Diamond Palace</CardTitle>
@@ -206,17 +205,40 @@ export default function Home() {
                 </Card>
               </TabsContent>
 
-              <TabsContent value="rijeka" className="mt-6">
-                <Card>
-                  <CardContent className="pt-6">
-                    <p className="text-center text-gray-500">
-                      Information about poker games in Poreč coming soon!
-                    </p>
-                  </CardContent>
-                </Card>
+              <TabsContent value="poreč" className="mt-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Cezar</CardTitle>
+                      <CardDescription>
+                        <div className="flex items-center">
+                          <MapPin className="h-4 w-4 mr-2" />
+                          <span>Ulica Rade Končara 1, 52440, Poreč, Croatia</span>
+                        </div>
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="mb-2">
+                        <strong>Rake:</strong> 5% + Cap
+                      </p>
+                      <p className="mb-4">
+                        <strong>Games:</strong> PLO, NLH
+                      </p>
+                      <p>Games start at 20h</p>
+                      <p>+385 91 520 5605</p>
+                    </CardContent>
+                    <CardFooter>
+                      <Button variant="outline" className="w-full">
+                        <Link href="/live/casinos">
+                          <span className="flex items-center justify-center w-full">
+                            View Details <ArrowRight className="ml-2 h-4 w-4" />
+                          </span>
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
               </TabsContent>
 
-              <TabsContent value="dubrovnik" className="mt-6">
+              <TabsContent value="opatija" className="mt-6">
                 <Card>
                   <CardContent className="pt-6">
                     <p className="text-center text-gray-500">
@@ -239,12 +261,13 @@ export default function Home() {
                   <CardTitle>Where can I play poker in Zagreb?</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Zagreb offers several excellent poker venues including </p>
+                  <p>Zagreb offers an excellent poker venue:</p>
                   <ul className="font-bold">
                     <li>
                       <Dot className="inline" />
                       Casino Cezar Zagreb
                     </li>
+                  <p>If you want to play poker in Poreč head to:</p>
                     <li>
                       <Dot className="inline" />
                       Casino Cezar Poreč
@@ -256,7 +279,7 @@ export default function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>
-                    What types of poker games are available in Zagreb?
+                    What types of poker games are available in Zagreb and Poreč?
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -273,7 +296,7 @@ export default function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>
-                    What is the rake structure for poker cash games in Zagreb?
+                    What is the rake structure for poker cash games in Zagreb and Poreč?
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -318,7 +341,7 @@ export default function Home() {
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-100"
             >
-              <Link href="/current-games">
+              <Link href="/live" prefetch={false}>
                 <span className="flex items-center">
                   View Live Poker Games <ArrowRight className="ml-2 h-5 w-5" />
                 </span>
