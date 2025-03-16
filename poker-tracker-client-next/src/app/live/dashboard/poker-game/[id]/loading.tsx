@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function LoadingPokerGameForm() {
+export default function Loading() {
   <div className="py-8">
     <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-12">
       Edit poker games
