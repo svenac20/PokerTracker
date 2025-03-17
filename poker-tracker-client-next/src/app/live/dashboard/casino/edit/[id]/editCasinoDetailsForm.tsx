@@ -46,8 +46,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
         title: "Casino information updated",
         description: "Casino information has been updated sucessfully",
       });
-      revalidatePath("/dashboard/casino");
-      router.push("/dashboard/casino");
+      router.push("/live/dashboard/casino");
     } catch (error) {
       console.error(error);
       toast({

@@ -4,14 +4,12 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getCasinos, getCasinosGroupedByTown } from "@/lib/services";
-import { ArrowRight, Clock, Dot, Instagram, MapPin, Star } from "lucide-react";
+import { getCasinosGroupedByTown } from "@/lib/services";
+import { ArrowRight, Clock, Dot, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -35,7 +35,7 @@ const CasinoDetailsCard: FunctionComponent<CasinoDetailsCardProps> = ({
         </div>
       </CardContent>
       <CardFooter>
-        <p>{casino.information || ""} </p>
+        <p className="whitespace-pre-wrap">{casino.information || ""} </p>
       </CardFooter>
     </Card>
   );

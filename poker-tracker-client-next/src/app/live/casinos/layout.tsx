@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Casinos",
+  title: "Casinos | Poker Radar",
   description: "List of casinos available on Poker Radar website. Currently supporting Cezar Casino Zagreb and Cezar Casino Poreč.",
 };
 
