@@ -16,7 +16,9 @@ interface HomePageCasinoCardProps {
   casino: CasinoCardData;
 }
 
-const HomePageCasinoCard: FunctionComponent<HomePageCasinoCardProps> = ({casino}) => {
+const HomePageCasinoCard: FunctionComponent<HomePageCasinoCardProps> = ({
+  casino,
+}) => {
   return (
     <Card className="flex flex-col h-full flex-1">
       <CardHeader>
@@ -24,9 +26,7 @@ const HomePageCasinoCard: FunctionComponent<HomePageCasinoCardProps> = ({casino}
         <CardDescription>
           <div className="flex items-center">
             <MapPin className="h-4 w-4 mr-2" />
-            <span>
-              {casino.location}
-            </span>
+            <span>{casino.location}</span>
           </div>
         </CardDescription>
       </CardHeader>
@@ -40,14 +40,14 @@ const HomePageCasinoCard: FunctionComponent<HomePageCasinoCardProps> = ({casino}
         <p className="whitespace-pre-wrap">{casino.information}</p>
       </CardContent>
       <CardFooter className="mt-auto">
-        <Button variant="outline" className="w-full">
-          <Link href="/live/casinos" prefetch={false}>
+        <Link href="/live/casinos" prefetch={false} className="w-full">
+          <Button variant="outline" className="w-full">
             <span className="flex items-center justify-center w-full">
               View Details
               <ArrowRight className="ml-2 h-4 w-4" />
             </span>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

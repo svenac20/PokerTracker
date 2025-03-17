@@ -4,15 +4,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { authOptions } from "@/lib/authOptions";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "../providers";
 
 export const metadata: Metadata = {
   title: "Live games",
-  description: "Used for tracking poker games",
-  twitter: {
-    card: "summary_large_image",
-  },
 };
 
 export default async function RootLayout({

@@ -15,21 +15,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("http://poker-radar.com"),
   alternates: {
-    canonical: '/home',
+    canonical: '/',
   },
   title: {
     default: "Home | Poker Radar",
     template: "%s | Poker Radar",
   },
-  description: "Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.",
+  description: "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
   twitter: {
     card: "summary_large_image",
     images: 'url/image.png',
-    description: 'Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.',
+    description: 'Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.',
   },
   openGraph: {
     title: 'Home | Poker Radar',
-    description: 'Find Live Poker games in Zagreb and throughout Croatia. Come and try your luck.',
+    description: 'Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.',
     images: '/opengraph-image.png',
   },
 };

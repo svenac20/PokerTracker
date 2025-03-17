@@ -49,9 +49,10 @@ export default async function Home() {
               <div className="md:w-1/2 flex justify-center">
                 <div className="relative w-64 h-64 md:w-80 md:h-80">
                   <Image
-                    src="/poker-radar-logo.svg"
+                    src="/poker-radar-logo.gif"
                     alt="Poker Radar Logo"
                     fill
+                    unoptimized={true}
                     className="object-contain"
                     priority
                   />
