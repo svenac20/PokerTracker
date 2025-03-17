@@ -58,7 +58,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         title: "Poker game added",
         description: "Poker game has been added sucessfully",
       });
-      router.push("/dashboard");
+      router.push("/live/dashboard");
     } catch (error) {
       console.error(error);
       toast({
@@ -80,7 +80,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
         title: "Poker game added",
         description: "Poker game has been added sucessfully",
       });
-      router.push("/dashboard");
+      router.push("/live/dashboard");
     } catch (error) {
       console.error(error);
       toast({
