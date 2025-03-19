@@ -8,6 +8,9 @@ import Providers from "../providers";
 
 export const metadata: Metadata = {
   title: "Live games",
+  alternates: {
+    canonical: '/live',
+  },
 };
 
 export default async function RootLayout({

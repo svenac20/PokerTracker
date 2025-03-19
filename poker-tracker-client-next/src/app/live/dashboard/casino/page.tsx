@@ -9,7 +9,7 @@ import CasinoCardEditPage from "./casinoCardEditPage";
 
 export const metadata: Metadata = {
   title: "Casinos",
-  description: "Edit your casinos information"
+  description: "Edit your casinos information",
 }
 
 export default async function CasinoEditPage() {

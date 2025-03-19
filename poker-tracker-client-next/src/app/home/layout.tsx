@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Home",
+  alternates: {
+    canonical: '/home',
+  },
 };
 
 export default async function RootLayout({

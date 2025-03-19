@@ -15,9 +15,6 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://poker-radar.com"),
-  alternates: {
-    canonical: '/',
-  },
   title: {
     default: "Home | Poker Radar",
     template: "%s | Poker Radar",
