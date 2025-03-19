@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import ogImage from "/opengraph-image.png";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://poker-radar.com"),
+  metadataBase: new URL("https://poker-radar.com"),
   alternates: {
     canonical: '/',
   },
@@ -30,7 +31,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Home | Poker Radar',
     description: 'Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.',
-    images: '/opengraph-image.png',
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height
+      },
+    ],
   },
 };
 

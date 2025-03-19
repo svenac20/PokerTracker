@@ -1,21 +1,20 @@
 "use client";
 
+import { LoadingSpinner } from "@/components/custom/loading";
+import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { toast } from "@/hooks/use-toast";
+import axios from "@/lib/axios";
 import { CasinoCardData } from "@/lib/types";
 import { casinoDetailsSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import CasinoRakeInput from "./casinoRakeInput";
 import CasinoInformationInput from "./casinoInformationInput";
-import { Button } from "@/components/ui/button";
-import { LoadingSpinner } from "@/components/custom/loading";
-import axios from "@/lib/axios";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import CasinoLocationInput from "./casinoLocationInput";
-import { revalidatePath } from "next/cache";
+import CasinoRakeInput from "./casinoRakeInput";
 
 interface EditCasinoDetailsFormProps {
   casino: CasinoCardData;
