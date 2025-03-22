@@ -1,6 +1,5 @@
 "use client";
 
-import { Home } from "lucide-react";
 import Link from "next/link";
 import { FunctionComponent } from "react";
 import { useSidebar } from "../ui/sidebar";

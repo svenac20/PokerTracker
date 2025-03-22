@@ -1,12 +1,11 @@
 import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { casinoDetailsSchema } from "@/lib/zod-schema";
 import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";

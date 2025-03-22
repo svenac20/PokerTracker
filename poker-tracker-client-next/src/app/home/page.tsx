@@ -225,7 +225,7 @@ export default async function Home() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Zagreb poker venues primarily offer No-Limit Hold'em (NLH)
+                    Zagreb poker venues primarily offer No-Limit Hold&apos;em (NLH)
                     and Pot-Limit Omaha (PLO) cash games. Stakes vary from venue
                     to venue, with common limits being 1/2, 1/1, and occasional
                     higher-stakes games. Many venues also run daily and weekly
@@ -260,7 +260,7 @@ export default async function Home() {
                 <CardContent>
                   <p>
                     Yes, multiple venues in Zagreb run daily poker tournaments.
-                    You can check tournament schedules on every casino's
+                    You can check tournament schedules on every casino&apos;s
                     official site or contact them directly. Additionally,
                     Croatia hosts several major poker festivals throughout the
                     year, bringing players from across Europe.

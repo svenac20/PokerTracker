@@ -37,7 +37,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
     data: z.infer<typeof casinoDetailsSchema>
   ) {
     try {
-      const response = await axios.post<CasinoCardData>(
+      await axios.post<CasinoCardData>(
         `/api/casino/${casino.id}`,
         data
       );

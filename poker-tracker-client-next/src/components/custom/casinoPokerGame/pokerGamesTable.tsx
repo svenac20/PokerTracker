@@ -1,18 +1,15 @@
 "use client";
 import { PokerGameDto } from "@/lib/types";
 import { FunctionComponent } from "react";
-import PokerGameRow from "./pokerGameCard";
 import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "../../ui/table";
-import { Button } from "../../ui/button";
-import { redirect } from "next/navigation";
+import PokerGameRow from "./pokerGameCard";
 
 interface PokerGamesTableProps {
   pokerGames: PokerGameDto[];

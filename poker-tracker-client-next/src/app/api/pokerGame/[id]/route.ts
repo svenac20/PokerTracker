@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
 import { PokerGameDto } from "@/lib/types";
-import { mapPokerGameToPokerGameDto } from "@/lib/utils";
 import { formSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 

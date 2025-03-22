@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
-import { PokerGameDto } from "@/lib/types";
-import { casinoDetailsSchema, formSchema } from "@/lib/zod-schema";
+import { casinoDetailsSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(

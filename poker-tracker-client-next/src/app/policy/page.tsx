@@ -249,7 +249,7 @@ export default function PrivacyPolicy() {
               <p>
                 We may update our Privacy Policy from time to time. We will
                 notify you of any changes by posting the new Privacy Policy on
-                this page and updating the "Last updated" date at the top of
+                this page and updating the &quot;Last updated&quot; date at the top of
                 this page.
               </p>
               <p>

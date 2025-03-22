@@ -1,5 +1,6 @@
 "use client";
 
+import { LoadingSpinner } from "@/components/custom/loading";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,20 +13,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FirebaseError } from "firebase/app";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile
+} from "firebase/auth";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
-import {
-  AuthError,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
 import { auth } from "../../../firebaseconfig";
-import { LoadingSpinner } from "@/components/custom/loading";
-import { FirebaseError } from "firebase/app";
-import { Separator } from "@radix-ui/react-separator";
 
 const RegisterForm: FunctionComponent = () => {
   const searchParams = useSearchParams();

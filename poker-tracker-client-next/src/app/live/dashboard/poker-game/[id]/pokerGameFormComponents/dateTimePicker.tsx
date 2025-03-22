@@ -1,24 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
 } from "@/components/ui/form";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { formSchema } from "@/lib/zod-schema";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
@@ -37,7 +36,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
  
   function handleTimeChange(type: "hour" | "minute", value: string) {
     const currentDate = form.getValues("startTime") || new Date();
-    let newDate = new Date(currentDate);
+    const newDate = new Date(currentDate);
  
     if (type === "hour") {
       const hour = parseInt(value, 10);
@@ -80,11 +79,12 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
               <div className="sm:flex">
                 <Calendar
                   mode="single"
+                  className="relative"
                   selected={field.value}
                   onSelect={handleDateSelect}
-                  initialFocus
+                  autoFocus
                 />
-                <div className="flex flex-col sm:flex-row sm:h-[300px] divide-y sm:divide-y-0 sm:divide-x">
+                <div className="flex flex-col sm:flex-row sm:h-[300px] h-full sm:divide-y-0 sm:divide-x">
                   <ScrollArea className="w-64 sm:w-auto">
                     <div className="flex sm:flex-col p-2">
                       {Array.from({ length: 24 }, (_, i) => i)

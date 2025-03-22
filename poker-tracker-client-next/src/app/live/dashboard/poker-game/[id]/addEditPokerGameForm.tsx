@@ -8,7 +8,7 @@ import {
 import { toast } from "@/hooks/use-toast";
 import useHubConnection from "@/hooks/useHubConnection";
 import axios from "@/lib/axios";
-import { CasinoDropdownDto, GameTypes, PokerGameDto } from "@/lib/types";
+import { CasinoDropdownDto, PokerGameDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -18,10 +18,10 @@ import { z } from "zod";
 import CasinosDropdown from "./pokerGameFormComponents/casinoDropdown";
 import DateTimePicker from "./pokerGameFormComponents/dateTimePicker";
 import GameLimitInput from "./pokerGameFormComponents/gameLimitInput";
+import GameStartedCheckbox from "./pokerGameFormComponents/gameStartedCheckbox";
 import GameTypeDropdown from "./pokerGameFormComponents/gameTypeDropdown";
 import PlayersWaitingInput from "./pokerGameFormComponents/playersWaitingInput";
 import TablesInput from "./pokerGameFormComponents/tablesInput";
-import GameStartedCheckbox from "./pokerGameFormComponents/gameStartedCheckbox";
 
 interface AddPokerGameFormProps {
   casinos: CasinoDropdownDto[];

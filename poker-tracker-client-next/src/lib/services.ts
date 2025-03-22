@@ -3,8 +3,7 @@ import prisma from "./prisma";
 import {
   CasinoCardData,
   CasinoDropdownDto,
-  CasinoDto,
-  CasinoGroupedByTownDto
+  CasinoDto
 } from "./types";
 import {
   mapCasinoToCasinoDto,

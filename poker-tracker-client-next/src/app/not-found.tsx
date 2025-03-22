@@ -40,8 +40,8 @@ export default function NotFound() {
                 Page Not Found
               </h1>
               <p className="text-lg mb-8 max-w-md">
-                Looks like this hand didn't play out as expected. The page
-                you're looking for doesn't exist or has been moved to a
+                Looks like this hand didn&apos;t play out as expected. The page
+                you&apos;re looking for doesn&apos;t exist or has been moved to a
                 different location.
               </p>
               <div className="grid grid-cols-1  gap-4 w-full max-w-md">
