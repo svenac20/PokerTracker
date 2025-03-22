@@ -4,7 +4,6 @@ import { LoadingSpinner } from "@/components/custom/loading";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
-import axios from "@/lib/axios";
 import { CasinoCardData } from "@/lib/types";
 import { casinoDetailsSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,24 +35,26 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
   async function onSubmitEditCasinoDetails(
     data: z.infer<typeof casinoDetailsSchema>
   ) {
-    try {
-      await axios.post<CasinoCardData>(
-        `/api/casino/${casino.id}`,
-        data
-      );
-      toast({
-        title: "Casino information updated",
-        description: "Casino information has been updated sucessfully",
-      });
-      router.push("/live/dashboard/casino");
-    } catch (error) {
-      console.error(error);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/casino/${casino.id}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      console.error(response.statusText);
+      console.error(response.text())
       toast({
         title: "Error",
         description: "An error occurred while editing casino information",
         className: "bg-red-500 text-white",
       });
     }
+
+    toast({
+      title: "Casino information updated",
+      description: "Casino information has been updated sucessfully",
+    });
+    router.push("/live/dashboard/casino");
   }
 
   return (

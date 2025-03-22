@@ -2,12 +2,9 @@
 
 import { LoadingSpinner } from "@/components/custom/loading";
 import { Button } from "@/components/ui/button";
-import {
-  Form
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
 import useHubConnection from "@/hooks/useHubConnection";
-import axios from "@/lib/axios";
 import { CasinoDropdownDto, PokerGameDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -40,9 +37,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
     defaultValues: {
       casinoId: pokerGame?.casinoId.toString() ?? "",
       startTime: pokerGame?.startTime ?? new Date(),
-      gameType: pokerGame
-        ? pokerGame.gameType as "PLO" | "NLH"
-        : "PLO",
+      gameType: pokerGame ? (pokerGame.gameType as "PLO" | "NLH") : "PLO",
       limit: pokerGame?.limit ?? "",
       tables: pokerGame?.tablesNumber ?? 0,
       playersWaiting: pokerGame?.playerWaiting ?? 0,
@@ -51,44 +46,53 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   });
 
   async function onSubmitAddPokerGame(data: z.infer<typeof formSchema>) {
-    try {
-      const response = await axios.post<PokerGameDto>("/api/pokerGame", data);
-      await connection?.send("NewPokerGame", response.data);
-      toast({
-        title: "Poker game added",
-        description: "Poker game has been added sucessfully",
-      });
-      router.push("/live/dashboard");
-    } catch (error) {
-      console.error(error);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/pokerGame`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+    if (!response.ok) {
+      console.error(await response.text());
       toast({
         title: "Error",
         description: "An error occurred while adding poker game",
         className: "bg-red-500 text-white",
       });
     }
+    const pokerGame: PokerGameDto = await response.json();
+    await connection?.send("NewPokerGame", pokerGame);
+    toast({
+      title: "Poker game added",
+      description: "Poker game has been added sucessfully",
+    });
+    router.push("/live/dashboard");
   }
 
   async function onSubmitEditPokerGame(data: z.infer<typeof formSchema>) {
-    try {
-      const response = await axios.post<PokerGameDto>(
-        `/api/pokerGame/${pokerGame?.id}`,
-        data
-      );
-      await connection?.send("UpdatePokerGame", response.data);
-      toast({
-        title: "Poker game added",
-        description: "Poker game has been added sucessfully",
-      });
-      router.push("/live/dashboard");
-    } catch (error) {
-      console.error(error);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/pokerGame/${pokerGame?.id}`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+    if (!response.ok) {
+      console.error(await response.text());
       toast({
         title: "Error",
         description: "An error occurred while adding poker game",
         className: "bg-red-500 text-white",
       });
     }
+    const updatedPokerGame: PokerGameDto = await response.json();
+    await connection?.send("UpdatePokerGame", updatedPokerGame);
+    toast({
+      title: "Poker game added",
+      description: "Poker game has been added sucessfully",
+    });
+    router.push("/live/dashboard");
   }
 
   return (
