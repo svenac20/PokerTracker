@@ -34,7 +34,7 @@ jobs:
         env:
           NEXTAUTH_URL: "https://poker-radar.com"
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-          NEXT_PUBLIC_API_URL: "https://poker-radar.com"
+          NEXT_PUBLIC_API_URL: "https://poker-radar.com/api"
           GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
           GOOGLE_CLIENT_SECRET: ${{secrets.GOOGLE_CLIENT_SECRET}}
           NEXT_PUBLIC_FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
