@@ -9,7 +9,7 @@ import Providers from "../providers";
 export const metadata: Metadata = {
   title: "Live games",
   alternates: {
-    canonical: '/live',
+    canonical: "/live",
   },
 };
 

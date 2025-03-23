@@ -1,5 +1,3 @@
-import { Casino } from "@prisma/client";
-
 export enum Roles {
   ADMIN = 1,
   PLAYER = 2,
@@ -17,8 +15,8 @@ export type CasinoBaseType = {
   location: string | null;
   rake: string | null;
   information: string | null;
-  imageUrl: string | null
-}
+  imageUrl: string | null;
+};
 
 export type CasinoDto = CasinoBaseType & {
   pokerGames: PokerGameDto[];

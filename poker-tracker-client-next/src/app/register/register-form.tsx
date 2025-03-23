@@ -14,10 +14,7 @@ import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { FunctionComponent } from "react";
@@ -40,7 +37,7 @@ const RegisterForm: FunctionComponent = () => {
       const user = await createUserWithEmailAndPassword(
         auth,
         data.email,
-        data.password
+        data.password,
       );
       await updateProfile(user.user, {
         displayName: data.username,

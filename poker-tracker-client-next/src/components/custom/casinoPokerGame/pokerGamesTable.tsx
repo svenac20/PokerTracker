@@ -7,7 +7,7 @@ import {
   TableCaption,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "../../ui/table";
 import PokerGameRow from "./pokerGameCard";
 

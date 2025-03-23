@@ -9,22 +9,22 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Dashboard for admin users",
-}
+};
 
 const DashboardPage = async () => {
   const session = await getServerSession(authOptions);
   if (!session || session.user.roleId !== Roles.ADMIN) {
     redirect("/");
   }
-  const casinosWithPokerGames = await getCasinosWithPokerGamesForUser(session.user.id);
+  const casinosWithPokerGames = await getCasinosWithPokerGamesForUser(
+    session.user.id,
+  );
   return (
     <>
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl py-6 lg:pb-12">
         Dashboard
       </h1>
-      <CasinosListDashboard
-        casinos={casinosWithPokerGames}
-      />
+      <CasinosListDashboard casinos={casinosWithPokerGames} />
     </>
   );
 };

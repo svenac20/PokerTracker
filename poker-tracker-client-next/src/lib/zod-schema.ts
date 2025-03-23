@@ -64,11 +64,11 @@ export const casinoDetailsSchema = z.object({
     .optional()
     .refine(
       (file) => !file || file.size <= 5 * 1024 * 1024, // Max size: 5MB
-      "Image must be less than 5MB"
+      "Image must be less than 5MB",
     )
     .refine(
       (file) =>
         !file || ["image/jpeg", "image/png", "image/jpg"].includes(file.type),
-      "Only JPEG, PNG, images are allowed"
+      "Only JPEG, PNG, images are allowed",
     ),
 });

@@ -1,10 +1,9 @@
-
 import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { casinoDetailsSchema } from "@/lib/zod-schema";
@@ -16,9 +15,7 @@ interface CasinoRakeInputProps {
   form: UseFormReturn<z.infer<typeof casinoDetailsSchema>>;
 }
 
-const CasinoRakeInput: FunctionComponent<CasinoRakeInputProps> = ({
-  form,
-}) => {
+const CasinoRakeInput: FunctionComponent<CasinoRakeInputProps> = ({ form }) => {
   return (
     <FormField
       control={form.control}

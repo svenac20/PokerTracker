@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Home",
   alternates: {
-    canonical: '/home',
+    canonical: "/home",
   },
 };
 

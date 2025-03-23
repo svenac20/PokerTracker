@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   const parsedId = parseInt(id);
@@ -21,11 +21,11 @@ export async function POST(
       {
         status: 400,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 
-  const formData = await req.formData()
+  const formData = await req.formData();
   const data = JSON.parse(formData.get("data") as string);
   data.image = formData.get("image") as File | null;
 
@@ -34,33 +34,35 @@ export async function POST(
   if (!validatedData.success || !validatedData.data) {
     return NextResponse.json(
       { success: false, errors: validatedData.error.message },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
-  let imageUrl = data.imageUrl
+  let imageUrl = data.imageUrl;
   const imageFile = formData.get("image") as File | null;
-  console.log(data.imageUrl)
-  console.log(imageFile)
+  console.log(data.imageUrl);
+  console.log(imageFile);
   if (imageFile) {
-    console.log("Uploading image")
+    console.log("Uploading image");
     const blobServiceClient = BlobServiceClient.fromConnectionString(
-      process.env.SA_CONN_STRING!!
+      process.env.SA_CONN_STRING!,
     );
-    const containerClient = blobServiceClient.getContainerClient(process.env.CASINO_IMAGES_CONTAINER!!);
+    const containerClient = blobServiceClient.getContainerClient(
+      process.env.CASINO_IMAGES_CONTAINER!,
+    );
 
     const blobName = `${uuidv4()}`;
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
     const arrayBuffer = await imageFile.arrayBuffer();
-    await blockBlobClient.uploadData(arrayBuffer,{
+    await blockBlobClient.uploadData(arrayBuffer, {
       blobHTTPHeaders: { blobContentType: imageFile.type },
     });
 
     imageUrl = blockBlobClient.url;
   }
   const casinoData = validatedData.data;
-  console.log(casinoData)
+  console.log(casinoData);
   const casino = await prisma.casino.update({
     where: {
       id: parsedId,
@@ -72,5 +74,5 @@ export async function POST(
       imageUrl: imageUrl,
     },
   });
-  return NextResponse.json(casino)
+  return NextResponse.json(casino);
 }

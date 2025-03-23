@@ -1,10 +1,6 @@
 import "server-only";
 import prisma from "./prisma";
-import {
-  CasinoCardData,
-  CasinoDropdownDto,
-  CasinoDto
-} from "./types";
+import { CasinoCardData, CasinoDropdownDto, CasinoDto } from "./types";
 import {
   mapCasinoToCasinoDto,
   mapCasinoWithTownToCasinoCardDetails as mapCasinoWithTownToCasinoCardData,
@@ -13,7 +9,7 @@ import {
 
 export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
-    orderBy: [{priority: 'desc'}],
+    orderBy: [{ priority: "desc" }],
     select: {
       town: {
         select: {
@@ -27,10 +23,7 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
       information: true,
       imageUrl: true,
       pokerGames: {
-        orderBy: [
-          {gameStarted: 'desc'},
-          {startTime: 'asc'},
-        ],
+        orderBy: [{ gameStarted: "desc" }, { startTime: "asc" }],
         select: {
           id: true,
           limit: true,
@@ -51,7 +44,7 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
 
 export const getCasinosWithPokerGamesForUser = async (userId: string) => {
   const casinos = await prisma.casino.findMany({
-    orderBy: [{priority: 'desc'}],
+    orderBy: [{ priority: "desc" }],
     where: {
       owners: {
         some: {
@@ -72,10 +65,7 @@ export const getCasinosWithPokerGamesForUser = async (userId: string) => {
       information: true,
       imageUrl: true,
       pokerGames: {
-        orderBy: [
-          {gameStarted: 'desc'},
-          {startTime: 'asc'},
-        ],
+        orderBy: [{ gameStarted: "desc" }, { startTime: "asc" }],
         select: {
           id: true,
           limit: true,
@@ -134,7 +124,7 @@ export const getCasinoDetailsForUser = async (userId: string) => {
 
 export const getPokerGameByIdForUser = async (
   pokerGameId: number,
-  userId: string
+  userId: string,
 ) => {
   const pokerGame = await prisma.pokerGame.findUnique({
     where: {
@@ -194,7 +184,7 @@ export const getCasinoDetailsById = async (id: string, userId: string) => {
   return mapCasinoWithTownToCasinoCardData(casino);
 };
 
-export const getCasinoById = async(id: string) => {
+export const getCasinoById = async (id: string) => {
   if (Number.isNaN(Number(id))) {
     return null;
   }
@@ -204,30 +194,17 @@ export const getCasinoById = async(id: string) => {
       id: Number(id),
     },
   });
-}
+};
 
 export const getCasinosIds = async () => {
   return await prisma.casino.findMany({
     select: {
       id: true,
-    }
+    },
   });
-}
+};
 
 export const getCasinos = async () => {
-  const casinos = await prisma.casino.findMany({
-    include: {
-      town: true,
-    },
-    orderBy: {
-      priority: 'desc'
-    }
-  });
-
-  return casinos.map((casino) => mapCasinoWithTownToCasinoCardData(casino));
-}
-
-export const getCasinosGroupedByTown = async (): Promise<Record<string, CasinoCardData[]>> => {
   const casinos = await prisma.casino.findMany({
     include: {
       town: true,
@@ -237,14 +214,32 @@ export const getCasinosGroupedByTown = async (): Promise<Record<string, CasinoCa
     },
   });
 
-  const groupedCasinos = casinos.reduce((acc, casino) => {
-    const townName = casino.town.name.toLocaleLowerCase();
-    if (!acc[townName]) {
-      acc[townName] = [];
-    }
-    acc[townName].push(mapCasinoWithTownToCasinoCardData(casino));
-    return acc;
-  }, {} as Record<string, CasinoCardData[]>);
+  return casinos.map((casino) => mapCasinoWithTownToCasinoCardData(casino));
+};
+
+export const getCasinosGroupedByTown = async (): Promise<
+  Record<string, CasinoCardData[]>
+> => {
+  const casinos = await prisma.casino.findMany({
+    include: {
+      town: true,
+    },
+    orderBy: {
+      priority: "desc",
+    },
+  });
+
+  const groupedCasinos = casinos.reduce(
+    (acc, casino) => {
+      const townName = casino.town.name.toLocaleLowerCase();
+      if (!acc[townName]) {
+        acc[townName] = [];
+      }
+      acc[townName].push(mapCasinoWithTownToCasinoCardData(casino));
+      return acc;
+    },
+    {} as Record<string, CasinoCardData[]>,
+  );
 
   return groupedCasinos;
 };

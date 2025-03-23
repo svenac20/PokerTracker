@@ -11,13 +11,13 @@ import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
-interface CasinoLocationInputProps{
+interface CasinoLocationInputProps {
   form: UseFormReturn<z.infer<typeof casinoDetailsSchema>>;
 }
 
-const CasinoLocationInput: FunctionComponent<
-  CasinoLocationInputProps
-> = ({ form }) => {
+const CasinoLocationInput: FunctionComponent<CasinoLocationInputProps> = ({
+  form,
+}) => {
   return (
     <FormField
       control={form.control}
@@ -42,4 +42,3 @@ const CasinoLocationInput: FunctionComponent<
 };
 
 export default CasinoLocationInput;
-

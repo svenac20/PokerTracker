@@ -1,12 +1,7 @@
 // pages/index.js or app/page.js (depending on your NextJS setup)
 import HomePageCasinoCard from "@/components/custom/homePageCasinoCard";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getCasinosGroupedByTown } from "@/lib/services";
 import { ArrowRight, Clock, Dot, MapPin, Star } from "lucide-react";
@@ -225,11 +220,11 @@ export default async function Home() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Zagreb poker venues primarily offer No-Limit Hold&apos;em (NLH)
-                    and Pot-Limit Omaha (PLO) cash games. Stakes vary from venue
-                    to venue, with common limits being 1/2, 1/1, and occasional
-                    higher-stakes games. Many venues also run daily and weekly
-                    tournaments.
+                    Zagreb poker venues primarily offer No-Limit Hold&apos;em
+                    (NLH) and Pot-Limit Omaha (PLO) cash games. Stakes vary from
+                    venue to venue, with common limits being 1/2, 1/1, and
+                    occasional higher-stakes games. Many venues also run daily
+                    and weekly tournaments.
                   </p>
                 </CardContent>
               </Card>

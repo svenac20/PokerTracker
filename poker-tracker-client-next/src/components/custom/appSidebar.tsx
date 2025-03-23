@@ -39,14 +39,22 @@ const AppSidebar: FunctionComponent = async () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <SidebarMenuLink href="/live" text="Live games" icon={<Home />} />
+                <SidebarMenuLink
+                  href="/live"
+                  text="Live games"
+                  icon={<Home />}
+                />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <SidebarMenuLink href="/live/casinos" text="Casinos" icon={<Building />} />
+                <SidebarMenuLink
+                  href="/live/casinos"
+                  text="Casinos"
+                  icon={<Building />}
+                />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

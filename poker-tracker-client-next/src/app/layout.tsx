@@ -19,20 +19,23 @@ export const metadata: Metadata = {
     default: "Home | Poker Radar",
     template: "%s | Poker Radar",
   },
-  description: "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
+  description:
+    "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
   twitter: {
     card: "summary_large_image",
-    images: 'url/image.png',
-    description: 'Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.',
+    images: "url/image.png",
+    description:
+      "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
   },
   openGraph: {
-    title: 'Home | Poker Radar',
-    description: 'Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.',
+    title: "Home | Poker Radar",
+    description:
+      "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
     images: [
       {
         url: ogImage.src,
         width: ogImage.width,
-        height: ogImage.height
+        height: ogImage.height,
       },
     ],
   },
@@ -48,9 +51,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );

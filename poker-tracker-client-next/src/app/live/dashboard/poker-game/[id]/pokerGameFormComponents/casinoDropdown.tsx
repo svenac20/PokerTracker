@@ -1,5 +1,19 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { CasinoDropdownDto } from "@/lib/types";
 import { formSchema } from "@/lib/zod-schema";
 import { FunctionComponent } from "react";
@@ -7,11 +21,14 @@ import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
 interface CasinosDropdownProps {
-    form: UseFormReturn<z.infer<typeof formSchema>>;
-    casinos: CasinoDropdownDto[];
+  form: UseFormReturn<z.infer<typeof formSchema>>;
+  casinos: CasinoDropdownDto[];
 }
 
-const CasinosDropdown: FunctionComponent<CasinosDropdownProps> = ({form, casinos}) => {
+const CasinosDropdown: FunctionComponent<CasinosDropdownProps> = ({
+  form,
+  casinos,
+}) => {
   return (
     <FormField
       control={form.control}

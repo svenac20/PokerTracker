@@ -3,7 +3,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/zod-schema";
@@ -15,7 +15,7 @@ interface TablesInputProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;
 }
 
-const TablesInput: FunctionComponent<TablesInputProps> = ({form}) => {
+const TablesInput: FunctionComponent<TablesInputProps> = ({ form }) => {
   return (
     <FormField
       control={form.control}

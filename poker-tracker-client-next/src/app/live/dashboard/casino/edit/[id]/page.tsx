@@ -1,5 +1,9 @@
 import { authOptions } from "@/lib/authOptions";
-import { getCasinoById, getCasinoDetailsById, getCasinosIds } from "@/lib/services";
+import {
+  getCasinoById,
+  getCasinoDetailsById,
+  getCasinosIds,
+} from "@/lib/services";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -17,7 +21,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const {id} = await params;
+  const { id } = await params;
   const casinoId = await getCasinoById(id);
   return {
     title: `${casinoId?.name}`,

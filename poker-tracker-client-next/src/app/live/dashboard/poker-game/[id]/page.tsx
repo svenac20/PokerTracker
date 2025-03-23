@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { getCasinosDropdownForUser, getPokerGameByIdForUser } from "@/lib/services";
+import {
+  getCasinosDropdownForUser,
+  getPokerGameByIdForUser,
+} from "@/lib/services";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -10,7 +13,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Edit poker game",
   description: "Edit poker game",
-}
+};
 
 export default async function EditPokerGame({
   params,

@@ -2,10 +2,11 @@ import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { getCasinosWithPokerGames } from "@/lib/services";
 import { Metadata } from "next";
 
-export const metadata: Metadata ={
+export const metadata: Metadata = {
   title: "Live games",
-  description: "List of live poker games. Find the best poker games in Croatia.",
-}
+  description:
+    "List of live poker games. Find the best poker games in Croatia.",
+};
 
 export default async function Home() {
   const casinos = await getCasinosWithPokerGames();
@@ -15,7 +16,7 @@ export default async function Home() {
         Current poker games
       </h1>
       <ul>
-        <CasinosList casinoInit={casinos}/>
+        <CasinosList casinoInit={casinos} />
       </ul>
     </>
   );

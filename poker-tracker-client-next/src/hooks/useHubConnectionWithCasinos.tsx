@@ -28,7 +28,10 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
                 const updatedPokerGames = [...casino.pokerGames, pokerGame];
                 updatedPokerGames.sort((a, b) => {
                   if (a.gameStarted === b.gameStarted) {
-                    return new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
+                    return (
+                      new Date(a.startTime).getTime() -
+                      new Date(b.startTime).getTime()
+                    );
                   }
                   return a.gameStarted ? -1 : 1;
                 });
@@ -47,7 +50,7 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
         });
 
         connect.on("UpdatePokerGame", (pokerGame: PokerGameDto) => {
-          console.log(pokerGame)
+          console.log(pokerGame);
           setCasinos((prevCasinos) => {
             return prevCasinos.map((casino) => {
               if (casino?.id === pokerGame.casinoId) {
@@ -56,13 +59,17 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
                 );
                 updatedPokerGames.sort((a, b) => {
                   if (a.gameStarted === b.gameStarted) {
-                    return new Date(a.startTime).getTime() - new Date(b.startTime).getTime();
+                    return (
+                      new Date(a.startTime).getTime() -
+                      new Date(b.startTime).getTime()
+                    );
                   }
                   return a.gameStarted ? -1 : 1;
                 });
                 return {
                   ...casino,
-                  pokerGames: updatedPokerGames,                };
+                  pokerGames: updatedPokerGames,
+                };
               }
               return casino;
             });

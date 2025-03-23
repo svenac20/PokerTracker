@@ -4,7 +4,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Register",
-  description: "Register to the poker radar app and become a member of the poker community", 
+  description:
+    "Register to the poker radar app and become a member of the poker community",
   twitter: {
     card: "summary_large_image",
   },

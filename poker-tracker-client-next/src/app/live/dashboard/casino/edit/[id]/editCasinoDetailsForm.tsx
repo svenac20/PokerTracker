@@ -31,22 +31,25 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
       information: casino.information ?? "",
       rake: casino.rake ?? "",
       imageUrl: casino.imageUrl,
-      image: new File([], "")
+      image: new File([], ""),
     },
   });
 
   async function onSubmitEditCasinoDetails(
-    data: z.infer<typeof casinoDetailsSchema>
+    data: z.infer<typeof casinoDetailsSchema>,
   ) {
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
     if (data.image) {
       formData.append("image", data.image);
     }
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/casino/${casino.id}`, {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/casino/${casino.id}`,
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
 
     if (!response.ok) {
       toast({

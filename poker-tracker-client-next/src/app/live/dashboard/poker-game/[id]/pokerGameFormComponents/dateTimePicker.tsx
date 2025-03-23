@@ -5,7 +5,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Popover,
@@ -33,18 +33,18 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
       form.setValue("startTime", date);
     }
   }
- 
+
   function handleTimeChange(type: "hour" | "minute", value: string) {
     const currentDate = form.getValues("startTime") || new Date();
     const newDate = new Date(currentDate);
- 
+
     if (type === "hour") {
       const hour = parseInt(value, 10);
       newDate.setHours(hour);
     } else if (type === "minute") {
       newDate.setMinutes(parseInt(value, 10));
     }
- 
+
     form.setValue("startTime", newDate);
   }
 
@@ -63,7 +63,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
                   variant={"outline"}
                   className={cn(
                     "w-full pl-3 text-left font-normal",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
                   )}
                 >
                   {field.value ? (
@@ -130,7 +130,7 @@ const DateTimePicker: FunctionComponent<DateTimePickerProps> = ({ form }) => {
                           >
                             {minute.toString().padStart(2, "0")}
                           </Button>
-                        )
+                        ),
                       )}
                     </div>
                     <ScrollBar orientation="horizontal" className="sm:hidden" />

@@ -6,13 +6,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     images: "url/image.png",
-    description:
-      "Privacy policy and terms of service for Poker Radar",
+    description: "Privacy policy and terms of service for Poker Radar",
   },
   openGraph: {
     title: "Policy | Poker Radar",
-    description:
-      "Privacy policy and terms of service for Poker Radar",
+    description: "Privacy policy and terms of service for Poker Radar",
     images: "/opengraph-image.png",
   },
 };

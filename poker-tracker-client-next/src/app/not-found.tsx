@@ -41,8 +41,8 @@ export default function NotFound() {
               </h1>
               <p className="text-lg mb-8 max-w-md">
                 Looks like this hand didn&apos;t play out as expected. The page
-                you&apos;re looking for doesn&apos;t exist or has been moved to a
-                different location.
+                you&apos;re looking for doesn&apos;t exist or has been moved to
+                a different location.
               </p>
               <div className="grid grid-cols-1  gap-4 w-full max-w-md">
                 <Button variant="outline" asChild>
@@ -71,7 +71,7 @@ export default function NotFound() {
                     className="text-blue-600 hover:text-blue-800 hover:underline flex items-center justify-center p-3 bg-white rounded-md shadow"
                   >
                     <Search className="mr-2 h-4 w-4" />
-                    Home 
+                    Home
                   </Link>
                 </div>
               </div>

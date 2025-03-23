@@ -1,15 +1,31 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { formSchema } from "@/lib/zod-schema";
 import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
 interface GameTypeDropdownProps {
-    form: UseFormReturn<z.infer<typeof formSchema>>;
+  form: UseFormReturn<z.infer<typeof formSchema>>;
 }
 
-const GameTypeDropdown: FunctionComponent<GameTypeDropdownProps> = ({form}) => {
+const GameTypeDropdown: FunctionComponent<GameTypeDropdownProps> = ({
+  form,
+}) => {
   return (
     <FormField
       control={form.control}
