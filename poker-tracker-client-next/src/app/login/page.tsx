@@ -93,7 +93,7 @@ export default function Login() {
             </span>
             <div className="flex flex-col gap-4">
               {searchParams.get("error") == "CredentialsSignin" && (
-                <FormMessage className="font-extrabold text-center">
+                <FormMessage className="font-extrabold text-center border-red-500 border-2 rounded-md p-2">
                   Invalid username or password
                 </FormMessage>
               )}

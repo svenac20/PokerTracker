@@ -1,3 +1,5 @@
+import { Casino } from "@prisma/client";
+
 export enum Roles {
   ADMIN = 1,
   PLAYER = 2,
@@ -8,14 +10,18 @@ export enum GameTypes {
   NLH = 2,
 }
 
-export type CasinoDto = {
+export type CasinoBaseType = {
   id: number;
   name: string;
   town: string;
   location: string | null;
-  pokerGames: PokerGameDto[];
   rake: string | null;
   information: string | null;
+  imageUrl: string | null
+}
+
+export type CasinoDto = CasinoBaseType & {
+  pokerGames: PokerGameDto[];
 };
 
 export type PokerGameDto = {
@@ -37,14 +43,7 @@ export type CasinoDropdownDto = {
   town: string;
 };
 
-export type CasinoCardData = {
-  id: number;
-  name: string;
-  town: string;
-  location: string | null;
-  rake: string | null;
-  information: string | null;
-};
+export type CasinoCardData = CasinoBaseType;
 
 export type DeletePokerGameMessage = {
   pokerGameId: number;
@@ -57,6 +56,7 @@ export type CasinoWithPokerGames = {
   rake: string | null;
   location: string | null;
   information: string | null;
+  imageUrl: string | null;
   town: {
     name: string;
   };
@@ -99,6 +99,7 @@ export type CasinoWithTown = {
   rake: string | null;
   location: string | null;
   information: string | null;
+  imageUrl: string | null;
   town: {
     id: number;
     name: string;

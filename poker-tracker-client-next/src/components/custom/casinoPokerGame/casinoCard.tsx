@@ -9,6 +9,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
 import { MapPin } from "lucide-react";
+import Image from "next/image";
 
 interface CasinoCardProps {
   casino: CasinoDto;
@@ -26,6 +27,16 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
           <AccordionItem value="item-1">
             <AccordionTrigger>
               <div className="flex gap-4 items-center">
+                {casino.imageUrl && (
+                  <div className="w-[20%] md:w-[15%]">
+                    <Image
+                      src={casino.imageUrl}
+                      alt={`casino ${casino.name} image`}
+                      width={590}
+                      height={590}
+                    />
+                  </div>
+                )}
                 <p className="font-bold text-lg ">{casino.name}</p>
               </div>
             </AccordionTrigger>

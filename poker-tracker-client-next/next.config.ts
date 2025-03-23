@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
     dirs: ["src/app", "src/components/custom", "src/hooks", "src/lib"],
   },
+  images: {
+    domains: ["localhost", "pokerradarsa.blob.core.windows.net", "poker-radar.com"],
+  },
   redirects: async () => {
     return [
       {

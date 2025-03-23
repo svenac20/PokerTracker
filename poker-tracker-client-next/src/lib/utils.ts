@@ -39,6 +39,7 @@ export function mapCasinoToCasinoDto(casino: CasinoWithPokerGames) : CasinoDto {
     rake: casino.rake,
     location: casino.location,
     information: casino.information,
+    imageUrl: casino.imageUrl,
     pokerGames: casino.pokerGames.map((game) => ({
       id: game.id,
       startTime: game.startTime,
@@ -75,5 +76,6 @@ export function mapCasinoWithTownToCasinoCardDetails(casino: CasinoWithTown): Ca
     town: casino.town.name,
     rake: casino.rake,
     information: casino.information,
+    imageUrl: casino.imageUrl,
   };
 }

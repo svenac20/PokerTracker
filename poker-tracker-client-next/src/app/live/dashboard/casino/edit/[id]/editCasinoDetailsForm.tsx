@@ -14,6 +14,7 @@ import { z } from "zod";
 import CasinoInformationInput from "./casinoInformationInput";
 import CasinoLocationInput from "./casinoLocationInput";
 import CasinoRakeInput from "./casinoRakeInput";
+import CasinoImageInput from "./casinoPhotoInput";
 
 interface EditCasinoDetailsFormProps {
   casino: CasinoCardData;
@@ -29,25 +30,31 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
       location: casino.location ?? "",
       information: casino.information ?? "",
       rake: casino.rake ?? "",
+      imageUrl: casino.imageUrl,
+      image: new File([], "")
     },
   });
 
   async function onSubmitEditCasinoDetails(
     data: z.infer<typeof casinoDetailsSchema>
   ) {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(data));
+    if (data.image) {
+      formData.append("image", data.image);
+    }
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/casino/${casino.id}`, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: formData,
     });
 
     if (!response.ok) {
-      console.error(response.statusText);
-      console.error(response.text())
       toast({
         title: "Error",
         description: "An error occurred while editing casino information",
         className: "bg-red-500 text-white",
       });
+      return;
     }
 
     toast({
@@ -67,6 +74,7 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
           <CasinoLocationInput form={form} />
           <CasinoRakeInput form={form} />
           <CasinoInformationInput form={form} />
+          <CasinoImageInput form={form} />
           <Button
             className="w-full"
             type="submit"

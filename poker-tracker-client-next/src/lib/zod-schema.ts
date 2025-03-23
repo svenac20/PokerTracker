@@ -55,7 +55,20 @@ export const loginSchema = z.object({
 });
 
 export const casinoDetailsSchema = z.object({
-  rake: z.string({}),
+  rake: z.string({}).nonempty("Rake must not be empty"),
   information: z.string({}),
-  location: z.string({})
+  location: z.string({}),
+  imageUrl: z.string({}).nullable(),
+  image: z
+    .instanceof(File)
+    .optional()
+    .refine(
+      (file) => !file || file.size <= 5 * 1024 * 1024, // Max size: 5MB
+      "Image must be less than 5MB"
+    )
+    .refine(
+      (file) =>
+        !file || ["image/jpeg", "image/png", "image/jpg"].includes(file.type),
+      "Only JPEG, PNG, images are allowed"
+    ),
 });
