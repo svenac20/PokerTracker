@@ -26,8 +26,9 @@ export async function POST(
   }
 
   const formData = await req.formData();
+  console.log(formData);
   const data = JSON.parse(formData.get("data") as string);
-  data.image = formData.get("image") as File | null;
+  data.image = formData.get("image") as File | null
 
   const validatedData = casinoDetailsSchema.safeParse(data);
   // Insert into database
@@ -40,10 +41,7 @@ export async function POST(
 
   let imageUrl = data.imageUrl;
   const imageFile = formData.get("image") as File | null;
-  console.log(data.imageUrl);
-  console.log(imageFile);
   if (imageFile) {
-    console.log("Uploading image");
     const blobServiceClient = BlobServiceClient.fromConnectionString(
       process.env.SA_CONN_STRING!,
     );

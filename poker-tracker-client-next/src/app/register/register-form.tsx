@@ -106,6 +106,7 @@ const RegisterForm: FunctionComponent = () => {
                   <Input
                     type="password"
                     placeholder="Password"
+                    autoComplete="current-password"
                     {...field}
                   ></Input>
                 </FormControl>

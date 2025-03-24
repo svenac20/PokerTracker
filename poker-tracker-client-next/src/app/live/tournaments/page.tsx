@@ -3,21 +3,18 @@ import { getCasinosWithPokerGames } from "@/lib/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Live games",
+  title: "Tournaments",
+  keywords: "poker, tournaments, cash games, Zagreb, Poreč, Croatia", 
   description:
-    "List of live poker games. Find the best poker games in Croatia.",
+    "List of current and upcoming poker tournaments. Find the best tournaments for poker cash games in Zagreb, Poreč and other cities in Croatia.",
 };
 
 export default async function Home() {
-  const casinos = await getCasinosWithPokerGames();
   return (
     <>
       <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-6 lg:pb-12">
-        Current poker games
+        Tournaments
       </h1>
-      <ul>
-        <CasinosList casinoInit={casinos} />
-      </ul>
     </>
   );
 }

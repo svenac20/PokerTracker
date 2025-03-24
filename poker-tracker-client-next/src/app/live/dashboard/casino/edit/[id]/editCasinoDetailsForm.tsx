@@ -31,7 +31,6 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
       information: casino.information ?? "",
       rake: casino.rake ?? "",
       imageUrl: casino.imageUrl,
-      image: new File([], ""),
     },
   });
 

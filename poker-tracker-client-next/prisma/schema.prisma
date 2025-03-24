@@ -75,3 +75,10 @@ model GameType {
   name       String
   pokerGames PokerGame[]
 }
+
+model Tournaments {
+  id            Int      @id @default(autoincrement())
+  imageUrl      String?
+  startTime     DateTime @default(now())
+  gameStarted   Boolean  @default(false)
+}
