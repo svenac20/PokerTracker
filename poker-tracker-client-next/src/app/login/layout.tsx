@@ -1,14 +1,5 @@
 import AppSidebar from "@/components/custom/appSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to the poker radar app to track your poker games",
-  twitter: {
-    card: "summary_large_image",
-  },
-};
 
 export default async function RootLayout({
   children,

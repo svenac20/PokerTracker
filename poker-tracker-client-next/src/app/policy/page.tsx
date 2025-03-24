@@ -8,7 +8,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Poker Radar's privacy policy - learn how we collect, use, and protect your personal information.",
+    "Poker Radar's privacy policy - learn how we collect, use, and protect your personal information. All your data is safe with us. We use Google APIs and do not store any sensitive data.",
 };
 
 export default function PrivacyPolicy() {

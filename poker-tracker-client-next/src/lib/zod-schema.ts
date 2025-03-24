@@ -64,7 +64,7 @@ export const casinoDetailsSchema = z.object({
     .optional()
     .refine(
       (file) =>
-        !file || file.arrayBuffer.length == 0 || file.size <= 5 * 1024 * 1024, // Max size: 5MB
+        !file || file.size <= 5 * 1024 * 1024, // Max size: 5MB
       "Image must be less than 5MB"
     )
     .refine(

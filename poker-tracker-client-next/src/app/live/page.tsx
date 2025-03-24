@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Live games",
   description:
-    "List of live poker games. Find the best poker games in Croatia.",
+    "List of live poker games. Find the best poker games in Croatia. Currently suppporting",
 };
 
 export default async function Home() {

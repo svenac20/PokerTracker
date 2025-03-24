@@ -1,8 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "My account",
+  description: "Get information about your user account. Co",
+};
+
 
 export default async function MyAccount() {
   const session = await getServerSession();

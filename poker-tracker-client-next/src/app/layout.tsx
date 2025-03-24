@@ -23,7 +23,13 @@ export const metadata: Metadata = {
     "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
   twitter: {
     card: "summary_large_image",
-    images: "url/image.png",
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height,
+      },
+    ],
     description:
       "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
   },

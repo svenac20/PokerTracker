@@ -9,6 +9,7 @@ import {
 import { CasinoCardData } from "@/lib/types";
 import { MapPin } from "lucide-react";
 import { FunctionComponent } from "react";
+import Image from "next/image";
 
 interface CasinoDetailsCardProps {
   casino: CasinoCardData;

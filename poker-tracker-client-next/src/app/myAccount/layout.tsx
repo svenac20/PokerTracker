@@ -3,16 +3,6 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import Providers from "../providers";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "My account",
-  description: "Get information about your user account",
-  twitter: {
-    card: "summary_large_image",
-  },
-};
-
 export default async function RootLayout({
   children,
 }: Readonly<{
