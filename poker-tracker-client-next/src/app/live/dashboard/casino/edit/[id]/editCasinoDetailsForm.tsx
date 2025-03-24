@@ -37,8 +37,6 @@ const EditCasinoDetailsForm: FunctionComponent<EditCasinoDetailsFormProps> = ({
   async function onSubmitEditCasinoDetails(
     data: z.infer<typeof casinoDetailsSchema>,
   ) {
-    console.log(data);
-    return;
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
     if (data.image) {
