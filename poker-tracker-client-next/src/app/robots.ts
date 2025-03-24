@@ -12,11 +12,12 @@ export default function robots(): MetadataRoute.Robots {
           "/live/casinos",
           "/login",
           "/register",
+          "/myAccount",
+          "/policy",
         ],
         disallow: [
           "/live/dashboard",
           "/live/dashboard/casino",
-          "/policy",
           "/live/dashboard/poker-game",
         ],
       },
