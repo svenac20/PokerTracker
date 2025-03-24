@@ -58,7 +58,7 @@ const AppSidebar: FunctionComponent = async () => {
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
-          <SidebarMenu>
+          {/* <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <SidebarMenuLink
@@ -68,7 +68,7 @@ const AppSidebar: FunctionComponent = async () => {
                 />
               </SidebarMenuButton>
             </SidebarMenuItem>
-          </SidebarMenu>
+          </SidebarMenu> */}
           {session?.user.roleId == Roles.ADMIN && (
             <SidebarMenu>
               <Collapsible asChild className="group/collapsible">

@@ -60,7 +60,6 @@ export async function POST(
     imageUrl = blockBlobClient.url;
   }
   const casinoData = validatedData.data;
-  console.log(casinoData);
   const casino = await prisma.casino.update({
     where: {
       id: parsedId,

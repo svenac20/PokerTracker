@@ -24,7 +24,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          console.log("OVDJEEEEEEEEEEEEEEEEEEEE");
           const userCredential = await signInWithEmailAndPassword(
             auth,
             credentials!.email,
