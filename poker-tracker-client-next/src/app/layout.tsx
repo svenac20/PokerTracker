@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://poker-radar.com"),
+  keywords: ["poker zagreb", "cash games", "zagreb poker", "croatia poker", "poreč poker", "porec poker", "cezar zagreb", "cash games zagreb", "cash games poreč"],
   title: {
     default: "Home | Poker Radar",
     template: "%s | Poker Radar",
