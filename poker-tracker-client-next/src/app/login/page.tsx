@@ -15,21 +15,12 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { loginSchema } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Metadata } from "next";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-export const metadata: Metadata = {
-  title: "Login",
-  description:
-    "Login to the poker radar app and become a member of the poker community. Use google login or use your email to login.",
-  twitter: {
-    card: "summary_large_image",
-  },
-};
 
 export default function Login() {
   const searchParams = useSearchParams();

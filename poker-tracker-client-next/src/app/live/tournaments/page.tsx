@@ -1,5 +1,3 @@
-import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
-import { getCasinosWithPokerGames } from "@/lib/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
