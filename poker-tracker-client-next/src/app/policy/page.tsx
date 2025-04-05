@@ -5,11 +5,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Poker Radar's privacy policy - learn how we collect, use, and protect your personal information. All your data is safe with us. We use Google APIs and do not store any sensitive data.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Privacy Policy",
+    description: `Learn how Poker Radar collects, uses, and protects your personal information. Read our privacy policy to understand your data rights and our commitment to your privacy.`,
+    keywords: [
+      "poker radar privacy policy",
+      "privacy policy",
+      "data protection Poker Radar",
+      "how poker radar uses data",
+      "user privacy poker radar",
+    ],
+  };
+}
 
 export default function PrivacyPolicy() {
   return (

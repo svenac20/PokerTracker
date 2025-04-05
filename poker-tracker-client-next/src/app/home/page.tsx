@@ -317,11 +317,6 @@ export default async function Home() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="" className="text-gray-300 hover:text-white">
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
                     <Link
                       href="/policy"
                       className="text-gray-300 hover:text-white"

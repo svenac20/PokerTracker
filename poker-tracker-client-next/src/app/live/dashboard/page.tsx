@@ -8,7 +8,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "Dashboard for admin users",
+  description: "Dashboard for admin users of Poker Radar website",
 };
 
 const DashboardPage = async () => {
