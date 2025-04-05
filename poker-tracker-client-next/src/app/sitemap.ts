@@ -1,27 +1,28 @@
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const domain = process.env.NEXT_PUBLIC_DEFAULT_DOMAIN;
   return [
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/home`,
+      url: `${domain}/home`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/policy`,
+      url: `${domain}/policy`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/live`,
+      url: `${domain}/live`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/live/casinos`,
+      url: `${domain}/live/casinos`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/login`,
+      url: `${domain}/login`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/myAccount`,
+      url: `${domain}/myAccount`,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_API_URL}/register`,
+      url: `${domain}/register`,
     },
   ];
 }
