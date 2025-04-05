@@ -16,7 +16,7 @@ import {
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { Building, ChevronRight, Home, Info, Lock } from "lucide-react";
+import { Building, ChevronRight, CirclePlus, Home, Info, LayoutDashboard, Lock, Pencil, Trophy } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -64,7 +64,7 @@ const AppSidebar: FunctionComponent = async () => {
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
-          {/* <SidebarMenu>
+          <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <SidebarMenuLink
@@ -74,7 +74,7 @@ const AppSidebar: FunctionComponent = async () => {
                 />
               </SidebarMenuButton>
             </SidebarMenuItem>
-          </SidebarMenu> */}
+          </SidebarMenu>
           {session?.user.roleId == Roles.ADMIN && (
             <SidebarMenu>
               <Collapsible asChild className="group/collapsible">
@@ -93,18 +93,28 @@ const AppSidebar: FunctionComponent = async () => {
                           <SidebarMenuLink
                             href="/live/dashboard"
                             text="Dashboard"
+                          icon={<LayoutDashboard />}
                           />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
                           <SidebarMenuLink
                             href="/live/dashboard/poker-game"
                             text="Add poker game"
+                            icon={<CirclePlus />}
                           />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
                           <SidebarMenuLink
                             href="/live/dashboard/casino"
-                            text="Edit casino information"
+                            text="Edit casinos"
+                            icon={<Pencil/>}
+                          />
+                        </SidebarMenuSubButton>
+                        <SidebarMenuSubButton asChild>
+                          <SidebarMenuLink
+                            href="/live/dashboard/tournaments"
+                            text="Edit Tournaments"
+                            icon={<Trophy/>}
                           />
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
