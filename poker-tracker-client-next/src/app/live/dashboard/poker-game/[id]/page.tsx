@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import AddEditPokerGameForm from "./addEditPokerGameForm";
 import { authOptions } from "@/lib/authOptions";
 import { Metadata } from "next";
+import { Roles } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Edit poker game",
@@ -25,7 +26,7 @@ export default async function EditPokerGame({
     redirect("/dashboard");
   }
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session || session.user.roleId !== Roles.ADMIN) {
     redirect("/");
   }
   const casinoGame = await getPokerGameByIdForUser(

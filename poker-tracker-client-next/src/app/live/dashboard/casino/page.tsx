@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import CasinoCardEditPage from "./casinoCardEditPage";
+import { Roles } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Casinos",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default async function CasinoEditPage() {
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session || session.user.roleId !== Roles.ADMIN) {
     redirect("/");
   }
   const casinosForUser = await getCasinoDetailsForUser(session.user.id);

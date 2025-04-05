@@ -6,6 +6,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import AddEditPokerGameForm from "./[id]/addEditPokerGameForm";
 import { Metadata } from "next";
+import { Road_Rage } from "next/font/google";
+import { Roles } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Add poker game",
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function AddPokerGame() {
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session || session.user.roleId !== Roles.ADMIN) {
     redirect("/");
   }
   const casinos = await getCasinosDropdownForUser(session.user.id);
