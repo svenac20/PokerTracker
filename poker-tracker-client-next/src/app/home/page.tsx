@@ -7,6 +7,7 @@ import { getCasinosGroupedByTown } from "@/lib/services";
 import { ArrowRight, Clock, Dot, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import pokerRadarImage from "../../../public/poker-radar-logo.gif";
 
 export default async function Home() {
   const casinos = await getCasinosGroupedByTown();
@@ -42,10 +43,10 @@ export default async function Home() {
               <div className="md:w-1/2 flex justify-center">
                 <div className="relative w-64 h-64 md:w-80 md:h-80">
                   <Image
-                    src="/poker-radar-logo.svg"
+                    src={pokerRadarImage.src}
                     alt="Poker Radar Logo"
-                    width={628}
-                    height={486}
+                    width={pokerRadarImage.width}
+                    height={pokerRadarImage.height}
                   />
                 </div>
               </div>
