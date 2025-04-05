@@ -15,13 +15,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://poker-radar.com"),
-  keywords: ["poker radar", "live poker games", "poker zagreb", "cash games zagreb", "zagreb poker", "croatia poker", "poreč poker", "porec poker", "cezar zagreb", "cash games zagreb", "cash games poreč"],
   title: {
-    default: "Home | Poker Radar",
-    template: "%s | Poker Radar",
+    default: "Home | Poker Radar - Live Poker Games in Croatia",
+    template: "%s | Poker Radar - Live Poker Games in Croatia",
   },
-  description:
-    "Get instant information about active cash games and waiting lists at all poker venues in Zagreb and throughout Croatia. Compare rake rates, game types, and player counts to find the perfect poker game for your preferences and bankroll.",
   twitter: {
     card: "summary_large_image",
     images: [

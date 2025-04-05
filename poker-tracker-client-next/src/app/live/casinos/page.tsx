@@ -1,13 +1,20 @@
 import CasinoDetailsCard from "@/components/custom/casinoDetailsCard";
 import { getCasinos } from "@/lib/services";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Casinos | Poker Radar",
-  keywords: "casinos, poker, poker games, poker radar",
-  description:
-    "List of casinos available on Poker Radar website. Currently supporting Cezar Casino Zagreb and Cezar Casino Poreč.",
-};
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const casinos = await getCasinos();
+  //flatten the array of arrays into a single array
+  const casinoNames = casinos.map((casino) => casino.name);
+  return {
+    title: "Casinos Live Poker Games in Croatia | Poker Radar",
+    description:
+      `Explore casinos in Croatia that feature live poker games. Find details about ${casinoNames.join(",")} and other venues offering cash games and tournaments.`,
+    keywords: ["poker venues Croatia", ...casinoNames],
+  };
+}
 
 export default async function Casinos() {
   const casinosForUser = await getCasinos();

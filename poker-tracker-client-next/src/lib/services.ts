@@ -243,3 +243,16 @@ export const getCasinosGroupedByTown = async (): Promise<
 
   return groupedCasinos;
 };
+
+export const getTowns = async () => {
+  const towns = await prisma.town.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  return towns.map((town) => ({
+    id: town.id,
+    name: town.name,
+  }));
+}
