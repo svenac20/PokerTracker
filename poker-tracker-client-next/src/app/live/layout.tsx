@@ -2,16 +2,8 @@ import AppSidebar from "@/components/custom/appSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
 import { authOptions } from "@/lib/authOptions";
-import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Providers from "../providers";
-
-export const metadata: Metadata = {
-  title: "Live games",
-  alternates: {
-    canonical: "/live",
-  },
-};
 
 export default async function RootLayout({
   children,

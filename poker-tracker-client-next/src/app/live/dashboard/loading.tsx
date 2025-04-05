@@ -10,7 +10,7 @@ export default function LoadingDashboard() {
         {Array.from({ length: 2 }).map((_, index) => (
           <Skeleton className="h-36 rounded-md w-full" key={index} />
         ))}
-      </div>{" "}
+      </div>
     </>
   );
 }

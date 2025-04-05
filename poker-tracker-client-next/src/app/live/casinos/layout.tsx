@@ -1,4 +1,4 @@
-export default async function CasinosLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

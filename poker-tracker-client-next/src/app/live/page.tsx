@@ -1,10 +1,8 @@
 import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { getCasinos, getCasinosWithPokerGames, getTowns } from "@/lib/services";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata} from "next";
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const casinos = await getCasinos();
   const towns = await getTowns();
   //flatten the array of arrays into a single array
