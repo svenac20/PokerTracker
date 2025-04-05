@@ -21,7 +21,7 @@ import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import logo from "../../../public/poker-radar-logo.svg";
+import pokerRadarImage from "../../../public/poker-radar-logo.svg";
 import MyAccountMenu from "./myAccountMenu";
 import SidebarMenuLink from "./sidebarMenuLink";
 
@@ -29,9 +29,15 @@ const AppSidebar: FunctionComponent = async () => {
   const session = await getServerSession(authOptions);
   return (
     <Sidebar>
-      <SidebarHeader className="text-xl font-bold text-black h-40 py-4">
+      <SidebarHeader className="text-xl font-bold text-black h-40 py-4 mb-2">
         <div className="relative h-full w-full p-6">
-          <Image src={logo} alt="logo" fill priority />
+          <Image
+            src={pokerRadarImage.src}
+            alt="Poker Radar logo"
+            width={pokerRadarImage.width}
+            height={pokerRadarImage.height}
+            priority
+          />
         </div>
       </SidebarHeader>
       <SidebarContent>
