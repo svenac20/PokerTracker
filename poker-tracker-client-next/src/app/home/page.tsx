@@ -44,8 +44,8 @@ export default async function Home() {
                   <Image
                     src="/poker-radar-logo.svg"
                     alt="Poker Radar Logo"
-                    fill
-                    className="object-contain"
+                    width={628}
+                    height={486}
                   />
                 </div>
               </div>
