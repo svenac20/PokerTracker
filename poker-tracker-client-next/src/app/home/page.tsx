@@ -7,7 +7,7 @@ import { getCasinosGroupedByTown } from "@/lib/services";
 import { ArrowRight, Clock, Dot, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import pokerRadarImage from "../../../public/poker-radar-logo.gif";
+import pokerRadarImage from "../../../public/poker-radar-logo.svg";
 
 export default async function Home() {
   const casinos = await getCasinosGroupedByTown();
