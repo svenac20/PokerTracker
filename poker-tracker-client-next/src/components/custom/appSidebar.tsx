@@ -16,7 +16,7 @@ import {
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { Building, ChevronRight, Home, Info, Lock, Trophy } from "lucide-react";
+import { Building, ChevronRight, Home, Info, Lock } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";

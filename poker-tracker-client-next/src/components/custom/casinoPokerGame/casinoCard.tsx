@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FunctionComponent } from "react";
 import { CasinoDto } from "../../../lib/types";
 import {
@@ -8,8 +9,6 @@ import {
 } from "../../ui/accordion";
 import { Card, CardContent, CardDescription, CardHeader } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
-import { MapPin } from "lucide-react";
-import Image from "next/image";
 
 interface CasinoCardProps {
   casino: CasinoDto;
