@@ -35,7 +35,7 @@ model Casino {
   town        Town        @relation(fields: [townId], references: [id])
   pokerGames  PokerGame[]
   owners      User[]      @relation("UserCasinos")
-  Tournaments Tournaments[]
+  Tournaments Tournament[]
 }
 
 model Town {
@@ -77,12 +77,13 @@ model GameType {
   pokerGames PokerGame[]
 }
 
-model Tournaments {
+model Tournament {
   id            Int      @id @default(autoincrement())
   name          String
   imageUrl      String
   startTime     DateTime @default(now())
   gameStarted   Boolean  @default(false)
+  information   String?
   casinoId      Int
   casino        Casino   @relation(fields: [casinoId], references: [id])
 }

@@ -75,3 +75,7 @@ export const casinoDetailsSchema = z.object({
       "Only JPEG, PNG, images are allowed"
     ),
 });
+
+export const editTournamentSchema = z.object({
+  casinoId: z.string({})
+})

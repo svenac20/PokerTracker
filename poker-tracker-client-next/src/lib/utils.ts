@@ -1,3 +1,4 @@
+import { Tournament, User } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { JWT } from "next-auth/jwt";
 import { twMerge } from "tailwind-merge";
@@ -8,8 +9,8 @@ import {
   CasinoWithTown,
   PokerGameDto,
   PokerGameWithCasino,
+  TournamentDto,
 } from "./types";
-import { User } from "@prisma/client";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -89,4 +90,13 @@ export function mapCasinoWithTownToCasinoCardDetails(
     information: casino.information,
     imageUrl: casino.imageUrl,
   };
+}
+
+export function mapTournamentToTournamentDto(tournament: Tournament) {
+  return {
+    id: tournament.id,
+    casinoId: tournament.casinoId,
+    name: tournament.name,
+    imageUrl: tournament.imageUrl,
+  } as TournamentDto
 }

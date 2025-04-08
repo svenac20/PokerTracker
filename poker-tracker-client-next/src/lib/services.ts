@@ -1,11 +1,13 @@
 import "server-only";
 import prisma from "./prisma";
-import { CasinoCardData, CasinoDropdownDto, CasinoDto } from "./types";
+import { CasinoCardData, CasinoDropdownDto, CasinoDto, TournamentDto } from "./types";
 import {
   mapCasinoToCasinoDto,
   mapCasinoWithTownToCasinoCardDetails as mapCasinoWithTownToCasinoCardData,
   mapPokerGameToPokerGameDto,
+  mapTournamentToTournamentDto,
 } from "./utils";
+import { Torus } from "lucide-react";
 
 export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
@@ -124,7 +126,7 @@ export const getCasinoDetailsForUser = async (userId: string) => {
 
 export const getPokerGameByIdForUser = async (
   pokerGameId: number,
-  userId: string,
+  userId: string
 ) => {
   const pokerGame = await prisma.pokerGame.findUnique({
     where: {
@@ -238,7 +240,7 @@ export const getCasinosGroupedByTown = async (): Promise<
       acc[townName].push(mapCasinoWithTownToCasinoCardData(casino));
       return acc;
     },
-    {} as Record<string, CasinoCardData[]>,
+    {} as Record<string, CasinoCardData[]>
   );
 
   return groupedCasinos;
@@ -255,4 +257,28 @@ export const getTowns = async () => {
     id: town.id,
     name: town.name,
   }));
-}
+};
+
+export const getTournamentsForCasino = async (casinoId: number[]) => {
+  //find all tournaments for casinos with ids in casinoId
+  const tournaments = await prisma.tournament.findMany({
+    where: {
+      casinoId: {
+        in: casinoId,
+      },
+    },
+    orderBy: {
+      startTime: "asc",
+    },
+  });
+
+  const tournamentsDto = tournaments.map((t) => mapTournamentToTournamentDto(t));
+  return tournamentsDto.reduce((acc: Record<number, TournamentDto[]>, tournament) => {
+    const casinoId = tournament.casinoId;
+    if (!acc[casinoId]) {
+      acc[casinoId] = [];
+    }
+    acc[casinoId].push(tournament);
+    return acc;
+  }, {});
+};

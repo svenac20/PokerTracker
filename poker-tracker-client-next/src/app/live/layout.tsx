@@ -18,7 +18,7 @@ export default async function RootLayout({
           <AppSidebar />
           <main className="px-6 pt-8 lg:px-24 lg:py-12 lg:h-screen w-full ">
             <SidebarTrigger />
-            <div className="pt-6">{children}</div>
+            <div className="pt-6 h-full">{children}</div>
             <Toaster />
           </main>
         </SidebarProvider>

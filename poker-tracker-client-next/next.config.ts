@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "pokerradarsa.blob.core.windows.net",
         port: "",
-        pathname: "/casinos-images/**",
+        pathname: "/casinos-**/**",
         search: "",
       },
     ],

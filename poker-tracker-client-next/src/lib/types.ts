@@ -105,7 +105,15 @@ export type CasinoWithTown = {
   };
 };
 
-export interface CasinoGroupedByTownDto {
+export type CasinoGroupedByTownDto = {
   town: string;
   casinos: CasinoCardData[];
+}
+
+
+export type TournamentDto = {
+  id: number;
+  imageUrl: string;
+  name: string;
+  casinoId: number;
 }
