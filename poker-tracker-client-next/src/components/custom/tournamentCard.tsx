@@ -33,7 +33,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
           <div
             className={`grid ${editPage ? "grid-cols-[85%_15%]" : "grid-cols-1"} gap-2`}
           >
-            <div className="flex items-center justify-center sm:justify-normal">
+            <div className="flex items-center">
               <h2 className="font-semibold">{tournament.name}</h2>
             </div>
             {editPage && (
