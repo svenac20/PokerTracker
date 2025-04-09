@@ -16,6 +16,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
   tournament,
   editPage = false,
 }) => {
+  const localStartTime = toZonedTime(tournament.startTime, Intl.DateTimeFormat().resolvedOptions().timeZone);
   return (
     <Card className="hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
       <CardContent className="grid grid-cols-[45%_55%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
@@ -50,7 +51,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
           </div>
           <h3 className="font-semibold">{tournament.casinoName}</h3>
           <p className="font-semibold">
-            Start: {format(new Date(tournament.startTime.toISOString()), "dd/MM/yyyy HH:mm")}
+            Start: {format(localStartTime, "dd/MM HH:mm")}
           </p>
           <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap break-words">
             {tournament.information}
