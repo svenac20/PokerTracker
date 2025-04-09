@@ -5,6 +5,7 @@ import { FunctionComponent } from "react";
 import { Card, CardContent } from "../ui/card";
 import { format } from "date-fns";
 import Link from "next/link";
+import DeleteTournamentDialog from "./deleteTournamentDialog";
 
 interface TournamentCardProps {
   tournament: TournamentDto;
@@ -41,7 +42,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
                 >
                   <Pencil />
                 </Link>
-                <Trash />
+                <DeleteTournamentDialog tournament={tournament}/>
               </div>
             )}
           </div>
