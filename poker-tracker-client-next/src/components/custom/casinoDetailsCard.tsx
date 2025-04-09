@@ -18,7 +18,7 @@ const CasinoDetailsCard: FunctionComponent<CasinoDetailsCardProps> = ({
   casino,
 }) => {
   return (
-    <Card className="cursor-pointer hover:bg-sidebar-accent">
+    <Card className="cursor-pointer hover:bg-sidebar-accent hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
       <CardHeader>
         <CardTitle>{casino.name}</CardTitle>
         <CardDescription>

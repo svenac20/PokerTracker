@@ -17,8 +17,8 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
   editPage = false,
 }) => {
   return (
-    <Card>
-      <CardContent className="grid grid-cols-[40%_60%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
+    <Card className="hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
+      <CardContent className="grid grid-cols-[45%_55%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
         <div className="relative 2xl:h-[350px]">
           <Image
             src={tournament.imageUrl}
@@ -33,8 +33,8 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
           <div
             className={`grid ${editPage ? "grid-cols-[85%_15%]" : "grid-cols-1"} gap-2`}
           >
-            <div className="flex items-center justify-center">
-            <h2 className="font-semibold">{tournament.name}</h2>
+            <div className="flex items-center justify-center sm:justify-normal">
+              <h2 className="font-semibold">{tournament.name}</h2>
             </div>
             {editPage && (
               <div className="flex justify-center gap-4 flex-col sm:flex-row">
@@ -44,7 +44,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
                 >
                   <Pencil />
                 </Link>
-                <DeleteTournamentDialog tournament={tournament}/>
+                <DeleteTournamentDialog tournament={tournament} />
               </div>
             )}
           </div>
