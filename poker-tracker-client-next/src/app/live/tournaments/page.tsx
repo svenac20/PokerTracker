@@ -1,6 +1,22 @@
 import TournamentCard from "@/components/custom/tournamentCard";
-import { getTournaments } from "@/lib/services";
+import { getCasinos, getTournaments, getTowns } from "@/lib/services";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const towns = await getTowns();
+  const townNames = towns.map((town) => town.name);
+  const keywords = towns.map((town) => `${town.name} poker tournaments`);
+  return {
+    title: "Tournaments",
+    description: `Explore all currently available poker tournaments in Croatia. Find tournaments in ${townNames.join(",")} and other cities. Get details on venues, start times, and tournament information.`,
+    keywords: [
+      ...keywords,
+      "croatia poker tournaments",
+      "poker events Croatia",
+      ],
+  };
+}
 
 export default async function AddEditTournamentsPage() {
   const tournaments = await getTournaments();
