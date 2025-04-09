@@ -110,7 +110,7 @@ const TournamentAddEditForm: FunctionComponent<TournamentAddEditFormProps> = ({
               : form.handleSubmit(onSubmitAddTournament)
           }
         >
-          <div className="grid grid-cols-1 lg:gap-6 lg:w-2/5">
+          <div className="grid grid-cols-1 gap-4 lg:gap-6 lg:w-2/5">
             <CasinosDropdownTournaments form={form} casinos={casinos} />
             <TournamentNameInput form={form} />
             <TournamentDateInput form={form} />

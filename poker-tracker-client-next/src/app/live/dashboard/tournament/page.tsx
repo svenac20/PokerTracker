@@ -22,15 +22,15 @@ export default async function ViewTournamentAdminPage() {
   return (
     <>
       <div className="py-8 flex flex-col h-full">
-        <div className="flex flex-col md:flex-row justify-between lg:justify-normal lg:gap-6 xl:gap-24 items">
+        <div className="flex flex-col md:flex-row justify-between lg:justify-normal lg:gap-6 xl:gap-24 items pb-4">
           <div>
             <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-6 lg:pb-12">
               Add or Edit Tournaments
             </h1>
           </div>
-          <div className="flex justify-center">
+          <div className="flex md:justify-center">
             <Link href="/live/dashboard/tournament/add">
-              <Button>Add New Tournament</Button>
+              <Button className="font-bold">Add New Tournament</Button>
             </Link>
           </div>
         </div>

@@ -12,9 +12,10 @@ export default async function AddEditTournamentsPage() {
             Tournaments
           </h1>
         </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <div className="grid 2xl:grid-cols-2 grid-cols-1 gap-4">
           {tournaments.map((tournament) => (
             <Link
+              target="_blank"
               key={tournament.id}
               href={tournament.imageUrl}
             >

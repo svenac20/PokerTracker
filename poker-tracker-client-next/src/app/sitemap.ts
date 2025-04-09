@@ -24,5 +24,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${domain}/register`,
     },
+    {
+      url: `${domain}/live/tournaments`,
+    },
   ];
 }

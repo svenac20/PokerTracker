@@ -34,8 +34,7 @@ const AppSidebar: FunctionComponent = async () => {
           <Image
             src={pokerRadarImage.src}
             alt="Poker Radar logo"
-            width={pokerRadarImage.width}
-            height={pokerRadarImage.height}
+            fill
             priority
           />
         </div>

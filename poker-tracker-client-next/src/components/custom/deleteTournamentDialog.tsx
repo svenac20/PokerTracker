@@ -40,8 +40,8 @@ const DeleteTournamentDialog: FunctionComponent<DeleteTournamentDialogProps> = (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger>
         <Trash className="cursor-pointer" />
-      </DialogTrigger>
-      <DialogContent>
+      </DialogTrigger >
+      <DialogContent className="min-w-full md:min-w-[800px]">
         <DialogHeader className="font-bold text-lg">
           <DialogTitle>Do you want to delete this tournament?</DialogTitle>
         </DialogHeader>

@@ -18,13 +18,13 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
 }) => {
   return (
     <Card>
-      <CardContent className="grid grid-cols-[1fr_2fr] gap-6 pt-4">
-        <div className="relative h-full">
+      <CardContent className="grid grid-cols-[40%_60%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
+        <div className="relative 2xl:h-[350px]">
           <Image
             src={tournament.imageUrl}
             alt="Tournament Image"
-            height={300}
-            width={300}
+            fill
+            priority
             className="rounded-md"
           />
         </div>
@@ -33,9 +33,11 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
           <div
             className={`grid ${editPage ? "grid-cols-[85%_15%]" : "grid-cols-1"} gap-2`}
           >
-            <h2 className="font-semibold">Name: {tournament.name}</h2>
+            <div className="flex items-center justify-center">
+            <h2 className="font-semibold">{tournament.name}</h2>
+            </div>
             {editPage && (
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 flex-col sm:flex-row">
                 <Link
                   href={`/live/dashboard/tournament/edit/${tournament.id}`}
                   className="flex items-center"
@@ -46,11 +48,11 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
               </div>
             )}
           </div>
-          <h3 className="font-semibold">Casino: {tournament.casinoName}</h3>
+          <h3 className="font-semibold">{tournament.casinoName}</h3>
           <p className="font-semibold">
             Start: {format(tournament.startTime, "dd/MM/yyyy HH:mm")}
           </p>
-          <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap">
+          <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap break-words">
             {tournament.information}
           </div>
         </div>
