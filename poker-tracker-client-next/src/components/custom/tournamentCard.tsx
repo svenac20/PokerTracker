@@ -16,7 +16,10 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
   tournament,
   editPage = false,
 }) => {
-  const localStartTime = toZonedTime(tournament.startTime, Intl.DateTimeFormat().resolvedOptions().timeZone);
+  console.log(tournament.startTime);
+  console.log(new Date(tournament.startTime.getUTCDate()));
+  console.log(new Date(tournament.startTime.getUTCDate()).toLocaleString());
+
   return (
     <Card className="hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
       <CardContent className="grid grid-cols-[45%_55%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
