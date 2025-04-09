@@ -63,7 +63,7 @@ export function mapCasinoToCasinoDto(casino: CasinoWithPokerGames): CasinoDto {
 }
 
 export function mapPokerGameToPokerGameDto(
-  pokerGame: PokerGameWithCasino,
+  pokerGame: PokerGameWithCasino
 ): PokerGameDto {
   return {
     id: pokerGame.id,
@@ -79,7 +79,7 @@ export function mapPokerGameToPokerGameDto(
 }
 
 export function mapCasinoWithTownToCasinoCardDetails(
-  casino: CasinoWithTown,
+  casino: CasinoWithTown
 ): CasinoCardData {
   return {
     id: casino.id,
@@ -92,11 +92,28 @@ export function mapCasinoWithTownToCasinoCardDetails(
   };
 }
 
-export function mapTournamentToTournamentDto(tournament: Tournament) {
+export function mapTournamentToTournamentDto(
+  tournament: {
+    casino: {
+      name: string;
+    };
+  } & {
+    id: number;
+    name: string;
+    information: string | null;
+    imageUrl: string;
+    startTime: Date;
+    gameStarted: boolean;
+    casinoId: number;
+  }
+) {
   return {
     id: tournament.id,
     casinoId: tournament.casinoId,
     name: tournament.name,
     imageUrl: tournament.imageUrl,
-  } as TournamentDto
+    casinoName: tournament.casino.name,
+    startTime: tournament.startTime,
+    information: tournament.information,
+  } as TournamentDto;
 }

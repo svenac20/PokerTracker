@@ -63,8 +63,7 @@ export const casinoDetailsSchema = z.object({
     .any()
     .optional()
     .refine(
-      (file) =>
-        !file || file.size <= 5 * 1024 * 1024, // Max size: 5MB
+      (file) => !file || file.size <= 5 * 1024 * 1024, // Max size: 5MB
       "Image must be less than 5MB"
     )
     .refine(
@@ -76,6 +75,33 @@ export const casinoDetailsSchema = z.object({
     ),
 });
 
-export const editTournamentSchema = z.object({
-  casinoId: z.string({})
-})
+export const tournamentSchema = z.object({
+  id: z.number().optional(),
+  casinoId: z
+    .string({
+      required_error: "Please select a casino",
+    })
+    .nonempty("Please select a casino"),
+  name: z
+    .string({
+      required_error: "Please enter tournament name",
+    })
+    .nonempty("Please enter tournament name"),
+  imageUrl: z.string({}).optional().nullable(),
+  image: z
+    .any()
+    .optional()
+    .refine(
+      (file) => !file || file.size <= 5 * 1024 * 1024, // Max size: 5MB
+      "Image must be less than 5MB"
+    )
+    .refine(
+      (file) =>
+        !file ||
+        file.arrayBuffer.length == 0 ||
+        ["image/jpeg", "image/png", "image/jpg"].includes(file.type),
+      "Only JPEG, PNG, images are allowed"
+    ),
+  startTime: z.coerce.date({ required_error: "Please select start time" }),
+  information: z.string({}),
+});

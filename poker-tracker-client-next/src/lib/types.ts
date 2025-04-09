@@ -116,4 +116,7 @@ export type TournamentDto = {
   imageUrl: string;
   name: string;
   casinoId: number;
+  casinoName: string;
+  startTime: Date;
+  information: string;
 }

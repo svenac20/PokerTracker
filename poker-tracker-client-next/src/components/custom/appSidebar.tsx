@@ -112,7 +112,7 @@ const AppSidebar: FunctionComponent = async () => {
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
                           <SidebarMenuLink
-                            href="/live/dashboard/tournaments"
+                            href="/live/dashboard/tournament"
                             text="Edit Tournaments"
                             icon={<Trophy/>}
                           />

@@ -1,30 +1,20 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import TournamentCard from "@/components/custom/tournamentCard";
 import { authOptions } from "@/lib/authOptions";
 import {
   getCasinosDropdownForUser,
-  getTournamentsForCasino,
+  getTournamentsByCasino,
 } from "@/lib/services";
 import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import TournamentGrid from "./tournament-grid";
-import TournamentAddEditForm from "./tournament-add-edit-form";
 
-export default async function AddEditTournamentsPage() {
+export default async function ViewTournamentAdminPage() {
   const session = await getServerSession(authOptions);
   if (!session || session.user.roleId !== Roles.ADMIN) {
     redirect("/");
   }
   const casinosForUser = await getCasinosDropdownForUser(session.user.id);
-  const tournaments = await getTournamentsForCasino(
+  const tournaments = await getTournamentsByCasino(
     casinosForUser.map((casino) => casino.id)
   );
   return (
@@ -35,7 +25,11 @@ export default async function AddEditTournamentsPage() {
             Add or Edit Tournaments
           </h1>
         </div>
-        <TournamentAddEditForm casinos={casinosForUser} tournaments={tournaments}/>
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+          {tournaments.map((tournament) => (
+            <TournamentCard key={tournament.id} tournament={tournament} editPage={true} />
+          ))}
+        </div>
       </div>
     </>
   );

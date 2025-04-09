@@ -51,7 +51,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
       {
         method: "POST",
         body: JSON.stringify(data),
-      },
+      }
     );
     if (!response.ok) {
       console.error(await response.text());
@@ -76,7 +76,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
       {
         method: "POST",
         body: JSON.stringify(data),
-      },
+      }
     );
     if (!response.ok) {
       console.error(await response.text());
@@ -96,37 +96,35 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
   }
 
   return (
-    <>
-      <Form {...form}>
-        <form
-          className=""
-          onSubmit={
-            pokerGame
-              ? form.handleSubmit(onSubmitEditPokerGame)
-              : form.handleSubmit(onSubmitAddPokerGame)
-          }
-        >
-          <div className="grid grid-cols-1 grid-rows-9 lg:grid-cols-2 lg:grid-rows-4 lg:gap-6">
-            <CasinosDropdown form={form} casinos={casinos} />
-            <DateTimePicker form={form} />
-            <GameTypeDropdown form={form} />
-            <GameLimitInput form={form} />
-            <TablesInput form={form} />
-            <PlayersWaitingInput form={form} />
-            <GameStartedCheckbox form={form} />
-            <div className="sm:row-start-9 lg:col-span-2 lg:row-start-5 flex justify-center items-center">
-              <Button
-                className="w-full"
-                type="submit"
-                disabled={form.formState.isSubmitting}
-              >
-                {form.formState.isSubmitting ? <LoadingSpinner /> : "Submit"}
-              </Button>
-            </div>
+    <Form {...form}>
+      <form
+        className=""
+        onSubmit={
+          pokerGame
+            ? form.handleSubmit(onSubmitEditPokerGame)
+            : form.handleSubmit(onSubmitAddPokerGame)
+        }
+      >
+        <div className="grid grid-cols-1 grid-rows-9 lg:grid-cols-2 lg:grid-rows-4 lg:gap-6">
+          <CasinosDropdown form={form} casinos={casinos} />
+          <DateTimePicker form={form} />
+          <GameTypeDropdown form={form} />
+          <GameLimitInput form={form} />
+          <TablesInput form={form} />
+          <PlayersWaitingInput form={form} />
+          <GameStartedCheckbox form={form} />
+          <div className="sm:row-start-9 lg:col-span-2 lg:row-start-5 flex justify-center items-center">
+            <Button
+              className="w-full"
+              type="submit"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? <LoadingSpinner /> : "Submit"}
+            </Button>
           </div>
-        </form>
-      </Form>
-    </>
+        </div>
+      </form>
+    </Form>
   );
 };
 

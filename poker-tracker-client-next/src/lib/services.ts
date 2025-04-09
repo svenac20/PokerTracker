@@ -259,12 +259,14 @@ export const getTowns = async () => {
   }));
 };
 
-export const getTournamentsForCasino = async (casinoId: number[]) => {
+export const getTournaments = async () => {
   //find all tournaments for casinos with ids in casinoId
   const tournaments = await prisma.tournament.findMany({
-    where: {
-      casinoId: {
-        in: casinoId,
+    include: {
+      casino: {
+        select: {
+          name: true,
+        },
       },
     },
     orderBy: {
@@ -273,12 +275,52 @@ export const getTournamentsForCasino = async (casinoId: number[]) => {
   });
 
   const tournamentsDto = tournaments.map((t) => mapTournamentToTournamentDto(t));
-  return tournamentsDto.reduce((acc: Record<number, TournamentDto[]>, tournament) => {
-    const casinoId = tournament.casinoId;
-    if (!acc[casinoId]) {
-      acc[casinoId] = [];
-    }
-    acc[casinoId].push(tournament);
-    return acc;
-  }, {});
+  return tournamentsDto;
 };
+
+export const getTournamentsByCasino = async (casinoId: number[]) => {
+  //find all tournaments for casinos with ids in casinoId
+  const tournaments = await prisma.tournament.findMany({
+    include: {
+      casino: {
+        select: {
+          name: true,
+        },
+      },
+    },
+    orderBy: {
+      startTime: "asc",
+    },
+  });
+
+  const tournamentsDto = tournaments.map((t) => mapTournamentToTournamentDto(t));
+  return tournamentsDto;
+}
+
+export const getTournamentByIdForUser = async (id: string, casinos: number[]) => {
+  if (Number.isNaN(Number(id))) {
+    return null;
+  }
+
+  const tournament = await prisma.tournament.findUnique({
+    where: {
+      id: Number(id),
+      casinoId: {
+        in: casinos,
+      },
+    },
+    include: {
+      casino: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  if (!tournament) {
+    return null;
+  }
+
+  return mapTournamentToTournamentDto(tournament);
+}

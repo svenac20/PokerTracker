@@ -20,12 +20,12 @@ import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
-interface CasinosDropdownProps {
-  form: UseFormReturn<z.infer<typeof formSchema>>;
+interface CasinosDropdownTournamentsProps {
+  form: UseFormReturn<z.infer<typeof tournamentSchema>>;
   casinos: CasinoDropdownDto[];
 }
 
-const CasinosDropdown: FunctionComponent<CasinosDropdownProps> = ({
+const CasinosDropdownTournaments: FunctionComponent<CasinosDropdownTournamentsProps> = ({
   form,
   casinos,
 }) => {
@@ -62,4 +62,4 @@ const CasinosDropdown: FunctionComponent<CasinosDropdownProps> = ({
   );
 };
 
-export default CasinosDropdown;
+export default CasinosDropdownTournaments;
