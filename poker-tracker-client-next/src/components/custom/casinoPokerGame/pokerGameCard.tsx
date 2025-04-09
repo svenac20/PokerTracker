@@ -11,7 +11,7 @@ interface PokerGameCardProps {
   showActions?: boolean;
 }
 
-const PokerGameRow: FunctionComponent<PokerGameCardProps> = ({
+const PokerGameCard: FunctionComponent<PokerGameCardProps> = ({
   pokerGame,
   showActions,
 }) => {
@@ -38,4 +38,4 @@ const PokerGameRow: FunctionComponent<PokerGameCardProps> = ({
   );
 };
 
-export default PokerGameRow;
+export default PokerGameCard;

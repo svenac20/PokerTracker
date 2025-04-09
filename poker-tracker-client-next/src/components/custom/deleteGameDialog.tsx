@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import { format } from "date-fns";
 
 type DeleteGameDialogProps = {
   pokerGame: PokerGameDto;
@@ -39,7 +40,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
       `${process.env.NEXT_PUBLIC_API_URL}/pokerGame/${pokerGame.id}`,
       {
         method: "DELETE",
-      },
+      }
     );
     const pokerGameData: DeletePokerGameMessage = {
       casinoId: pokerGame.casinoId,
@@ -62,15 +63,21 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Start time</TableHead>
               <TableHead>Game type</TableHead>
               <TableHead>Limit (€)</TableHead>
-              <TableHead>Tables</TableHead>
+              <TableHead>Players</TableHead>
               <TableHead>Waiting list</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
             <TableRow>
+              <TableCell className="font-bold">
+                {pokerGame.gameStarted
+                  ? "LIVE"
+                  : format(pokerGame.startTime, "dd/MM HH:mm")}
+              </TableCell>
               <TableCell className="font-bold">{pokerGame.gameType}</TableCell>
               <TableCell>{pokerGame.limit}</TableCell>
               <TableCell>{pokerGame.tablesNumber}</TableCell>

@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../ui/table";
-import PokerGameRow from "./pokerGameCard";
+import PokerGameCard from "./pokerGameCard";
 
 interface PokerGamesTableProps {
   pokerGames: PokerGameDto[];
@@ -45,7 +45,7 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
         </TableHeader>
         <TableBody>
           {pokerGames.map((game) => (
-            <PokerGameRow
+            <PokerGameCard
               key={game.id}
               pokerGame={game}
               showActions={showActions}

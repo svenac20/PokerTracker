@@ -35,7 +35,7 @@ export default async function ViewTournamentAdminPage() {
           </div>
         </div>
         {tournaments && tournaments.length > 0 && (
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+          <div className="grid 2xl:grid-cols-2 grid-cols-1 gap-4">
             {tournaments.map((tournament) => (
               <TournamentCard
                 key={tournament.id}

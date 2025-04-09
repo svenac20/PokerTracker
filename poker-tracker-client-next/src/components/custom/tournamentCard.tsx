@@ -1,5 +1,5 @@
 import { TournamentDto } from "@/lib/types";
-import { format } from "date-fns";
+import { format, toZonedTime } from "date-fns-tz"; // Import date-fns-tz
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -50,7 +50,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
           </div>
           <h3 className="font-semibold">{tournament.casinoName}</h3>
           <p className="font-semibold">
-            Start: {format(new Date(tournament.startTime), "dd/MM/yyyy HH:mm")}
+            Start: {format(new Date(tournament.startTime.toISOString()), "dd/MM/yyyy HH:mm")}
           </p>
           <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap break-words">
             {tournament.information}

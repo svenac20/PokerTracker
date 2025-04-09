@@ -117,7 +117,6 @@ const TournamentAddEditForm: FunctionComponent<TournamentAddEditFormProps> = ({
             <TournamentImageInput form={form} />
             <TournamentInformationInput form={form} />
             <Button
-              onClick={() => {console.log(form.formState.errors)}}
               className="w-full"
               type="submit"
               disabled={form.formState.isSubmitting}
