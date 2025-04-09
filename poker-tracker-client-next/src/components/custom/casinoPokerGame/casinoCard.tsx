@@ -41,7 +41,7 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col gap-4">
-                {!!casino.rake && !!casino.information && (
+                {!!casino.rake && (
                   <Card className="rounded-sm">
                     <CardHeader className="font-extrabold">
                       <CardDescription>
