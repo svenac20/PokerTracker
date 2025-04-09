@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
-import { casinoDetailsSchema, tournamentSchema } from "@/lib/zod-schema";
-import { NextRequest, NextResponse } from "next/server";
+import { tournamentSchema } from "@/lib/zod-schema";
 import { BlobServiceClient } from "@azure/storage-blob";
+import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 
 export async function POST(

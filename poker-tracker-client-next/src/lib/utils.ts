@@ -1,4 +1,4 @@
-import { Tournament, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { JWT } from "next-auth/jwt";
 import { twMerge } from "tailwind-merge";

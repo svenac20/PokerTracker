@@ -1,7 +1,6 @@
 import { authOptions } from "@/lib/authOptions";
 import {
-  getCasinosDropdownForUser,
-  getTournamentByIdForUser,
+  getCasinosDropdownForUser
 } from "@/lib/services";
 import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";

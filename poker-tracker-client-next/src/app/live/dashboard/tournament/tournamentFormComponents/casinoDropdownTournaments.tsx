@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CasinoDropdownDto } from "@/lib/types";
-import { tournamentSchema, formSchema } from "@/lib/zod-schema";
+import { tournamentSchema } from "@/lib/zod-schema";
 import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";

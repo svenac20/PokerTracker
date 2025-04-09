@@ -1,10 +1,10 @@
 import { TournamentDto } from "@/lib/types";
-import { Pencil, Trash } from "lucide-react";
+import { format } from "date-fns";
+import { Pencil } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { FunctionComponent } from "react";
 import { Card, CardContent } from "../ui/card";
-import { format } from "date-fns";
-import Link from "next/link";
 import DeleteTournamentDialog from "./deleteTournamentDialog";
 
 interface TournamentCardProps {

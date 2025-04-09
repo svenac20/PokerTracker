@@ -1,13 +1,12 @@
 import "server-only";
 import prisma from "./prisma";
-import { CasinoCardData, CasinoDropdownDto, CasinoDto, TournamentDto } from "./types";
+import { CasinoCardData, CasinoDropdownDto, CasinoDto } from "./types";
 import {
   mapCasinoToCasinoDto,
   mapCasinoWithTownToCasinoCardDetails as mapCasinoWithTownToCasinoCardData,
   mapPokerGameToPokerGameDto,
   mapTournamentToTournamentDto,
 } from "./utils";
-import { Torus } from "lucide-react";
 
 export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
@@ -274,13 +273,20 @@ export const getTournaments = async () => {
     },
   });
 
-  const tournamentsDto = tournaments.map((t) => mapTournamentToTournamentDto(t));
+  const tournamentsDto = tournaments.map((t) =>
+    mapTournamentToTournamentDto(t)
+  );
   return tournamentsDto;
 };
 
-export const getTournamentsByCasino = async (casinoId: number[]) => {
+export const getTournamentsByCasino = async (casinos: number[]) => {
   //find all tournaments for casinos with ids in casinoId
   const tournaments = await prisma.tournament.findMany({
+    where: {
+      casinoId: {
+        in: casinos,
+      },
+    },
     include: {
       casino: {
         select: {
@@ -293,11 +299,16 @@ export const getTournamentsByCasino = async (casinoId: number[]) => {
     },
   });
 
-  const tournamentsDto = tournaments.map((t) => mapTournamentToTournamentDto(t));
+  const tournamentsDto = tournaments.map((t) =>
+    mapTournamentToTournamentDto(t)
+  );
   return tournamentsDto;
-}
+};
 
-export const getTournamentByIdForUser = async (id: string, casinos: number[]) => {
+export const getTournamentByIdForUser = async (
+  id: string,
+  casinos: number[]
+) => {
   if (Number.isNaN(Number(id))) {
     return null;
   }
@@ -323,4 +334,4 @@ export const getTournamentByIdForUser = async (id: string, casinos: number[]) =>
   }
 
   return mapTournamentToTournamentDto(tournament);
-}
+};
