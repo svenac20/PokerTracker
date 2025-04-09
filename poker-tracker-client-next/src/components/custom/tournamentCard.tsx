@@ -50,7 +50,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
           </div>
           <h3 className="font-semibold">{tournament.casinoName}</h3>
           <p className="font-semibold">
-            Start: {format(tournament.startTime, "dd/MM/yyyy HH:mm")}
+            Start: {format(new Date(tournament.startTime), "dd/MM/yyyy HH:mm")}
           </p>
           <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap break-words">
             {tournament.information}
