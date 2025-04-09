@@ -50,6 +50,7 @@ jobs:
           APPLICATION_INSIGHTS_CONNECTION_STRING: ${{secrets.APPLICATION_INSIGHTS_CONNECTION_STRING}}
           SA_CONN_STRING: ${{secrets.SA_CONN_STRING}}
           CASINO_IMAGES_CONTAINER: "casinos-images"
+          CASINO_TOURNAMENTS_CONTAINER: "casinos-tournaments"
 
       - name: Zip artifact for deployment
         run: zip release.zip poker-tracker-client-next/build/standalone -r
