@@ -17,7 +17,7 @@ export default function Loading() {
 
       {/* Tournaments Grid Section */}
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-        {Array.from({ length: 4 }).map((_, index) => (
+        {Array.from({ length: 2 }).map((_, index) => (
           <div
             key={index}
             className="border rounded-lg p-4 grid grid-cols-[1fr_2fr] gap-6"
