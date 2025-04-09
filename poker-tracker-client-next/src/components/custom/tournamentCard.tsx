@@ -1,9 +1,9 @@
 import { TournamentDto } from "@/lib/types";
-import { format, toZonedTime } from "date-fns-tz"; // Import date-fns-tz
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionComponent } from "react";
+import ClientDate from "../clientDate";
 import { Card, CardContent } from "../ui/card";
 import DeleteTournamentDialog from "./deleteTournamentDialog";
 
@@ -16,10 +16,6 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
   tournament,
   editPage = false,
 }) => {
-  console.log(tournament.startTime);
-  console.log(new Date(tournament.startTime.getUTCDate()));
-  console.log(new Date(tournament.startTime.getUTCDate()).toLocaleString());
-
   return (
     <Card className="hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
       <CardContent className="grid grid-cols-[45%_55%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
@@ -53,9 +49,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
             )}
           </div>
           <h3 className="font-semibold">{tournament.casinoName}</h3>
-          <p className="font-semibold">
-            Start: {format(new Date(tournament.startTime.getUTCDate().toLocaleString()), "dd/MM HH:mm")}
-          </p>
+          <ClientDate date={tournament.startTime} />
           <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap break-words">
             {tournament.information}
           </div>
