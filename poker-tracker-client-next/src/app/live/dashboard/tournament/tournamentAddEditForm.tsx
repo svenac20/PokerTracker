@@ -39,7 +39,32 @@ const TournamentAddEditForm: FunctionComponent<TournamentAddEditFormProps> = ({
   });
 
   async function onSubmitAddTournament(data: z.infer<typeof tournamentSchema>) {
-    console.log(data);
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(data));
+    if (data.image) {
+      formData.append("image", data.image);
+    }
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tournament`,
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
+    if (!response.ok) {
+      toast({
+        title: "Error",
+        description: "An error occurred while adding new tournament",
+        className: "bg-red-500 text-white",
+      });
+      return;
+    }
+
+    toast({
+      title: "New Tournament Added",
+      description: "Tournament has been added sucessfully",
+    });
+    router.push("/live/dashboard/tournament");
   }
 
   async function onSubmitEditTournament(

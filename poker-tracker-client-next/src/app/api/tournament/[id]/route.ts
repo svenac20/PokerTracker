@@ -60,7 +60,7 @@ export async function POST(
     imageUrl = blockBlobClient.url;
   }
   const tournamentData = validatedData.data;
-  const casino = await prisma.tournament.update({
+  const tournament = await prisma.tournament.update({
     where: {
       id: parsedId,
     },
@@ -72,7 +72,7 @@ export async function POST(
       imageUrl: imageUrl,
     },
   });
-  return NextResponse.json(casino);
+  return NextResponse.json(tournament);
 }
 
 export async function DELETE(
