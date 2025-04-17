@@ -19,7 +19,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
   return (
     <Card className="hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
       <CardContent className="grid grid-cols-[45%_55%] md:grid-cols-[1fr_2fr] gap-2 md:gap-6 pt-4">
-        <div className="relative 2xl:h-[350px]">
+        {tournament.imageUrl && <div className="relative 2xl:h-[350px]">
           <Image
             src={tournament.imageUrl}
             alt="Tournament Image"
@@ -27,9 +27,9 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
             priority
             className="rounded-md"
           />
-        </div>
+        </div>}
 
-        <div className="text-sm md:text-lg flex flex-col gap-2">
+        <div className={`text-sm md:text-lg flex flex-col gap-2 ${!tournament.imageUrl ? "col-span-2" : ""}`}>
           <div
             className={`grid ${editPage ? "grid-cols-[85%_15%]" : "grid-cols-1"} gap-2`}
           >
