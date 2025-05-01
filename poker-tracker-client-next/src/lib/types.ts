@@ -13,6 +13,8 @@ export type CasinoBaseType = {
   name: string;
   town: string;
   location: string | null;
+  countryId: number;
+  townId: number;
   rake: string | null;
   information: string | null;
   imageUrl: string | null;
@@ -55,8 +57,10 @@ export type CasinoWithPokerGames = {
   location: string | null;
   information: string | null;
   imageUrl: string | null;
+  townId: number;
   town: {
     name: string;
+    countryId: number;
   };
   pokerGames: {
     id: number;

@@ -15,11 +15,13 @@ export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
       town: {
         select: {
           name: true,
+          countryId: true,
         },
       },
       id: true,
       name: true,
       location: true,
+      townId: true,
       rake: true,
       information: true,
       imageUrl: true,
@@ -57,6 +59,7 @@ export const getCasinosWithPokerGamesForUser = async (userId: string) => {
       town: {
         select: {
           name: true,
+          countryId: true,
         },
       },
       id: true,
@@ -65,6 +68,7 @@ export const getCasinosWithPokerGamesForUser = async (userId: string) => {
       location: true,
       information: true,
       imageUrl: true,
+      townId: true,
       pokerGames: {
         orderBy: [{ gameStarted: "desc" }, { startTime: "asc" }],
         select: {
@@ -335,3 +339,30 @@ export const getTournamentByIdForUser = async (
 
   return mapTournamentToTournamentDto(tournament);
 };
+
+
+export const getCountriesForFilter = async () => {
+  const countries = await prisma.country.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  return countries.map((country) => ({
+    value: country.id,
+    label: country.name,
+  }));
+};
+
+export const getTownsForFilter = async () => {
+  const towns = await prisma.town.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  return towns.map((town) => ({
+    value: town.id,
+    label: town.name,
+  }));
+}
