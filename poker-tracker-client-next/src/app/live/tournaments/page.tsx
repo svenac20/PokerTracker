@@ -7,11 +7,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const towns = await getTowns();
   const townNames = towns.map((town) => town.name);
   const keywords = towns.map((town) => `${town.name} poker tournaments`);
+  const keywordsCroatian = towns.map((town) => `${town.name} poker turniri`);
   return {
     title: "Tournaments",
     description: `Explore all currently available poker tournaments in Croatia. Find tournaments in ${townNames.join(",")} and other cities. Get details on venues, start times, and tournament information.`,
     keywords: [
       ...keywords,
+      ...keywordsCroatian,
       "croatia poker tournaments",
       "poker events Croatia",
       ],
