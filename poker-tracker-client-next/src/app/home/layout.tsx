@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   description:
-    "Discover live poker cash games and tournaments in Croatia. Get real-time updates on poker games in Zagreb, Poreč, Split, and other cities. Find venues, game types, rake details, and more.",
+    "Discover live poker cash games and tournaments in Croatia. Get real-time updates on poker games in Zagreb, Poreč, Split, Osijek and other cities. Find venues, game types, rake details, and more.",
   title: "Home",
   keywords: [
     "poker radar",
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "Zagreb poker games",
     "Poreč poker games",
     "Split poker games",
+    "Osijek poker games",
     "Croatia poker tracker",
     "poker tournaments Croatia",
     "real-time poker updates",
