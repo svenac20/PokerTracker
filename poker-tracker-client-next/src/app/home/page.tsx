@@ -112,7 +112,7 @@ export default async function Home() {
             </h2>
 
             <Tabs defaultValue="zagreb" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-5">
                 <TabsTrigger value="zagreb" className="font-bold">
                   Zagreb
                 </TabsTrigger>
@@ -121,6 +121,9 @@ export default async function Home() {
                 </TabsTrigger>
                 <TabsTrigger value="poreč" className="font-bold">
                   Poreč
+                </TabsTrigger>
+                <TabsTrigger value="osijek" className="font-bold">
+                  Osijek 
                 </TabsTrigger>
                 <TabsTrigger value="opatija" className="font-bold">
                   Opatija
@@ -168,6 +171,24 @@ export default async function Home() {
                     <CardContent className="pt-6">
                       <p className="text-center text-gray-500">
                         Information about poker games in Split coming soon!
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+
+              <TabsContent value="osijek" className="mt-6">
+                {casinos["osijek"] ? (
+                  casinos["osijek"].map((casino) => {
+                    return (
+                      <HomePageCasinoCard key={casino.id} casino={casino} />
+                    );
+                  })
+                ) : (
+                  <Card>
+                    <CardContent className="pt-6">
+                      <p className="text-center text-gray-500">
+                        Information about poker games in Osijek coming soon!
                       </p>
                     </CardContent>
                   </Card>
