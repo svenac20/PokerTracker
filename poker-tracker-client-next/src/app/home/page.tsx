@@ -215,7 +215,7 @@ export default async function Home() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Where can I play poker in Zagreb, Poreč or Osijek?</CardTitle>
+                  <CardTitle>Where can I play poker in Zagreb, Poreč, Split or Osijek?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>Zagreb offers an excellent poker venue:</p>
