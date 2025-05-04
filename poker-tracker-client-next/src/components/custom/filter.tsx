@@ -65,8 +65,9 @@ export const Filter: React.FC<ComboboxProps> = ({
             <CommandGroup>
               {data.map((item) => (
                 <CommandItem
+                  className="cursor-pointer"
                   key={item.value}
-                  value={item.value.toString()}
+                  value={item.label.toString()}
                   onSelect={() => handleSelect(item.value)}
                 >
                   <Check
