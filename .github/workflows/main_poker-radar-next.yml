@@ -24,10 +24,6 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: Install sharp
-        run: |
-          npm install --os=linux --cpu=x64 sharp
-
       - name: npm install, build, and test
         run: |
           cd poker-tracker-client-next
