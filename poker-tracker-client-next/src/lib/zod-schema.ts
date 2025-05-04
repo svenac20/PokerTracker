@@ -103,5 +103,6 @@ export const tournamentSchema = z.object({
       "Only JPEG, PNG, images are allowed"
     ),
   startTime: z.coerce.date({ required_error: "Please select start time" }),
+  weeklyTournament: z.boolean().default(false),
   information: z.string({}),
 });

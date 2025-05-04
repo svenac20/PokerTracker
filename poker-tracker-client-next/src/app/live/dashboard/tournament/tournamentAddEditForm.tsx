@@ -16,6 +16,7 @@ import TournamentDateInput from "./tournamentFormComponents/tournamentDateInput"
 import TournamentImageInput from "./tournamentFormComponents/tournamentImageInput";
 import TournamentInformationInput from "./tournamentFormComponents/tournamentInformationInput";
 import TournamentNameInput from "./tournamentFormComponents/tournamentNameInput";
+import TournamentWeeklyCheckbox from "./tournamentFormComponents/tournamentWeeklyCheckbox";
 
 interface TournamentAddEditFormProps {
   tournament?: TournamentDto;
@@ -35,6 +36,7 @@ const TournamentAddEditForm: FunctionComponent<TournamentAddEditFormProps> = ({
       startTime: tournament?.startTime ?? new Date(),
       information: tournament?.information ?? "",
       name: tournament?.name ?? "",
+      weeklyTournament: tournament?.weeklyTournament ?? false,
     },
   });
 
@@ -116,6 +118,7 @@ const TournamentAddEditForm: FunctionComponent<TournamentAddEditFormProps> = ({
             <TournamentDateInput form={form} />
             <TournamentImageInput form={form} />
             <TournamentInformationInput form={form} />
+            <TournamentWeeklyCheckbox form={form} />
             <Button
               className="w-full"
               type="submit"

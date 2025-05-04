@@ -109,6 +109,7 @@ export function mapTournamentToTournamentDto(
     startTime: Date;
     gameStarted: boolean;
     casinoId: number;
+    weeklyTournament: boolean;
   }
 ) {
   return {
@@ -119,5 +120,6 @@ export function mapTournamentToTournamentDto(
     casinoName: tournament.casino.name,
     startTime: tournament.startTime,
     information: tournament.information,
+    weeklyTournament: tournament.weeklyTournament,
   } as TournamentDto;
 }

@@ -124,4 +124,5 @@ export type TournamentDto = {
   casinoName: string;
   startTime: Date;
   information: string;
+  weeklyTournament: boolean;
 }

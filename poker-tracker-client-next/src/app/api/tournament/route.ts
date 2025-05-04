@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
         casinoId: parseInt(validatedData.data.casinoId),
         startTime: validatedData.data.startTime,
         information: validatedData.data.information,
+        weeklyTournament: validatedData.data.weeklyTournament,
       },
     });
     return NextResponse.json(game);

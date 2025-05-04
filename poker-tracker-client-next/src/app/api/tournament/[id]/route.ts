@@ -70,6 +70,7 @@ export async function POST(
       startTime: tournamentData.startTime,
       information: tournamentData.information,
       imageUrl: imageUrl,
+      weeklyTournament: tournamentData.weeklyTournament,
     },
   });
   return NextResponse.json(tournament);
