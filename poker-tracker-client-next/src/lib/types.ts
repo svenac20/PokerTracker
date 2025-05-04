@@ -21,6 +21,7 @@ export type CasinoBaseType = {
 };
 
 export type CasinoDto = CasinoBaseType & {
+  hide?: boolean;
   pokerGames: PokerGameDto[];
 };
 

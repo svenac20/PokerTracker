@@ -2,37 +2,60 @@
 
 import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { Filter } from "@/components/custom/filter";
+import { useHubConnectionWithCasinos } from "@/hooks/useHubConnectionWithCasinos";
 import { CasinoDto } from "@/lib/types";
 import { FunctionComponent, useEffect, useState } from "react";
 
 interface CasinoTableProps {
-  casinos: CasinoDto[];
+  casinosInit: CasinoDto[];
   countries: { value: number; label: string }[];
   towns: { value: number; label: string }[];
 }
 
 const MainPage: FunctionComponent<CasinoTableProps> = ({
-  casinos,
+  casinosInit,
   countries,
   towns,
 }) => {
-  const [filteredCasinos, setFilteredCasinos] = useState<CasinoDto[]>(casinos);
+  const { casinos, setCasinos } = useHubConnectionWithCasinos(casinosInit);
 
   const handleCountrySelect = (value: number | null) => {
     if (!value) {
-      setFilteredCasinos(casinos);
+      const allCasinos = casinosInit.map((casino) => {
+        casino.hide = false;
+        return casino;
+      });
+      setCasinos(allCasinos);
     } else {
-      const filtered = casinos.filter((casino) => casino.countryId === value);
-      setFilteredCasinos(filtered);
+      const filtered = casinos.map((casino) => {
+        if (casino.countryId !== value) {
+          casino.hide = true;
+        } else {
+          casino.hide = false;
+        }
+        return casino;
+      });
+      setCasinos(filtered);
     }
   };
 
   const handleTownSelect = (value: number | null) => {
     if (!value) {
-      setFilteredCasinos(casinos);
+      const allCasinos = casinosInit.map((casino) => {
+        casino.hide = false;
+        return casino;
+      });
+      setCasinos(allCasinos);
     } else {
-      const filtered = casinos.filter((casino) => casino.townId === value);
-      setFilteredCasinos(filtered);
+      const filtered = casinos.map((casino) => {
+        if (casino.townId !== value) {
+          casino.hide = true;
+        } else {
+          casino.hide = false;
+        }
+        return casino;
+      });
+      setCasinos(filtered);
     }
   };
 
@@ -56,7 +79,7 @@ const MainPage: FunctionComponent<CasinoTableProps> = ({
         />
       </div>
       <ul>
-        <CasinosList casinoInit={filteredCasinos} />
+        <CasinosList casinoInit={casinos} />
       </ul>
     </>
   );

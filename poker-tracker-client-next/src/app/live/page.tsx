@@ -27,5 +27,5 @@ export default async function Home() {
   const casinos = await getCasinosWithPokerGames();
   const countries = await getCountriesForFilter();
   const towns = await getTownsForFilter();
-  return <MainPage casinos={casinos} countries={countries} towns={towns} />;
+  return <MainPage casinosInit={casinos} countries={countries} towns={towns} />;
 }
