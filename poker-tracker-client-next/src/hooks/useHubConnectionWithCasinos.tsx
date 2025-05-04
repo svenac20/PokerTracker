@@ -1,3 +1,5 @@
+"use client";
+
 import { CasinoDto, DeletePokerGameMessage, PokerGameDto } from "@/lib/types";
 import {
   HubConnection,
@@ -35,6 +37,7 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
                   }
                   return a.gameStarted ? -1 : 1;
                 });
+                console.log(updatedPokerGames)
                 return {
                   ...casino,
                   pokerGames: updatedPokerGames,
