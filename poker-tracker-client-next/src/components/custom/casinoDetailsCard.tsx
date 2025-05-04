@@ -2,14 +2,12 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { CasinoCardData } from "@/lib/types";
 import { MapPin } from "lucide-react";
-import { FunctionComponent } from "react";
 import Image from "next/image";
+import { FunctionComponent } from "react";
 
 interface CasinoDetailsCardProps {
   casino: CasinoCardData;

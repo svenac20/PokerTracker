@@ -1,5 +1,3 @@
-import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
-import { Filter } from "@/components/custom/filter";
 import {
   getCasinos,
   getCasinosWithPokerGames,

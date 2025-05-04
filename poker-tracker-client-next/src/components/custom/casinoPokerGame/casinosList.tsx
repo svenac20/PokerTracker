@@ -1,7 +1,6 @@
 "use client";
 
 import CasinoCard from "@/components/custom/casinoPokerGame/casinoCard";
-import { useHubConnectionWithCasinos } from "@/hooks/useHubConnectionWithCasinos";
 import { CasinoDto } from "@/lib/types";
 import { FunctionComponent, useEffect, useState } from "react";
 

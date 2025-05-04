@@ -4,7 +4,7 @@ import CasinosList from "@/components/custom/casinoPokerGame/casinosList";
 import { Filter } from "@/components/custom/filter";
 import { useHubConnectionWithCasinos } from "@/hooks/useHubConnectionWithCasinos";
 import { CasinoDto } from "@/lib/types";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent } from "react";
 
 interface CasinoTableProps {
   casinosInit: CasinoDto[];

@@ -1,5 +1,5 @@
 import TournamentCard from "@/components/custom/tournamentCard";
-import { getCasinos, getTournaments, getTowns } from "@/lib/services";
+import { getTournaments, getTowns } from "@/lib/services";
 import { Metadata } from "next";
 import Link from "next/link";
 

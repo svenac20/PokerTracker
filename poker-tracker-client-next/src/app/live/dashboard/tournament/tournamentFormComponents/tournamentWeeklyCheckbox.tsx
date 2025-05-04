@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { formSchema, tournamentSchema } from "@/lib/zod-schema";
+import { tournamentSchema } from "@/lib/zod-schema";
 import { FunctionComponent } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
