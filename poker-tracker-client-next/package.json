@@ -48,7 +48,7 @@
     "next": "15.2.3",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
-    "react-day-picker": "^9.6.3",
+    "react-day-picker": "^9.6.7",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
     "tailwind-merge": "^2.6.0",

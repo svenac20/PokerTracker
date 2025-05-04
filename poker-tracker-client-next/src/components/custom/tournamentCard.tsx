@@ -49,7 +49,7 @@ const TournamentCard: FunctionComponent<TournamentCardProps> = ({
             )}
           </div>
           <h3 className="font-semibold">{tournament.casinoName}</h3>
-          <ClientDate date={tournament.startTime} />
+          <ClientDate date={tournament.startTime}/>
           <div className="border-2 rounded-md p-4 text-sm text-gray-700 flex-1 whitespace-pre-wrap break-words h-full">
             {tournament.information}
           </div>
