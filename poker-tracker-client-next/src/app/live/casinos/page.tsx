@@ -14,9 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Casinos() {
   const casinosForUser = await getCasinos();
-
+  console.log(casinosForUser);
   return (
-    <div className="py-8">
+    <div className="lg:py-8">
       <div className="flex justify-between">
         <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl pb-6 lg:pb-12">
           Available Casinos
