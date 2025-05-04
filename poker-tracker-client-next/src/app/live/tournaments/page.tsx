@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ...keywordsCroatian,
       "croatia poker tournaments",
       "poker events Croatia",
-      ],
+    ],
   };
 }
 

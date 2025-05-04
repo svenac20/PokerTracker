@@ -129,7 +129,7 @@ export const getCasinoDetailsForUser = async (userId: string) => {
 
 export const getPokerGameByIdForUser = async (
   pokerGameId: number,
-  userId: string
+  userId: string,
 ) => {
   const pokerGame = await prisma.pokerGame.findUnique({
     where: {
@@ -243,7 +243,7 @@ export const getCasinosGroupedByTown = async (): Promise<
       acc[townName].push(mapCasinoWithTownToCasinoCardData(casino));
       return acc;
     },
-    {} as Record<string, CasinoCardData[]>
+    {} as Record<string, CasinoCardData[]>,
   );
 
   return groupedCasinos;
@@ -278,7 +278,7 @@ export const getTournaments = async () => {
   });
 
   const tournamentsDto = tournaments.map((t) =>
-    mapTournamentToTournamentDto(t)
+    mapTournamentToTournamentDto(t),
   );
   return tournamentsDto;
 };
@@ -304,14 +304,14 @@ export const getTournamentsByCasino = async (casinos: number[]) => {
   });
 
   const tournamentsDto = tournaments.map((t) =>
-    mapTournamentToTournamentDto(t)
+    mapTournamentToTournamentDto(t),
   );
   return tournamentsDto;
 };
 
 export const getTournamentByIdForUser = async (
   id: string,
-  casinos: number[]
+  casinos: number[],
 ) => {
   if (Number.isNaN(Number(id))) {
     return null;
@@ -340,7 +340,6 @@ export const getTournamentByIdForUser = async (
   return mapTournamentToTournamentDto(tournament);
 };
 
-
 export const getCountriesForFilter = async () => {
   const countries = await prisma.country.findMany({
     orderBy: {
@@ -365,4 +364,4 @@ export const getTownsForFilter = async () => {
     value: town.id,
     label: town.name,
   }));
-}
+};

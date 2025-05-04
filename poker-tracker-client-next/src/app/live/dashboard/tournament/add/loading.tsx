@@ -27,10 +27,10 @@ export default function Loading() {
         </div>
         <div>
           <Skeleton className="h-6 w-1/4 mb-2" />
-          <Skeleton className="h-32 w-full" /> 
+          <Skeleton className="h-32 w-full" />
         </div>
         <div>
-          <Skeleton className="h-10 w-full" /> 
+          <Skeleton className="h-10 w-full" />
         </div>
       </div>
     </div>

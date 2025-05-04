@@ -40,7 +40,7 @@ const DeleteGameDialog: FunctionComponent<DeleteGameDialogProps> = ({
       `${process.env.NEXT_PUBLIC_API_URL}/pokerGame/${pokerGame.id}`,
       {
         method: "DELETE",
-      }
+      },
     );
     const pokerGameData: DeletePokerGameMessage = {
       casinoId: pokerGame.casinoId,

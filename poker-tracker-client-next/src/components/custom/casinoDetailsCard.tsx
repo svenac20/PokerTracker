@@ -2,7 +2,7 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { CasinoCardData } from "@/lib/types";
 import { MapPin } from "lucide-react";

@@ -37,7 +37,7 @@ export function useHubConnectionWithCasinos(casinosList: CasinoDto[]) {
                   }
                   return a.gameStarted ? -1 : 1;
                 });
-                console.log(updatedPokerGames)
+                console.log(updatedPokerGames);
                 return {
                   ...casino,
                   pokerGames: updatedPokerGames,

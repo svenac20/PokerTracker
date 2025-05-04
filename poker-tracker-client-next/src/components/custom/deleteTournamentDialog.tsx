@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 import { FunctionComponent, useState } from "react";
 import { Button } from "../ui/button";
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
 } from "../ui/dialog";
 import TournamentCard from "./tournamentCard";
 
@@ -19,9 +19,9 @@ type DeleteTournamentDialogProps = {
   tournament: TournamentDto;
 };
 
-const DeleteTournamentDialog: FunctionComponent<DeleteTournamentDialogProps> = ({
-  tournament
-}) => {
+const DeleteTournamentDialog: FunctionComponent<
+  DeleteTournamentDialogProps
+> = ({ tournament }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
@@ -40,12 +40,12 @@ const DeleteTournamentDialog: FunctionComponent<DeleteTournamentDialogProps> = (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger>
         <Trash className="cursor-pointer" />
-      </DialogTrigger >
+      </DialogTrigger>
       <DialogContent className="min-w-full md:min-w-[800px]">
         <DialogHeader className="font-bold text-lg">
           <DialogTitle>Do you want to delete this tournament?</DialogTitle>
         </DialogHeader>
-        <TournamentCard tournament={tournament}/>
+        <TournamentCard tournament={tournament} />
         <DialogDescription className="hidden">
           Delete tournament dialog
         </DialogDescription>

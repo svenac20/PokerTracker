@@ -1,7 +1,5 @@
 import { authOptions } from "@/lib/authOptions";
-import {
-  getCasinosDropdownForUser
-} from "@/lib/services";
+import { getCasinosDropdownForUser } from "@/lib/services";
 import { Roles } from "@/lib/types";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -22,7 +20,7 @@ export default async function EditTournamentPage() {
           </h1>
         </div>
         <div>
-            <TournamentAddEditForm casinos={casinosForUser}/>
+          <TournamentAddEditForm casinos={casinosForUser} />
         </div>
       </div>
     </>

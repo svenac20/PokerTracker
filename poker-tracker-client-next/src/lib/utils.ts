@@ -65,7 +65,7 @@ export function mapCasinoToCasinoDto(casino: CasinoWithPokerGames): CasinoDto {
 }
 
 export function mapPokerGameToPokerGameDto(
-  pokerGame: PokerGameWithCasino
+  pokerGame: PokerGameWithCasino,
 ): PokerGameDto {
   return {
     id: pokerGame.id,
@@ -81,7 +81,7 @@ export function mapPokerGameToPokerGameDto(
 }
 
 export function mapCasinoWithTownToCasinoCardDetails(
-  casino: CasinoWithTown
+  casino: CasinoWithTown,
 ): CasinoCardData {
   return {
     id: casino.id,
@@ -110,7 +110,7 @@ export function mapTournamentToTournamentDto(
     gameStarted: boolean;
     casinoId: number;
     weeklyTournament: boolean;
-  }
+  },
 ) {
   return {
     id: tournament.id,

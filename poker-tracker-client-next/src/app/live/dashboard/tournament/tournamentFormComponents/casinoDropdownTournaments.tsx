@@ -25,10 +25,9 @@ interface CasinosDropdownTournamentsProps {
   casinos: CasinoDropdownDto[];
 }
 
-const CasinosDropdownTournaments: FunctionComponent<CasinosDropdownTournamentsProps> = ({
-  form,
-  casinos,
-}) => {
+const CasinosDropdownTournaments: FunctionComponent<
+  CasinosDropdownTournamentsProps
+> = ({ form, casinos }) => {
   return (
     <FormField
       control={form.control}

@@ -70,7 +70,7 @@ const TournamentAddEditForm: FunctionComponent<TournamentAddEditFormProps> = ({
   }
 
   async function onSubmitEditTournament(
-    data: z.infer<typeof tournamentSchema>
+    data: z.infer<typeof tournamentSchema>,
   ) {
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));

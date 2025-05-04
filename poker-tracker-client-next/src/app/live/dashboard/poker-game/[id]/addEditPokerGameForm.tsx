@@ -51,7 +51,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
       {
         method: "POST",
         body: JSON.stringify(data),
-      }
+      },
     );
     if (!response.ok) {
       console.error(await response.text());
@@ -76,7 +76,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
       {
         method: "POST",
         body: JSON.stringify(data),
-      }
+      },
     );
     if (!response.ok) {
       console.error(await response.text());

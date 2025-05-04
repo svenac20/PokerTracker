@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   description: "Get information about your user account. Co",
 };
 
-
 export default async function MyAccount() {
   const session = await getServerSession();
   if (!session) {

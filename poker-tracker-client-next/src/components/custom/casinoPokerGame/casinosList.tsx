@@ -23,9 +23,7 @@ const CasinosList: FunctionComponent<CasinoTableProps> = ({
   return (
     <ul>
       {casinos.map((casino) => {
-        return casino.hide ? (
-          null
-        ) : (
+        return casino.hide ? null : (
           <CasinoCard
             key={casino.id}
             casino={casino}

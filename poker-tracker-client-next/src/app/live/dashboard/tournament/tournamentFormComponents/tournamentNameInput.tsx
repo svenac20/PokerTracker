@@ -15,7 +15,9 @@ interface TournamentNameInputProps {
   form: UseFormReturn<z.infer<typeof tournamentSchema>>;
 }
 
-const TournamentNameInput: FunctionComponent<TournamentNameInputProps> = ({ form }) => {
+const TournamentNameInput: FunctionComponent<TournamentNameInputProps> = ({
+  form,
+}) => {
   return (
     <FormField
       control={form.control}

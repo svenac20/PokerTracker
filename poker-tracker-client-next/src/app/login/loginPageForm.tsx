@@ -21,7 +21,6 @@ import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
 export default function LoginPageForm() {
   const searchParams = useSearchParams();
 

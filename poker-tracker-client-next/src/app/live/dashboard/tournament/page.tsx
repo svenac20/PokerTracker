@@ -17,7 +17,7 @@ export default async function ViewTournamentAdminPage() {
   }
   const casinosForUser = await getCasinosDropdownForUser(session.user.id);
   const tournaments = await getTournamentsByCasino(
-    casinosForUser.map((casino) => casino.id)
+    casinosForUser.map((casino) => casino.id),
   );
   return (
     <>

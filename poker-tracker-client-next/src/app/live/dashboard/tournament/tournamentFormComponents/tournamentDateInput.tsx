@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
@@ -25,7 +25,9 @@ interface TournamentDateInputProps {
   form: UseFormReturn<z.infer<typeof tournamentSchema>>;
 }
 
-const TournamentDateInput: FunctionComponent<TournamentDateInputProps> = ({ form }) => {
+const TournamentDateInput: FunctionComponent<TournamentDateInputProps> = ({
+  form,
+}) => {
   function handleDateSelect(date: Date | undefined) {
     if (date) {
       form.setValue("startTime", date);

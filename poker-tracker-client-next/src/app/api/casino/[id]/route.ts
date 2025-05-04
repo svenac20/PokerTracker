@@ -28,7 +28,7 @@ export async function POST(
   const formData = await req.formData();
   console.log(formData);
   const data = JSON.parse(formData.get("data") as string);
-  data.image = formData.get("image") as File | null
+  data.image = formData.get("image") as File | null;
 
   const validatedData = casinoDetailsSchema.safeParse(data);
   // Insert into database

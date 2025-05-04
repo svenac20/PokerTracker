@@ -16,7 +16,17 @@ import {
 import { authOptions } from "@/lib/authOptions";
 import { Roles } from "@/lib/types";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import { Building, ChevronRight, CirclePlus, Home, Info, LayoutDashboard, Lock, Pencil, Trophy } from "lucide-react";
+import {
+  Building,
+  ChevronRight,
+  CirclePlus,
+  Home,
+  Info,
+  LayoutDashboard,
+  Lock,
+  Pencil,
+  Trophy,
+} from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -92,7 +102,7 @@ const AppSidebar: FunctionComponent = async () => {
                           <SidebarMenuLink
                             href="/live/dashboard"
                             text="Dashboard"
-                          icon={<LayoutDashboard />}
+                            icon={<LayoutDashboard />}
                           />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
@@ -106,14 +116,14 @@ const AppSidebar: FunctionComponent = async () => {
                           <SidebarMenuLink
                             href="/live/dashboard/casino"
                             text="Edit casinos"
-                            icon={<Pencil/>}
+                            icon={<Pencil />}
                           />
                         </SidebarMenuSubButton>
                         <SidebarMenuSubButton asChild>
                           <SidebarMenuLink
                             href="/live/dashboard/tournament"
                             text="Edit Tournaments"
-                            icon={<Trophy/>}
+                            icon={<Trophy />}
                           />
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>

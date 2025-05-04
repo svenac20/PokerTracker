@@ -113,8 +113,7 @@ export type CasinoWithTown = {
 export type CasinoGroupedByTownDto = {
   town: string;
   casinos: CasinoCardData[];
-}
-
+};
 
 export type TournamentDto = {
   id: number;
@@ -125,4 +124,4 @@ export type TournamentDto = {
   startTime: Date;
   information: string;
   weeklyTournament: boolean;
-}
+};

@@ -30,9 +30,12 @@ const TournamentWeeklyCheckbox: FunctionComponent<GameStartedCheckboxProps> = ({
             <Checkbox checked={field.value} onCheckedChange={field.onChange} />
           </FormControl>
           <div className="space-y-1 leading-none">
-            <FormLabel>Set if the tournament is available every week.</FormLabel>
+            <FormLabel>
+              Set if the tournament is available every week.
+            </FormLabel>
             <FormDescription>
-              This will automatically set the start time to the next available time.
+              This will automatically set the start time to the next available
+              time.
             </FormDescription>
           </div>
           <FormMessage className="font-bold" />

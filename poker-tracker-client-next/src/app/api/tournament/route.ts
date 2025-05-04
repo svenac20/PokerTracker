@@ -15,18 +15,18 @@ export async function POST(req: NextRequest) {
     if (!validatedData.success || !validatedData.data) {
       return NextResponse.json(
         { success: false, errors: validatedData.error.message },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const imageFile = formData.get("image") as File | null;
-    let imageUrl = ""
+    let imageUrl = "";
     if (imageFile) {
       const blobServiceClient = BlobServiceClient.fromConnectionString(
-        process.env.SA_CONN_STRING!
+        process.env.SA_CONN_STRING!,
       );
       const containerClient = blobServiceClient.getContainerClient(
-        process.env.CASINO_TOURNAMENTS_CONTAINER!
+        process.env.CASINO_TOURNAMENTS_CONTAINER!,
       );
 
       const blobName = `${uuidv4()}`;
@@ -55,8 +55,7 @@ export async function POST(req: NextRequest) {
     console.error(error);
     return NextResponse.json(
       { success: false, message: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

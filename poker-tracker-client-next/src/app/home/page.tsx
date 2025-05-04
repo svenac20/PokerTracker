@@ -123,7 +123,7 @@ export default async function Home() {
                   Poreč
                 </TabsTrigger>
                 <TabsTrigger value="osijek" className="font-bold">
-                  Osijek 
+                  Osijek
                 </TabsTrigger>
                 <TabsTrigger value="opatija" className="font-bold">
                   Opatija
@@ -215,7 +215,9 @@ export default async function Home() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Where can I play poker in Zagreb, Poreč, Split or Osijek?</CardTitle>
+                  <CardTitle>
+                    Where can I play poker in Zagreb, Poreč, Split or Osijek?
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>Zagreb offers an excellent poker venue:</p>
@@ -224,17 +226,23 @@ export default async function Home() {
                       <Dot className="inline" />
                       Casino Cezar Zagreb
                     </li>
-                    <span className="font-normal">If you want to play poker in Poreč head to:</span>
+                    <span className="font-normal">
+                      If you want to play poker in Poreč head to:
+                    </span>
                     <li>
                       <Dot className="inline" />
                       Casino Cezar Poreč
                     </li>
-                    <span className="font-normal">If you want to play poker in Osijek head to:</span>
+                    <span className="font-normal">
+                      If you want to play poker in Osijek head to:
+                    </span>
                     <li>
                       <Dot className="inline" />
                       OlyBet Casino
                     </li>
-                    <span className="font-normal">If you want to play poker in Split head to:</span>
+                    <span className="font-normal">
+                      If you want to play poker in Split head to:
+                    </span>
                     <li>
                       <Dot className="inline" />
                       Favbet Split
@@ -246,7 +254,8 @@ export default async function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>
-                    What types of poker games are available in Zagreb, Poreč, Split and Osijek ?
+                    What types of poker games are available in Zagreb, Poreč,
+                    Split and Osijek ?
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -263,7 +272,8 @@ export default async function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>
-                    What is the rake structure for poker cash games in Zagreb, Poreč, Split and Osijek?
+                    What is the rake structure for poker cash games in Zagreb,
+                    Poreč, Split and Osijek?
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

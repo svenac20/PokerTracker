@@ -19,7 +19,10 @@ export default async function EditTournamentPage({
     redirect("/");
   }
   const casinosForUser = await getCasinosDropdownForUser(session.user.id);
-  const tournament = await getTournamentByIdForUser(id, casinosForUser.map((casino) => casino.id));
+  const tournament = await getTournamentByIdForUser(
+    id,
+    casinosForUser.map((casino) => casino.id),
+  );
   if (!tournament) {
     redirect("/live/dashboard/tournament");
   }
@@ -32,7 +35,10 @@ export default async function EditTournamentPage({
           </h1>
         </div>
         <div>
-            <TournamentAddEditForm casinos={casinosForUser} tournament={tournament}/>
+          <TournamentAddEditForm
+            casinos={casinosForUser}
+            tournament={tournament}
+          />
         </div>
       </div>
     </>

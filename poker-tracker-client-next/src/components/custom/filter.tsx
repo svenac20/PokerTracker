@@ -39,7 +39,7 @@ export const Filter: React.FC<ComboboxProps> = ({
     const newValue = currentValue === value ? null : currentValue;
     setValue(newValue);
     setOpen(false);
-    onSelect(newValue); 
+    onSelect(newValue);
   };
 
   return (
@@ -73,7 +73,7 @@ export const Filter: React.FC<ComboboxProps> = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === item.value ? "opacity-100" : "opacity-0"
+                      value === item.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                   {item.label}

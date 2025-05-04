@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "poker radar register",
       "register for poker radar",
       "create account Poker Radar",
-      "Croatia poker registration"
+      "Croatia poker registration",
     ],
   };
 }
