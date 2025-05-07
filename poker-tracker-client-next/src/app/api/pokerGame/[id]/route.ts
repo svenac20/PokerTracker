@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { PokerGameDto } from "@/lib/types";
+import { getGameTypeIdFromName, getGameTypeNameFromId } from "@/lib/utils";
 import { formSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -42,7 +43,7 @@ export async function POST(
     },
     data: {
       casinoId: parseInt(pokerGameData.casinoId),
-      gameTypeId: pokerGameData.gameType === "PLO" ? 1 : 2,
+      gameTypeId: getGameTypeIdFromName(pokerGameData.gameType),
       gameStarted: pokerGameData.gameStarted,
       startTime: pokerGameData.startTime,
       limit: pokerGameData.limit,
@@ -67,7 +68,7 @@ export async function POST(
     limit: pokerGame.limit,
     tablesNumber: pokerGame.tablesNumber,
     playerWaiting: pokerGame.playerWaiting,
-    gameType: pokerGame.gameTypeId === 1 ? "PLO" : "NLH",
+    gameType: getGameTypeNameFromId(pokerGame.gameTypeId),
   } as PokerGameDto;
   return NextResponse.json(pokerGameDto);
 }

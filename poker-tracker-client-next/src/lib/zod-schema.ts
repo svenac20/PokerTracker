@@ -7,7 +7,7 @@ export const formSchema = z.object({
     })
     .nonempty("Please select a casino"),
   startTime: z.coerce.date({ required_error: "Please select start time" }),
-  gameType: z.enum(["PLO", "NLH"], {
+  gameType: z.enum(["PLO", "NLH", "PLO5"], {
     required_error: "Please select game type",
   }),
   limit: z

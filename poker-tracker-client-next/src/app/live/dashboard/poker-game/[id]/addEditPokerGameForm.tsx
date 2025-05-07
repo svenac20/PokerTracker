@@ -37,7 +37,7 @@ const AddEditPokerGameForm: FunctionComponent<AddPokerGameFormProps> = ({
     defaultValues: {
       casinoId: pokerGame?.casinoId.toString() ?? "",
       startTime: pokerGame?.startTime ?? new Date(),
-      gameType: pokerGame ? (pokerGame.gameType as "PLO" | "NLH") : "PLO",
+      gameType: pokerGame ? (pokerGame.gameType as "PLO" | "NLH" | "PLO5") : "PLO",
       limit: pokerGame?.limit ?? "",
       tables: pokerGame?.tablesNumber ?? 0,
       playersWaiting: pokerGame?.playerWaiting ?? 0,

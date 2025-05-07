@@ -44,6 +44,7 @@ const GameTypeDropdown: FunctionComponent<GameTypeDropdownProps> = ({
                   <SelectLabel>Game Type</SelectLabel>
                   <SelectItem value="PLO">PLO</SelectItem>
                   <SelectItem value="NLH">NLH</SelectItem>
+                  <SelectItem value="PLO5">PLO5</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

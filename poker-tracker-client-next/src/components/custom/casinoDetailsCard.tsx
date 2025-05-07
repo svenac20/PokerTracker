@@ -17,7 +17,7 @@ const CasinoDetailsCard: FunctionComponent<CasinoDetailsCardProps> = ({
   casino,
 }) => {
   return (
-    <Card className="cursor-pointer hover:bg-sidebar-accent hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out">
+    <Card className="cursor-pointer hover:bg-sidebar-accent hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in-out h-full">
       <CardContent className="pt-4">
         <div className="flex flex-col lg:gap-4 gap-2">
           <div className="grid gap-4 grid-cols-[25%_75%]">

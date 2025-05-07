@@ -7,6 +7,7 @@ import {
   CasinoDto,
   CasinoWithPokerGames,
   CasinoWithTown,
+  GameTypes,
   PokerGameDto,
   PokerGameWithCasino,
   TournamentDto,
@@ -132,4 +133,30 @@ export function mapTournamentToTournamentDto(
     information: tournament.information,
     weeklyTournament: tournament.weeklyTournament,
   } as TournamentDto;
+}
+
+export function getGameTypeIdFromName(name: string) {
+  switch (name) {
+    case "PLO":
+      return GameTypes.PLO
+    case "NLH":
+      return GameTypes.NLH;
+    case "PLO5":
+      return GameTypes.PLO5;
+    default:
+      return 1;
+  }
+}
+
+export function getGameTypeNameFromId(id: number) {
+  switch(id) {
+    case GameTypes.PLO:
+      return "PLO";
+    case GameTypes.NLH:
+      return "NLH";
+    case GameTypes.PLO5:
+      return "PLO5";
+    default:
+      return "PLO";
+  }
 }

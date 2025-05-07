@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma"; // Ensure you have Prisma set up
 import { PokerGameDto } from "@/lib/types";
-import { mapPokerGameToPokerGameDto } from "@/lib/utils";
+import { getGameTypeIdFromName, mapPokerGameToPokerGameDto } from "@/lib/utils";
 import { formSchema } from "@/lib/zod-schema";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const game = await prisma.pokerGame.create({
       data: {
         casinoId: parseInt(validatedData.data.casinoId),
-        gameTypeId: validatedData.data.gameType === "PLO" ? 1 : 2,
+        gameTypeId: getGameTypeIdFromName(validatedData.data.gameType),
         gameStarted: validatedData.data.gameStarted,
         limit: validatedData.data.limit,
         tablesNumber: validatedData.data.tables,
