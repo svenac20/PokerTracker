@@ -74,6 +74,7 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
                 <PokerGamesTable
                   pokerGames={casino.pokerGames}
                   showActions={showActions}
+                  currencySymbol={casino.countryId == 2 ? "$" : "€"}
                 />
               </div>
             </AccordionContent>

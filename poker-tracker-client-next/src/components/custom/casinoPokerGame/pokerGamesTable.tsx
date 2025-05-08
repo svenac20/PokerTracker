@@ -14,11 +14,13 @@ import PokerGameCard from "./pokerGameCard";
 interface PokerGamesTableProps {
   pokerGames: PokerGameDto[];
   showActions?: boolean;
+  currencySymbol?: string
 }
 
 const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
   pokerGames,
   showActions,
+  currencySymbol
 }) => {
   if (pokerGames.length === 0) {
     return (
@@ -35,7 +37,7 @@ const PokerGamesTable: FunctionComponent<PokerGamesTableProps> = ({
           <TableRow>
             <TableHead>Start time</TableHead>
             <TableHead>Game type</TableHead>
-            <TableHead>Limit (€)</TableHead>
+            <TableHead>Limit ({currencySymbol ?? "€"})</TableHead>
             <TableHead>Players</TableHead>
             <TableHead>Waiting list</TableHead>
             {showActions && (
