@@ -24,6 +24,7 @@ interface ComboboxProps {
   placeholder?: string; // Optional placeholder for the input
   emptyText?: string; // Optional text when no options are found
   onSelect: (value: number | null) => void; // Callback when an item is selected
+  value?: number | null; // Controlled value
 }
 
 export const Filter: React.FC<ComboboxProps> = ({
@@ -31,13 +32,18 @@ export const Filter: React.FC<ComboboxProps> = ({
   placeholder = "Select an option...",
   emptyText = "No options found.",
   onSelect,
+  value: controlledValue,
 }) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState<number | null>();
+  const [uncontrolledValue, setUncontrolledValue] = React.useState<number | null>();
+
+  const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
 
   const handleSelect = (currentValue: number) => {
     const newValue = currentValue === value ? null : currentValue;
-    setValue(newValue);
+    if (controlledValue === undefined) {
+      setUncontrolledValue(newValue);
+    }
     setOpen(false);
     onSelect(newValue);
   };

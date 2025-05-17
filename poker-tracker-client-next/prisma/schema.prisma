@@ -66,9 +66,10 @@ model Role {
 }
 
 model Country {
-  id    Int    @id @default(autoincrement())
-  name  String
-  towns Town[]
+  id          Int    @id @default(autoincrement())
+  name        String
+  countryCode String?
+  towns       Town[]
 }
 
 model GameType {
