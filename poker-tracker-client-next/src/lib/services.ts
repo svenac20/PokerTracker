@@ -7,6 +7,7 @@ import {
   mapPokerGameToPokerGameDto,
   mapTournamentToTournamentDto,
 } from "./utils";
+import { count } from "console";
 
 export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
@@ -350,11 +351,19 @@ export const getCountriesForFilter = async () => {
   return countries.map((country) => ({
     value: country.id,
     label: country.name,
+    countryCode: country.countryCode,
   }));
 };
 
 export const getTownsForFilter = async () => {
   const towns = await prisma.town.findMany({
+    include: {
+      country: {
+        select: {
+          countryCode: true,
+        },
+      },
+    },
     orderBy: {
       name: "asc",
     },
@@ -363,5 +372,6 @@ export const getTownsForFilter = async () => {
   return towns.map((town) => ({
     value: town.id,
     label: town.name,
+    countryCode: town.country.countryCode,
   }));
 };

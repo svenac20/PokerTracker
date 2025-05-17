@@ -5,6 +5,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import {
   Command,
   CommandEmpty,
@@ -20,7 +21,7 @@ import {
 } from "@/components/ui/popover";
 
 interface ComboboxProps {
-  data: { value: number; label: string }[]; // Array of objects with value and label
+  data: { value: number; label: string; countryCode: string | null }[]; // Array of objects with value, label, and optional code
   placeholder?: string; // Optional placeholder for the input
   emptyText?: string; // Optional text when no options are found
   onSelect: (value: number | null) => void; // Callback when an item is selected
@@ -35,9 +36,12 @@ export const Filter: React.FC<ComboboxProps> = ({
   value: controlledValue,
 }) => {
   const [open, setOpen] = React.useState(false);
-  const [uncontrolledValue, setUncontrolledValue] = React.useState<number | null>();
+  const [uncontrolledValue, setUncontrolledValue] = React.useState<
+    number | null
+  >();
 
-  const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
+  const value =
+    controlledValue !== undefined ? controlledValue : uncontrolledValue;
 
   const handleSelect = (currentValue: number) => {
     const newValue = currentValue === value ? null : currentValue;
@@ -79,9 +83,17 @@ export const Filter: React.FC<ComboboxProps> = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === item.value ? "opacity-100" : "opacity-0",
+                      value === item.value ? "opacity-100" : "opacity-0"
                     )}
                   />
+                  {item.countryCode ? (
+                    <Image
+                      alt={item.label}
+                      src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${item.countryCode}.svg`}
+                      width={30}
+                      height={20}
+                    />
+                  ) : null}
                   {item.label}
                 </CommandItem>
               ))}

@@ -8,8 +8,8 @@ import { FunctionComponent, useState } from "react";
 
 interface CasinoTableProps {
   casinosInit: CasinoDto[];
-  countries: { value: number; label: string }[];
-  towns: { value: number; label: string }[];
+  countries: { value: number; label: string, countryCode: string | null}[];
+  towns: { value: number; label: string, countryCode: string | null }[];
 }
 
 const MainPage: FunctionComponent<CasinoTableProps> = ({
