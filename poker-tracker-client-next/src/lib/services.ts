@@ -8,6 +8,7 @@ import {
   mapTournamentToTournamentDto,
 } from "./utils";
 import { count } from "console";
+import { add, isAfter } from "date-fns";
 
 export const getCasinosWithPokerGames = async (): Promise<CasinoDto[]> => {
   const casinos = await prisma.casino.findMany({
@@ -130,7 +131,7 @@ export const getCasinoDetailsForUser = async (userId: string) => {
 
 export const getPokerGameByIdForUser = async (
   pokerGameId: number,
-  userId: string,
+  userId: string
 ) => {
   const pokerGame = await prisma.pokerGame.findUnique({
     where: {
@@ -244,7 +245,7 @@ export const getCasinosGroupedByTown = async (): Promise<
       acc[townName].push(mapCasinoWithTownToCasinoCardData(casino));
       return acc;
     },
-    {} as Record<string, CasinoCardData[]>,
+    {} as Record<string, CasinoCardData[]>
   );
 
   return groupedCasinos;
@@ -278,8 +279,27 @@ export const getTournaments = async () => {
     },
   });
 
+  tournaments.map((tournament) => {
+    if (tournament.weeklyTournament) {
+      const now = new Date();
+
+      // Keep adding 7 days until the adjusted date is in the future
+      while (isAfter(now, tournament.startTime)) {
+        tournament.startTime = add(tournament.startTime, { days: 7 });
+      }
+    }
+  });
+  tournaments.sort((a, b) => {
+    if (a.startTime < b.startTime) {
+      return -1;
+    }
+    if (a.startTime > b.startTime) {
+      return 1;
+    }
+    return 0;
+  });
   const tournamentsDto = tournaments.map((t) =>
-    mapTournamentToTournamentDto(t),
+    mapTournamentToTournamentDto(t)
   );
   return tournamentsDto;
 };
@@ -305,14 +325,14 @@ export const getTournamentsByCasino = async (casinos: number[]) => {
   });
 
   const tournamentsDto = tournaments.map((t) =>
-    mapTournamentToTournamentDto(t),
+    mapTournamentToTournamentDto(t)
   );
   return tournamentsDto;
 };
 
 export const getTournamentByIdForUser = async (
   id: string,
-  casinos: number[],
+  casinos: number[]
 ) => {
   if (Number.isNaN(Number(id))) {
     return null;

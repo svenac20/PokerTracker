@@ -115,14 +115,6 @@ export function mapTournamentToTournamentDto(
     weeklyTournament: boolean;
   },
 ) {
-  if (tournament.weeklyTournament) {
-    const now = new Date();
-
-    // Keep adding 7 days until the adjusted date is in the future
-    while (isAfter(now, tournament.startTime)) {
-      tournament.startTime = add(tournament.startTime, { days: 7 });
-    }
-  }
   return {
     id: tournament.id,
     casinoId: tournament.casinoId,
