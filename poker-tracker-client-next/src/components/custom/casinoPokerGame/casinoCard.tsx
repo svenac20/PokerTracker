@@ -9,6 +9,7 @@ import {
 } from "../../ui/accordion";
 import { Card, CardContent, CardDescription, CardHeader } from "../../ui/card";
 import PokerGamesTable from "./pokerGamesTable";
+import Link from "next/link";
 
 interface CasinoCardProps {
   casino: CasinoDto;
@@ -64,7 +65,16 @@ const CasinoCard: FunctionComponent<CasinoCardProps> = ({
                           <span>{casino.location}</span>
                         </div>
                       </CardDescription>
-                      <p>Rake: {casino.rake}</p>
+                      {casino.countryId != 2 && <p>Rake: {casino.rake}</p>}
+                      {casino.countryId == 2 && (
+                        <Link
+                          href="https://pokerradarsa.blob.core.windows.net/casinos-rake/casino-adjara-rake-info.png"
+                          target="_blank"
+                          className="underline"
+                        >
+                            <div>Rake information here</div>
+                        </Link>
+                      )}
                     </CardHeader>
                     <CardContent className="whitespace-pre-wrap">
                       {casino.information}
